@@ -541,6 +541,17 @@
 
         .footer-copy { font-size: 0.68rem; color: rgba(168,152,128,0.35); }
 
+        /* ── Scroll reveal ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* ── Responsive ── */
         @media (max-width: 900px) {
             nav { padding: 1.2rem 1.5rem; }
@@ -971,6 +982,22 @@
             document.getElementById('menu-' + section).style.display = 'flex';
             document.getElementById('menu-' + section).style.flexDirection = 'column';
         }
+
+        // Scroll reveal
+        document.querySelectorAll('.heading, .label, .rule, .concept-img, .dish, .menu-row, .vcol, .bar-img').forEach(el => {
+            el.classList.add('reveal');
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 
 </body>

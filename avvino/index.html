@@ -606,20 +606,36 @@
 
         .footer-copy { font-size: 0.66rem; color: rgba(158,146,128,0.35); }
 
+        /* ── Scroll reveal ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* ── Responsive ── */
         @media (max-width: 900px) {
+            body { overflow-x: hidden; }
             nav { padding: 1.2rem 1.5rem; }
             .nav-links { display: none; }
             section { padding: 4rem 1.5rem; }
             .hero-content { padding: 0 1.5rem; }
             .concept-grid,
             .drinks-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .drinks-img { position: static; aspect-ratio: 3/2; }
             .spaces-grid { grid-template-columns: 1fr; }
             .dishes-mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
             .dish-cell--tall { grid-row: auto; }
             .visit-cols { grid-template-columns: 1fr; }
             .vcol-rule { display: none; }
             footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+            .pillars-grid { grid-template-columns: 1fr !important; }
+            .name-grid { grid-template-columns: 1fr !important; }
+            .name-text { border-left: none !important; padding-left: 0 !important; }
         }
     </style>
 </head>
@@ -662,7 +678,7 @@
 
     <!-- Three Pillars -->
     <section style="background:var(--dark-2);padding:0;">
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);">
+        <div class="pillars-grid" style="display:grid;grid-template-columns:repeat(3,1fr);">
             <div style="padding:3.5rem 3rem;border-right:1px solid rgba(237,230,214,0.06);">
                 <span style="font-size:0.62rem;letter-spacing:0.34em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:1rem;">Catering</span>
                 <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;margin-bottom:0.75rem;">We come to you</h3>
@@ -707,12 +723,12 @@
     <!-- The Name -->
     <section style="background:var(--dark);padding:5rem 3rem;">
         <div class="container">
-            <div style="display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:center;">
+            <div class="name-grid" style="display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:center;">
                 <div>
                     <span class="label">Our Name</span>
                     <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:300;line-height:0.95;font-style:italic;">Avvinare</h2>
                 </div>
-                <div class="muted" style="border-left:1px solid rgba(237,230,214,0.08);padding-left:4rem;">
+                <div class="name-text muted" style="border-left:1px solid rgba(237,230,214,0.08);padding-left:4rem;">
                     <p style="margin-bottom:1rem;">Avvino comes from the wine term <em>Avvinare</em> — the traditional European practice of priming stemware and decanters for proper wine service.</p>
                     <p>You pour a small sip of wine into your glass, swirl it, pour it into the glass of the person next to you, and repeat before finally discarding the sample. The glass you then serve has only the pure wine from the bottle, <strong style="color:var(--cream);">nothing altering its essential aroma or flavor.</strong></p>
                 </div>
@@ -1135,6 +1151,22 @@
             document.querySelectorAll('.menu-list').forEach(l => l.classList.remove('active'));
             document.getElementById('menu-' + section).classList.add('active');
         }
+
+        // Scroll reveal
+        document.querySelectorAll('.heading, .label, .rule, .concept-img, .venue-info, .space-card, .dish-cell, .menu-item, .cocktail-item, .vcol, .wine-note, .pillars-grid > div, .reserve-inner, .intro-img').forEach(el => {
+            el.classList.add('reveal');
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 
 </body>
