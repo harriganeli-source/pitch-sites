@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Cicero Law Firm — hero sketch</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+    --teal:  #07847e;
+    --pine:  #0b4a47;
+    --brace: #d8d8d8;
+    --ink:   #1e2322;
+    --paper: #fdfcfa;
+    --serif: 'Bodoni Moda', 'Bodoni 72', Didot, serif;
+    --sans: 'Public Sans', -apple-system, sans-serif;
+}
+body { background: #d9d7d2; font-family: var(--sans); }
+
+/* browser frame */
+.browser { width: 1440px; margin: 0 auto; box-shadow: 0 30px 80px rgba(30,30,30,0.35); }
+.chrome { background: #e8e6e1; border-radius: 10px 10px 0 0; padding: 12px 16px; display: flex; align-items: center; gap: 14px; }
+.dots { display: flex; gap: 7px; }
+.dots span { width: 12px; height: 12px; border-radius: 50%; }
+.dots span:nth-child(1) { background: #e0604f; }
+.dots span:nth-child(2) { background: #e0b04f; }
+.dots span:nth-child(3) { background: #6fbf5e; }
+.urlbar { flex: 1; max-width: 560px; margin: 0 auto; background: #fff; border-radius: 7px; padding: 7px 14px; font-size: 13px; color: #444; display: flex; align-items: center; gap: 8px; }
+.lock { width: 11px; height: 11px; }
+
+/* hero */
+.hero { background: var(--paper); height: 828px; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+
+nav { display: flex; align-items: center; justify-content: space-between; padding: 46px 84px 0; }
+.lockup { display: flex; align-items: baseline; gap: 10px; }
+.lockup .br { font-family: var(--serif); font-size: 34px; font-weight: 400; color: var(--brace); position: relative; top: 2px; }
+.lockup .name { font-family: var(--serif); font-size: 30px; font-weight: 500; color: var(--teal); letter-spacing: .01em; }
+.lockup .lf { font-size: 12px; font-weight: 500; letter-spacing: .34em; color: var(--ink); margin-left: 6px; }
+.links { display: flex; gap: 38px; font-size: 13px; font-weight: 500; letter-spacing: .07em; color: rgba(30,35,34,0.66); }
+.links .active { color: var(--teal); border-bottom: 1px solid var(--teal); padding-bottom: 3px; }
+
+.stage { flex: 1; display: flex; align-items: center; justify-content: center; gap: 64px; padding: 0 60px; position: relative; }
+.brace-big { font-family: var(--serif); font-size: 560px; font-weight: 400; color: var(--brace); line-height: 0; user-select: none; font-variation-settings: "opsz" 96; }
+.center { text-align: center; max-width: 760px; }
+h1 { font-family: var(--serif); font-size: 74px; font-weight: 480; font-variation-settings: "opsz" 96; line-height: 1.12; letter-spacing: .002em; color: var(--pine); }
+h1 .disc { font-style: italic; color: var(--teal); }
+.sub { margin-top: 28px; font-size: 18px; line-height: 1.7; color: rgba(30,35,34,0.72); }
+.cta-row { margin-top: 40px; display: flex; align-items: center; justify-content: center; gap: 26px; }
+.btn { background: var(--teal); color: #fff; font-size: 15px; font-weight: 600; letter-spacing: .02em; padding: 16px 32px; border-radius: 3px; }
+.tel { font-size: 15px; color: var(--pine); font-weight: 500; border-bottom: 1px solid rgba(7,132,126,0.4); padding-bottom: 2px; }
+
+.cred { border-top: 1px solid rgba(30,35,34,0.14); margin: 0 84px; padding: 20px 0 30px; display: flex; justify-content: space-between; align-items: baseline; font-size: 14px; color: rgba(30,35,34,0.62); }
+.cred strong { color: var(--pine); font-weight: 600; }
+.est { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--teal); }
+</style>
+</head>
+<body>
+<div class="browser">
+    <div class="chrome">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <div class="urlbar"><svg class="lock" viewBox="0 0 12 12" fill="#555"><path d="M3 5V3.5C3 1.8 4.3.5 6 .5S9 1.8 9 3.5V5h.5c.6 0 1 .4 1 1v4.5c0 .6-.4 1-1 1h-7c-.6 0-1-.4-1-1V6c0-.6.4-1 1-1H3zm1.5 0h3V3.5C7.5 2.7 6.8 2 6 2s-1.5.7-1.5 1.5V5z"/></svg>thecicerolawfirm.com</div>
+    </div>
+    <div class="hero">
+        <nav>
+            <div class="lockup"><span class="br">{</span><span class="name">cicero</span><span class="br">}</span><span class="lf">LAW FIRM</span></div>
+            <div class="links"><span class="active">HOME</span><span>ATTORNEYS</span><span>OUR STAFF</span><span>PRACTICE AREAS</span><span>CONTACT</span></div>
+        </nav>
+        <div class="stage">
+            <div class="brace-big">{</div>
+            <div class="center">
+                <h1>Estate planning for <span class="disc">discerning</span> clients.</h1>
+                <p class="sub">Wills, trusts, and estate administration, practiced personally in Rochester since 1990. The attorney who drafts your plan is the attorney who answers your call.</p>
+                <div class="cta-row">
+                    <div class="btn">Schedule a consultation</div>
+                    <div class="tel">585.385.3100</div>
+                </div>
+            </div>
+            <div class="brace-big">}</div>
+        </div>
+        <div class="cred">
+            <div>Ranked <strong>Tier 1 for Trusts &amp; Estates</strong> by Best Lawyers&reg;, every year since 2011</div>
+            <div class="est">Established 1990</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
