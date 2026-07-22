@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>House of Guitars — concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;600;700&family=Archivo:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink:#ff2d9b;
+    --cyan:#39d9e6;
+    --ink:#0a0a0a;
+    --bone:#f4 efe6;
+    --bone:#f3ede1;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:var(--ink);color:#fff;font-family:'Archivo',sans-serif;-webkit-font-smoothing:antialiased}
+
+  /* screenprint grain overlay */
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:99;opacity:.06;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode:screen;
+  }
+
+  /* top marquee */
+  .marquee{
+    background:var(--pink);color:#0a0a0a;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+    text-transform:uppercase;letter-spacing:.04em;font-size:15px;white-space:nowrap;overflow:hidden;
+    border-bottom:3px solid #000;
+  }
+  .marquee span{display:inline-block;padding:9px 0;animation:slide 22s linear infinite}
+  .marquee b{padding:0 22px;opacity:.95}
+  .marquee .dot{color:var(--cyan);-webkit-text-stroke:.4px #000}
+  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* nav */
+  nav{
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+    padding:16px 34px;border-bottom:2px solid #1c1c1c;
+    font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.03em;
+  }
+  nav .logo{font-family:'Anton';font-size:22px;letter-spacing:.02em}
+  nav .logo em{color:var(--pink);font-style:normal}
+  nav ul{display:flex;gap:26px;list-style:none;font-weight:600;font-size:16px}
+  nav a{color:#d8d8d8;text-decoration:none}
+  nav a:hover{color:var(--cyan)}
+  nav .ring{background:#fff;color:#000;padding:9px 16px;border-radius:40px;font-weight:700;font-size:15px;white-space:nowrap}
+
+  /* hero */
+  .hero{position:relative;padding:46px 34px 30px;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:center;max-width:1400px;margin:0 auto}
+
+  .kicker{
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;
+    letter-spacing:.16em;color:var(--cyan);font-size:19px;margin-bottom:10px
+  }
+
+  /* misregistered screenprint headline */
+  .stars{position:relative;font-family:'Anton';text-transform:uppercase;line-height:.86;font-size:clamp(46px,7.4vw,116px);letter-spacing:.005em}
+  .stars .line{position:relative;display:block}
+  .stars .line::before{
+    content:attr(data-t);position:absolute;left:-4px;top:5px;color:var(--cyan);
+    z-index:0;opacity:.9;-webkit-text-stroke:0;
+  }
+  .stars .line span{position:relative;z-index:1;color:#fff}
+  .stars .line.pink span{color:var(--pink)}
+
+  .blurb{
+    max-width:520px;margin:22px 0 26px;font-size:19px;line-height:1.5;color:#e7e2d8;font-weight:500
+  }
+  .blurb i{color:var(--cyan);font-style:italic}
+
+  .cta{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .btn-dig{
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+    font-size:21px;background:var(--pink);color:#0a0a0a;border:3px solid #000;
+    padding:15px 30px;box-shadow:6px 6px 0 #000;text-decoration:none;display:inline-block;
+    transition:transform .08s,box-shadow .08s
+  }
+  .btn-dig:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 #000}
+
+  /* pick-shaped video button */
+  .pick{
+    position:relative;width:150px;height:150px;background:#0a0a0a;border:3px solid var(--cyan);
+    border-radius:50% 50% 50% 50%/60% 60% 40% 40%;transform:rotate(0);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+    text-decoration:none;color:#fff;flex-shrink:0;
+    background-image:radial-gradient(circle at 50% 35%,rgba(57,217,230,.25),transparent 60%)
+  }
+  .pick .tri{width:0;height:0;border-left:16px solid var(--cyan);border-top:11px solid transparent;border-bottom:11px solid transparent;margin-bottom:8px;margin-left:5px}
+  .pick small{font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:14px;line-height:1.05;padding:0 14px}
+
+  /* logo house medallion */
+  .medallion{position:relative;display:flex;align-items:center;justify-content:center}
+  .medallion .ring2{
+    width:min(430px,40vw);aspect-ratio:1;border-radius:50%;
+    background:
+      repeating-conic-gradient(from 0deg,#000 0 9deg,var(--pink) 9deg 18deg);
+    padding:14px;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 0 0 6px #000, 14px 14px 0 rgba(255,45,155,.25)
+  }
+  .medallion .disc{
+    width:100%;height:100%;border-radius:50%;background:var(--cyan);
+    overflow:hidden;position:relative;border:4px solid #000
+  }
+  /* real HOG medallion, cropped from logo-2-lines.png via CSS */
+  .disc img{position:absolute;width:153%;left:-26.5%;top:-9.3%;max-width:none}
+  .badge-wall{
+    position:absolute;bottom:-14px;left:50%;transform:translateX(-50%) rotate(-4deg);
+    background:#000;color:var(--cyan);font-family:'Barlow Condensed',sans-serif;font-weight:700;
+    text-transform:uppercase;letter-spacing:.06em;font-size:15px;padding:7px 16px;border:2px solid var(--cyan);white-space:nowrap
+  }
+
+  /* bottom wall-of-fame ticker */
+  .fame{
+    margin-top:34px;border-top:3px solid var(--pink);border-bottom:3px solid var(--pink);
+    background:#0a0a0a;overflow:hidden
+  }
+  .fame span{
+    display:inline-block;white-space:nowrap;font-family:'Anton';text-transform:uppercase;
+    font-size:26px;letter-spacing:.02em;padding:12px 0;color:#1e1e1e;-webkit-text-stroke:1px #6a6a6a;
+    animation:slide 30s linear infinite
+  }
+  .fame b{padding:0 20px}
+  .fame b.on{color:var(--pink);-webkit-text-stroke:0}
+
+  @media(max-width:860px){
+    .hero-grid{grid-template-columns:1fr}
+    .medallion{order:-1;margin-bottom:8px}
+    nav ul{display:none}
+  }
+</style>
+</head>
+<body>
+
+  <div class="marquee"><span>
+    <b>RING 585·544·3500</b><i class="dot">✦</i><b>645 TITUS AVE · ROCHESTER NY</b><i class="dot">✦</i><b>MON–SAT 10–9 · SUN 1–5</b><i class="dot">✦</i><b>PACKED TO THE RAFTERS SINCE 1964</b><i class="dot">✦</i>
+    <b>RING 585·544·3500</b><i class="dot">✦</i><b>645 TITUS AVE · ROCHESTER NY</b><i class="dot">✦</i><b>MON–SAT 10–9 · SUN 1–5</b><i class="dot">✦</i><b>PACKED TO THE RAFTERS SINCE 1964</b><i class="dot">✦</i>
+  </span></div>
+
+  <nav>
+    <div class="logo">HOUSE OF <em>GUITARS</em></div>
+    <ul>
+      <li><a href="#">History</a></li>
+      <li><a href="#">Shop</a></li>
+      <li><a href="#">For Beginners</a></li>
+      <li><a href="#">CDs &amp; Vinyl</a></li>
+      <li><a href="#">Wall of Fame</a></li>
+      <li><a href="#">What's Happening?</a></li>
+    </ul>
+    <a class="ring" href="tel:5855443500">📞 Ring 585·544·3500</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="kicker">Rochester's loudest room since 1964</div>
+        <h1 class="stars">
+          <span class="line" data-t="FOR THE"><span>FOR THE</span></span>
+          <span class="line pink" data-t="RISING YOUNG"><span>RISING YOUNG</span></span>
+          <span class="line" data-t="STARS FROM EARTH"><span>STARS FROM EARTH</span></span>
+        </h1>
+        <p class="blurb">
+          Acoustics, electrics, amps, drums, mics, and a <i>slew of rare junk worth ogling</i>.
+          Packed floor to ceiling on Titus Ave for sixty years. You get the jist.
+        </p>
+        <div class="cta">
+          <a class="btn-dig" href="#">Come dig through it →</a>
+          <a class="pick" href="#">
+            <span class="tri"></span>
+            <small>Play our<br>video website</small>
+          </a>
+        </div>
+      </div>
+
+      <div class="medallion">
+        <div class="ring2">
+          <div class="disc">
+            <img src="assets/logo-2-lines.png" alt="House of Guitars Inc.">
+          </div>
+        </div>
+        <div class="badge-wall">★ Home of the HOG Wall of Fame ★</div>
+      </div>
+    </div>
+
+    <div class="fame"><span>
+      <b class="on">RUSH</b><b>·</b><b>DUKE ELLINGTON</b><b>·</b><b class="on">THE RAMONES</b><b>·</b><b>LOU REED</b><b>·</b><b class="on">CHUCK BERRY</b><b>·</b><b>FOO FIGHTERS</b><b>·</b><b class="on">EVERY LOCAL KID WITH A DREAM</b><b>·</b>
+      <b class="on">RUSH</b><b>·</b><b>DUKE ELLINGTON</b><b>·</b><b class="on">THE RAMONES</b><b>·</b><b>LOU REED</b><b>·</b><b class="on">CHUCK BERRY</b><b>·</b><b>FOO FIGHTERS</b><b>·</b><b class="on">EVERY LOCAL KID WITH A DREAM</b><b>·</b>
+    </span></div>
+  </section>
+
+</body>
+</html>

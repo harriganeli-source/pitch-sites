@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HOG sign — font test 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tinos:wght@700&family=Chonburi&family=Abril+Fatface&family=Young+Serif&family=Fraunces:opsz,wght@9..144,900&family=Ultra&family=Rye&family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Oswald:wght@600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#17132e;padding:30px 0 60px;font-family:'Oswald',sans-serif}
+  .label{
+    color:#8b83b8;text-transform:uppercase;letter-spacing:.2em;font-size:13px;
+    text-align:center;margin:26px 0 4px;
+  }
+  .signwrap{position:relative;width:min(1050px,95vw);margin:0 auto}
+  .signwrap img{width:100%;display:block;mix-blend-mode:screen;pointer-events:none}
+  .signtext{
+    position:absolute;left:9%;right:9%;top:29%;height:46%;
+    display:flex;align-items:center;justify-content:center;
+    color:#1c1408;white-space:nowrap;
+    mix-blend-mode:multiply;
+    opacity:.94;filter:blur(.3px);
+    font-size:40px;
+  }
+  .signtext em{font-style:normal;font-size:.42em;letter-spacing:.18em;vertical-align:.2em;opacity:.85}
+
+  .f1{font-family:'Tinos',serif;font-weight:700;letter-spacing:.1em;text-indent:.1em;transform:scaleX(.82)}
+  .f2{font-family:'Chonburi';letter-spacing:.04em}
+  .f3{font-family:'Abril Fatface';letter-spacing:.05em}
+  .f4{font-family:'Young Serif';letter-spacing:.04em}
+  .f5{font-family:'Fraunces',serif;font-weight:900;letter-spacing:.03em}
+  .f6{font-family:'Ultra';letter-spacing:.05em}
+  .f7{font-family:'Rye';letter-spacing:.03em}
+  .f8{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;letter-spacing:.04em}
+</style>
+</head>
+<body>
+  <div class="label">1 · Tinos condensed (your current favorite)</div>
+  <div class="signwrap"><img src="assets/sign.jpg" alt=""><div class="signtext f1">HOUSE OF GUITARS <em>INC.</em></div></div>
+
+  <div class="label">2 · Chonburi — fat didone, warm</div>
+  <div class="signwrap"><img src="assets/sign.jpg" alt=""><div class="signtext f2">HOUSE OF GUITARS <em>INC.</em></div></div>
+
+  <div class="label">3 · Abril Fatface — classic poster fat-face</div>
+  <div class="signwrap"><img src="assets/sign.jpg" alt=""><div class="signtext f3">HOUSE OF GUITARS <em>INC.</em></div></div>
+
+  <div class="label">4 · Young Serif — chunky warm oldstyle</div>
+  <div class="signwrap"><img src="assets/sign.jpg" alt=""><div class="signtext f4">HOUSE OF GUITARS <em>INC.</em></div></div>
+
+  <div class="label">5 · Fraunces Black — funky retro serif</div>
+  <div class="signwrap"><img src="assets/sign.jpg" alt=""><div class="signtext f5">HOUSE OF GUITARS <em>INC.</em></div></div>
+
+  <div class="label">6 · Ultra — heavy poster clarendon</div>
+  <div class="signwrap"><img src="assets/sign.jpg" alt=""><div class="signtext f6">HOUSE OF GUITARS <em>INC.</em></div></div>
+
+  <div class="label">7 · Rye — western circus (the v2 show-bill font)</div>
+  <div class="signwrap"><img src="assets/sign.jpg" alt=""><div class="signtext f7">HOUSE OF GUITARS <em>INC.</em></div></div>
+
+  <div class="label">8 · Bricolage Grotesque — characterful modern sans</div>
+  <div class="signwrap"><img src="assets/sign.jpg" alt=""><div class="signtext f8">HOUSE OF GUITARS <em>INC.</em></div></div>
+
+<script>
+document.fonts.ready.then(function(){
+  document.querySelectorAll('.signtext').forEach(function(el){
+    var face = el.parentElement.querySelector('img');
+    var maxW = face.clientWidth * 0.76;
+    var maxH = face.clientHeight * 0.30;
+    var fs = 40;
+    el.style.fontSize = fs + 'px';
+    var r = document.createRange(); r.selectNodeContents(el);
+    var rect = r.getBoundingClientRect();
+    var scale = Math.min(maxW / rect.width, maxH / rect.height);
+    el.style.fontSize = (fs * scale) + 'px';
+  });
+});
+</script>
+</body>
+</html>

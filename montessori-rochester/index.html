@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Montessori School of Rochester</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Albert+Sans:wght@400;500;600;700&family=Julius+Sans+One&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #10408A;
+    --night: #0A2A5C;
+    --night-deep: #071F45;
+    --gold: #F2C13B;
+    --orange: #F0812B;
+    --cream: #FDF9F0;
+    --dawn: #E9F1F9;
+    --ink: #22314A;
+    --muted: #5A6B85;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Albert Sans', -apple-system, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, blockquote { font-family: 'Newsreader', Georgia, serif; font-weight: 400; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  .btn {
+    display: inline-block;
+    background: var(--orange); color: #fff;
+    padding: 0.7em 1.5em; border-radius: 999px;
+    text-decoration: none; font-weight: 600; font-size: 0.98rem;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(240,129,43,0.35); }
+  .btn.gold { background: var(--gold); color: var(--night-deep); }
+  .btn.quiet { background: transparent; color: var(--navy); box-shadow: inset 0 0 0 2px var(--navy); }
+
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 4vw;
+    background: var(--cream);
+  }
+  .logo img { height: 52px; width: auto; }
+  nav { display: flex; align-items: center; gap: 2rem; font-weight: 500; font-size: 0.98rem; }
+  nav a { text-decoration: none; color: var(--navy); }
+  nav a:hover { color: var(--orange); }
+
+  /* ---------- night: the philosophy ---------- */
+  .night {
+    background: linear-gradient(180deg, var(--night-deep) 0%, var(--night) 70%, #12356B 100%);
+    color: #F2EFE6;
+    text-align: center;
+    padding: clamp(2.5rem, 5vh, 4rem) 6vw 0;
+    position: relative;
+  }
+  .night .whose {
+    font-family: 'Julius Sans One', 'Albert Sans', sans-serif;
+    font-size: 0.98rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #9FB4D8;
+    margin-bottom: 2rem;
+  }
+  .night h1 {
+    font-size: clamp(2.4rem, 4.6vw, 3.5rem);
+    line-height: 1.24;
+    max-width: 17em;
+    padding: 0 2vw;
+    margin: 0 auto 1.1rem;
+    color: #FBF7EC;
+  }
+  .night .follow {
+    font-family: 'Newsreader', Georgia, serif;
+    font-style: italic;
+    font-size: clamp(1.2rem, 1.9vw, 1.7rem);
+    color: #B9C9E6;
+    margin: 0 auto 2.4rem;
+    max-width: 30em;
+  }
+  .night h1 em { font-style: italic; color: var(--gold); }
+  .night .and-so {
+    font-size: clamp(0.98rem, 1.3vw, 1.13rem); color: #C9D6EC;
+    max-width: 42em; margin: 0 auto 2.4rem;
+  }
+  .night .cta-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3.5rem; }
+  .horizon {
+    position: relative;
+    height: 112px;
+    overflow: hidden;
+    margin-left: -6vw; margin-right: -6vw;
+  }
+  .horizon::after {
+    content: "";
+    position: absolute; left: 0; right: 0; bottom: 0;
+    height: 1px; background: rgba(242,193,59,0.55);
+  }
+  .horizon .rising {
+    position: absolute; left: 50%; bottom: 0;
+    width: 200px; height: 100px;
+    transform: translateX(-50%) translateY(52%);
+    transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .horizon.risen .rising {
+    transform: translateX(-50%) translateY(0);
+  }
+  .horizon .wedge {
+    opacity: 0;
+    transition: opacity 0.28s ease-out;
+  }
+  .horizon.crowned .wedge { opacity: 1; }
+  .horizon.crowned .wedge:nth-of-type(1) { transition-delay: 0s; }
+  .horizon.crowned .wedge:nth-of-type(2) { transition-delay: 0.09s; }
+  .horizon.crowned .wedge:nth-of-type(3) { transition-delay: 0.18s; }
+  .horizon.crowned .wedge:nth-of-type(4) { transition-delay: 0.27s; }
+  .horizon.crowned .wedge:nth-of-type(5) { transition-delay: 0.36s; }
+  .horizon.crowned .wedge:nth-of-type(6) { transition-delay: 0.45s; }
+
+  /* ---------- first light: why montessori ---------- */
+  .first-light {
+    background: linear-gradient(180deg, var(--dawn) 0%, #F3EFE2 100%);
+    padding: 5rem 4vw 5.5rem;
+  }
+  .first-light .inner { max-width: 1140px; margin: 0 auto; }
+  .first-light h2 {
+    font-size: clamp(2rem, 3.4vw, 3rem);
+    color: var(--navy);
+    margin-bottom: 2.6rem;
+  }
+  .why-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    align-items: start;
+  }
+  .why-text { font-size: 1.07rem; }
+  .why-text p { margin-bottom: 1.4rem; }
+  .why-text p:first-of-type::first-letter {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 3.4em; float: left;
+    line-height: 0.82; padding: 0.06em 0.12em 0 0;
+    color: var(--orange);
+  }
+  .why-photo figure { border-radius: 14px; overflow: hidden; }
+  .why-photo figcaption { font-size: 0.88rem; color: var(--muted); margin-top: 0.8rem; }
+  .pull {
+    border-left: 3px solid var(--gold);
+    padding-left: 1.4rem;
+    margin: 2rem 0 0;
+    font-size: 1.45rem; line-height: 1.4;
+    color: var(--navy);
+  }
+
+  /* ---------- daylight: programs ---------- */
+  .programs {
+    background: #FFFFFF;
+    padding: 4.5rem 4vw 5rem;
+  }
+  .programs .inner { max-width: 1280px; margin: 0 auto; }
+  .programs h2 { font-size: clamp(1.8rem, 2.8vw, 2.5rem); color: var(--navy); margin-bottom: 0.5rem; }
+  .programs .lede { color: var(--muted); margin-bottom: 3rem; max-width: 46em; }
+  .prog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.4rem; }
+  .prog {
+    background: var(--cream);
+    border: 1px solid #F0E4CC;
+    border-radius: 16px;
+    padding: 1.1rem 1.1rem 0;
+    text-decoration: none;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .prog:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(11,47,102,0.10); }
+  .prog .arch-wrap { position: relative; margin: 2.6rem 0 1.3rem; }
+  .prog .rays { position: absolute; width: 108%; left: -4%; top: -11%; overflow: visible; }
+  .prog .rays path {
+    opacity: 0;
+    transform: scale(0.72);
+    transform-origin: 50% 100%;
+    transition: opacity 0.45s ease, transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .arch-wrap.lit .rays path { opacity: 1; transform: scale(1); }
+  @keyframes twinkle {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.07); }
+    100% { transform: scale(1); }
+  }
+  .prog:hover .arch-wrap.lit .rays path { animation: twinkle 0.55s ease; }
+  .prog:hover .arch-wrap.lit .rays path:nth-child(2) { animation-delay: 0.06s; }
+  .prog:hover .arch-wrap.lit .rays path:nth-child(3) { animation-delay: 0.12s; }
+  .prog:hover .arch-wrap.lit .rays path:nth-child(4) { animation-delay: 0.18s; }
+  .prog:hover .arch-wrap.lit .rays path:nth-child(5) { animation-delay: 0.24s; }
+  .arch-wrap.lit .rays path:nth-child(1) { transition-delay: 0.05s; }
+  .arch-wrap.lit .rays path:nth-child(2) { transition-delay: 0.17s; }
+  .arch-wrap.lit .rays path:nth-child(3) { transition-delay: 0.29s; }
+  .arch-wrap.lit .rays path:nth-child(4) { transition-delay: 0.41s; }
+  .arch-wrap.lit .rays path:nth-child(5) { transition-delay: 0.53s; }
+  @media (prefers-reduced-motion: reduce) {
+    .horizon .rising { transition: none; transform: translateX(-50%) translateY(0) !important; }
+    .horizon .wedge { opacity: 1 !important; transition: none !important; }
+    .prog:hover .arch-wrap.lit .rays path { animation: none !important; }
+    .person figure, .person img { transition: none !important; transform: none !important; }
+    .prog .rays path { opacity: 1; transform: none; transition: none; }
+  }
+  .prog .arch { border-radius: 999px 999px 0 0; overflow: hidden; aspect-ratio: 4 / 4.6; }
+  .prog .arch img { width: 100%; height: 100%; object-fit: cover; }
+  .prog .body { padding: 0 0.5rem 1.6rem; }
+  .prog h3 { font-size: 1.35rem; color: var(--navy); margin-bottom: 0.15rem; }
+  .prog .age { font-weight: 600; font-size: 0.92rem; color: var(--orange); margin-bottom: 0.7rem; }
+  .prog p { font-size: 0.95rem; color: var(--muted); }
+
+  /* ---------- the people ---------- */
+  .people {
+    background: var(--cream);
+    padding: 4.5rem 4vw 5rem;
+  }
+  .people .inner { max-width: 1140px; margin: 0 auto; }
+  .people h2 { font-size: clamp(1.8rem, 2.8vw, 2.5rem); color: var(--navy); margin-bottom: 0.5rem; }
+  .people .lede { color: var(--muted); margin-bottom: 2.6rem; max-width: 44em; }
+  .people-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.4rem;
+    margin-bottom: 2.4rem;
+  }
+  .person figure {
+    border-radius: 14px; overflow: hidden;
+    aspect-ratio: 3 / 4;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+  .person img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .person:hover figure {
+    transform: translateY(-4px);
+    box-shadow: 0 0 0 3px var(--gold), 0 16px 32px rgba(11,47,102,0.16);
+  }
+  .person:hover img { transform: scale(1.045); }
+  .person .who { margin-top: 0.8rem; }
+  .person .who strong { display: block; color: var(--navy); font-size: 1.02rem; }
+  .person .who span { font-size: 0.9rem; color: var(--muted); }
+
+  /* ---------- full day: closing ---------- */
+  .closing { padding: 4.5rem 4vw 5.5rem; text-align: center; background: var(--cream); }
+  .closing h2 { font-size: clamp(1.7rem, 2.6vw, 2.3rem); color: var(--navy); margin-bottom: 1rem; }
+  .closing p { color: var(--muted); margin-bottom: 2rem; }
+  footer .nightstars {
+    position: absolute; top: 0; left: 0;
+    width: 1px; height: 1px; border-radius: 50%;
+    box-shadow: 12vw 18px 0 0 rgba(251,247,236,0.4), 28vw 42px 0 0 rgba(251,247,236,0.3), 47vw 15px 0 0 rgba(251,247,236,0.45), 63vw 50px 0 0 rgba(251,247,236,0.3), 78vw 24px 0 0 rgba(251,247,236,0.4), 91vw 38px 0 0 rgba(251,247,236,0.35), 55vw 30px 0 1px rgba(251,247,236,0.25), 20vw 55px 0 0 rgba(251,247,236,0.3);
+    pointer-events: none;
+  }
+  footer {
+    position: relative;
+    background: linear-gradient(180deg, #1B3A6E 0%, var(--night-deep) 100%);
+    padding: 2.4rem 4vw;
+    display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    font-size: 0.92rem; color: #AEC1E0;
+  }
+
+  @media (max-width: 860px) {
+    nav .navlinks { display: none; }
+    .logo img { height: 40px; }
+    nav .btn { font-size: 0.88rem; padding: 0.6em 1.1em; }
+    .why-grid { grid-template-columns: 1fr; }
+    .why-photo { order: -1; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#"><img src="assets/logo-horizontal.png" alt="Montessori School of Rochester"></a>
+  <nav>
+    <span class="navlinks">
+      <a href="#programs">Programs</a> &nbsp;&nbsp;
+      <a href="#">Admissions</a> &nbsp;&nbsp;
+      <a href="#">Our Staff</a>
+    </span>
+    <a class="btn" href="#">Schedule a Visit</a>
+  </nav>
+</header>
+
+<section class="night">
+  <p class="whose">Our philosophy, held since 1965</p>
+  <h1>Early education affects how children learn for <em>the rest of their life</em>.</h1>
+  <p class="follow">They grow and change at incredible rates before the age of six.</p>
+  <p class="and-so">So we built a school around those years. Our mission is to nourish the child's spirit while fostering exploration, independence, and confidence, and to inspire a lifelong love for learning.</p>
+  <div class="cta-row">
+    <a class="btn gold" href="#">Schedule a Visit</a>
+  </div>
+  <div class="horizon">
+    <svg class="rising" viewBox="0 0 360 180" aria-hidden="true">
+      <path class="wedge" d="M3.0 180.0 A177.0 177.0 0 0 1 7.7 139.6 L86.5 158.1 A96.0 96.0 0 0 0 84.0 180.0 Z" fill="#F2C13B"/><path class="wedge" d="M12.0 124.1 A177.0 177.0 0 0 1 63.6 46.6 L116.9 107.7 A96.0 96.0 0 0 0 88.9 149.7 Z" fill="#F2C13B"/><path class="wedge" d="M76.2 36.6 A177.0 177.0 0 0 1 173.7 3.1 L176.6 84.1 A96.0 96.0 0 0 0 123.7 102.2 Z" fill="#F2C13B"/><path class="wedge" d="M189.7 3.3 A177.0 177.0 0 0 1 285.3 37.7 L237.1 102.8 A96.0 96.0 0 0 0 185.3 84.1 Z" fill="#F2C13B"/><path class="wedge" d="M297.7 47.8 A177.0 177.0 0 0 1 348.1 124.7 L271.2 150.0 A96.0 96.0 0 0 0 243.9 108.3 Z" fill="#F2C13B"/><path class="wedge" d="M352.5 140.2 A177.0 177.0 0 0 1 357.0 180.0 L276.0 180.0 A96.0 96.0 0 0 0 273.5 158.4 Z" fill="#F2C13B"/>
+      <path d="M180 97 A83 83 0 0 1 263 180 L97 180 A83 83 0 0 1 180 97 Z" fill="#F0812B"/>
+    </svg>
+  </div>
+</section>
+
+<section class="first-light">
+  <div class="inner">
+    <h2>Why Montessori?</h2>
+    <div class="why-grid">
+      <div class="why-text">
+        <p>A Montessori education is a remarkably successful educational opportunity for young people. While many educational facilities are engaged in strategies that promote conformity and adherence to a rigid curriculum, a Montessori education allows children freedom to fulfill their natural curiosity and desire to learn.</p>
+        <p>When children experience success through individualized lessons, personal responsibility, and relevant learning materials, they feel confident and eager to immerse themselves deeper into their education.</p>
+        <blockquote class="pull">When they feel capable and inspired, children learn to carry an optimistic attitude toward learning that affects how they approach challenges, problem solving, and critical thinking.</blockquote>
+      </div>
+      <div class="why-photo">
+        <figure><img src="assets/DB_4738.jpg" alt="Children working with Montessori materials on the classroom floor"></figure>
+        <figcaption>The prepared classroom, where children choose their own work.</figcaption>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="programs" id="programs">
+  <div class="inner">
+    <h2>One school, from the very beginning.</h2>
+    <p class="lede">Four programs carry a child from six weeks old through their kindergarten year, in classrooms designed around how children actually grow.</p>
+    <div class="prog-grid">
+      <a class="prog" href="#">
+        <div class="arch-wrap"><svg class="rays" viewBox="0 0 100 58" aria-hidden="true"><path d="M-1.5 48.7 A52.3 52.3 0 0 1 9.7 24.7 L13.0 27.4 A48.0 48.0 0 0 0 2.7 49.5 Z" fill="#F2C13B"/><path d="M11.1 18.7 A55.3 55.3 0 0 1 33.3 5.2 L35.4 11.9 A48.4 48.4 0 0 0 16.0 23.6 Z" fill="#F2C13B"/><path d="M37.3 3.6 A55.8 55.8 0 0 1 64.2 4.0 L62.3 11.3 A48.3 48.3 0 0 0 39.1 11.0 Z" fill="#F2C13B"/><path d="M67.7 5.5 A55.4 55.4 0 0 1 92.7 22.8 L87.2 27.4 A48.2 48.2 0 0 0 65.4 12.4 Z" fill="#F2C13B"/><path d="M93.9 30.5 A51.8 51.8 0 0 1 101.5 52.6 L97.3 53.0 A47.6 47.6 0 0 0 90.3 32.7 Z" fill="#F2C13B"/></svg><div class="arch"><img src="assets/card-S-Nido-scaled.jpg" alt="An infant climbing low wooden steps in the Nido room" style="object-position: 50% 22%"></div></div>
+        <div class="body">
+        <h3>Nido</h3>
+        <div class="age">6 weeks to 18 months</div>
+        <p>A calm first environment for infants, with unhurried care and room to move.</p>
+        </div>
+      </a>
+      <a class="prog" href="#">
+        <div class="arch-wrap"><svg class="rays" viewBox="0 0 100 58" aria-hidden="true"><path d="M-1.5 48.8 A52.3 52.3 0 0 1 10.1 24.1 L13.9 27.3 A47.4 47.4 0 0 0 3.4 49.6 Z" fill="#F2C13B"/><path d="M10.6 18.2 A56.0 56.0 0 0 1 33.9 4.4 L36.3 12.4 A47.6 47.6 0 0 0 16.6 24.2 Z" fill="#F2C13B"/><path d="M37.9 3.4 A55.9 55.9 0 0 1 65.9 4.4 L63.6 11.9 A48.1 48.1 0 0 0 39.6 11.0 Z" fill="#F2C13B"/><path d="M69.5 5.5 A56.0 56.0 0 0 1 93.7 23.0 L87.7 27.9 A48.2 48.2 0 0 0 66.8 12.8 Z" fill="#F2C13B"/><path d="M93.6 29.9 A51.9 51.9 0 0 1 101.5 51.9 L97.3 52.4 A47.7 47.7 0 0 0 90.0 32.2 Z" fill="#F2C13B"/></svg><div class="arch"><img src="assets/card-C-Toddler-scaled.jpg" alt="A toddler practicing cutting with scissors" style="object-position: 50% 30%"></div></div>
+        <div class="body">
+        <h3>Toddler</h3>
+        <div class="age">18 months to 3 years</div>
+        <p>Real work for small hands: pouring, sorting, dressing, and doing it myself.</p>
+        </div>
+      </a>
+      <a class="prog" href="#">
+        <div class="arch-wrap"><svg class="rays" viewBox="0 0 100 58" aria-hidden="true"><path d="M-1.5 50.1 A52.1 52.1 0 0 1 9.6 25.1 L12.5 27.5 A48.3 48.3 0 0 0 2.2 50.6 Z" fill="#F2C13B"/><path d="M10.3 18.5 A56.0 56.0 0 0 1 31.8 5.0 L34.3 12.4 A48.2 48.2 0 0 0 15.8 24.0 Z" fill="#F2C13B"/><path d="M37.5 3.4 A56.0 56.0 0 0 1 63.4 3.6 L61.5 11.3 A48.1 48.1 0 0 0 39.3 11.1 Z" fill="#F2C13B"/><path d="M67.7 4.9 A56.0 56.0 0 0 1 89.3 18.1 L84.1 23.4 A48.6 48.6 0 0 0 65.4 11.9 Z" fill="#F2C13B"/><path d="M90.0 23.0 A53.1 53.1 0 0 1 101.5 44.9 L96.7 46.1 A48.2 48.2 0 0 0 86.2 26.3 Z" fill="#F2C13B"/></svg><div class="arch"><img src="assets/card-ch-4.jpg" alt="A boy concentrating on drawing at a low table" style="object-position: 32% 18%"></div></div>
+        <div class="body">
+        <h3>Children's House</h3>
+        <div class="age">3 to 6 years</div>
+        <p>Mixed ages, individual lessons, and the deep concentration Montessori is known for.</p>
+        </div>
+      </a>
+      <a class="prog" href="#">
+        <div class="arch-wrap"><svg class="rays" viewBox="0 0 100 58" aria-hidden="true"><path d="M-1.5 48.8 A52.3 52.3 0 0 1 7.8 27.0 L11.0 29.4 A48.3 48.3 0 0 0 2.4 49.5 Z" fill="#F2C13B"/><path d="M7.4 22.3 A55.6 55.6 0 0 1 32.2 5.3 L34.9 13.1 A47.3 47.3 0 0 0 13.7 27.6 Z" fill="#F2C13B"/><path d="M35.9 3.8 A56.0 56.0 0 0 1 63.9 3.8 L62.0 11.3 A48.2 48.2 0 0 0 37.8 11.4 Z" fill="#F2C13B"/><path d="M66.0 4.3 A56.0 56.0 0 0 1 88.8 17.6 L82.8 23.9 A47.3 47.3 0 0 0 63.5 12.7 Z" fill="#F2C13B"/><path d="M90.2 24.6 A52.2 52.2 0 0 1 101.5 49.3 L98.0 49.9 A48.6 48.6 0 0 0 87.4 26.9 Z" fill="#F2C13B"/></svg><div class="arch"><img src="assets/card-ch-6.jpg" alt="Children potting plants outdoors" style="object-position: 58% 12%"></div></div>
+        <div class="body">
+        <h3>Day House &amp; Enrichment</h3>
+        <div class="age">Beyond the classroom</div>
+        <p>Extended care and enrichment that keep the day whole for working families.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="people">
+  <div class="inner">
+    <h2>The people of the school.</h2>
+    <p class="lede">Guides and teachers across every program, from the Nido through Children's House.</p>
+    <div class="people-grid">
+      <div class="person">
+        <figure><img src="assets/card-staff-cynthia.jpg" alt="Cynthia Kerber Gowan"></figure>
+        <p class="who"><strong>Cynthia Kerber Gowan</strong><span>Head of School</span></p>
+      </div>
+      <div class="person">
+        <figure><img src="assets/card-staff-elizabeth.jpg" alt="Elizabeth Graham"></figure>
+        <p class="who"><strong>Elizabeth Graham</strong><span>Lead Guide, Nido</span></p>
+      </div>
+      <div class="person">
+        <figure><img src="assets/card-staff-gretchen.jpg" alt="Gretchen Cavatassi"></figure>
+        <p class="who"><strong>Gretchen Cavatassi</strong><span>Lead Guide, Toddler</span></p>
+      </div>
+      <div class="person">
+        <figure><img src="assets/card-staff-david.jpg" alt="David Gluck"></figure>
+        <p class="who"><strong>David Gluck</strong><span>Children's House</span></p>
+      </div>
+    </div>
+    <a class="btn quiet" href="#">Meet the Whole Team</a>
+  </div>
+</section>
+
+<section class="closing">
+  <h2>Come see a morning in motion.</h2>
+  <p>The best way to understand a Montessori classroom is to stand in one. We would love to show you around.</p>
+  <a class="btn" href="#">Schedule a Visit</a>
+</section>
+
+<footer>
+  <i class="nightstars" aria-hidden="true"></i>
+  <span>Montessori School of Rochester &middot; 1880 South Winton Road, Rochester, NY 14618</span>
+  <span>(585) 256-2520 &middot; info@msrchild.org</span>
+</footer>
+
+<script>
+  const wraps = document.querySelectorAll('.arch-wrap');
+  const horizon = document.querySelector('.horizon');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('lit');
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.45 });
+    wraps.forEach(w => io.observe(w));
+  } else {
+    wraps.forEach(w => w.classList.add('lit'));
+  }
+  // the sun rises on its own shortly after load;
+  // the rays sweep on once the user scrolls down past the hero
+  if (horizon) {
+    setTimeout(() => horizon.classList.add('risen'), 600);
+    const onScroll = () => {
+      const r = horizon.getBoundingClientRect();
+      if (r.bottom <= window.innerHeight * 0.72) {
+        horizon.classList.add('crowned');
+        window.removeEventListener('scroll', onScroll);
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+</script>
+</body>
+</html>

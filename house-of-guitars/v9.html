@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>House of Guitars — concept v9 (the building is the website)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Anton&family=Oswald:wght@400;500;600;700&family=Permanent+Marker&family=Roboto+Slab:wght@800&family=Special+Elite&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f3ead6;
+    --pink:#ff3d9e;
+    --cyan:#3cd6e0;
+    --ink:#171310;
+    --glow:rgba(255,214,110,.22);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:'Oswald',sans-serif;color:var(--ink);
+    background:
+      radial-gradient(ellipse 120% 90% at 50% 26%, rgba(255,255,255,.05), transparent 55%),
+      linear-gradient(#221b22 0%, #171117 55%, #0e0a0e 100%);  /* after midnight */
+    background-attachment:fixed;
+  }
+
+  /* ═══ the building ═══ */
+  .street{
+    position:relative;
+    width:min(96vw, calc(102vh * 1.0592)); /* alpha building aspect */
+    padding-top:8vh;   /* pink sky for the cards to hang in */
+    margin:0 auto;
+  }
+  .bldg{position:relative;container-type:inline-size}   /* overlay space = the image */
+  .addr{
+    position:absolute;left:83.2%;top:62.4%;width:6%;text-align:center;
+    font-family:'Roboto Slab',serif;font-weight:800;font-size:1.85cqw;
+    letter-spacing:.05em;color:#b98f45;text-shadow:0 1px 1px rgba(0,0,0,.55);
+    pointer-events:none;z-index:3;
+  }
+  .bldg img.facade{
+    width:100%;display:block;
+    filter:drop-shadow(0 26px 44px rgba(60,45,20,.28)) drop-shadow(0 4px 10px rgba(60,45,20,.18));
+  }
+  /* grounding shadow just under the steps */
+  .bldg::after{
+    content:"";position:absolute;left:10%;right:10%;bottom:-1.6%;height:3.5%;
+    background:radial-gradient(ellipse at 50% 50%, rgba(0,0,0,.5), transparent 70%);
+    z-index:0;pointer-events:none;
+  }
+
+  .underhint{
+    text-align:center;font-family:'Caveat',cursive;
+    font-size:clamp(16px,1.8vw,24px);color:#fff;
+    text-shadow:0 2px 6px rgba(0,0,0,.7);color:#cfc4c9;
+    padding:16px 0 4px;
+  }
+  .hint{
+    position:absolute;top:4.5%;left:-1%;transform:rotate(-3deg);    font-family:'Caveat',cursive;font-size:clamp(18px,2vw,27px);color:#fff;
+    text-shadow:0 2px 6px rgba(0,0,0,.6);
+    background:rgba(23,19,16,.78);padding:6px 22px;border-radius:30px;
+    white-space:nowrap;pointer-events:none;
+  }
+
+  .bannertext{
+    position:absolute;left:13%;top:49.3%;width:67%;height:3.4%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Young Serif',serif;font-size:30px;  /* autofit rescales */
+    letter-spacing:.24em;text-indent:.24em;word-spacing:1.05em;
+    color:#5d4130;white-space:nowrap;
+    mix-blend-mode:multiply;opacity:.92;filter:blur(.2px);
+    pointer-events:none;z-index:4;
+  }
+  .bannertext em{font-style:normal;font-size:.5em;letter-spacing:.14em;vertical-align:.14em}
+
+
+
+  /* ═══ hanging nav cards ═══ */
+  .hangnav{
+    position:absolute;top:0;left:0;right:0;z-index:7;
+    display:flex;justify-content:center;gap:2.4%;
+    align-items:flex-start;    /* no flex-stretch: cards hug their text */
+    pointer-events:none;
+  }
+  .hangnav a{
+    pointer-events:auto;position:relative;
+    font-family:'Young Serif',serif;font-size:clamp(12px,1.15vw,16px);
+    letter-spacing:.03em;color:#3f2a10;text-decoration:none;white-space:nowrap;text-transform:uppercase;
+    background:#f2c018;padding:9px 16px 8px;
+    box-shadow:0 6px 12px rgba(0,0,0,.5);
+    --t:0deg;
+    animation:sway 4.6s ease-in-out infinite alternate;
+    rotate:var(--t);
+  }
+  .hangnav a::before{
+    content:"";position:absolute;bottom:100%;left:50%;width:2px;
+    height:calc(var(--str,54px) + 12vh);   /* overshoot: always reaches the viewport top */
+    background:linear-gradient(rgba(240,190,90,.15), rgba(240,190,90,.6));
+  }
+  .hangnav a:nth-child(1){--t:-2deg;--str:38px;margin-top:38px;animation-delay:-.6s}
+  .hangnav a:nth-child(2){--t:1.5deg;--str:92px;margin-top:92px;animation-delay:-2.1s}
+  .hangnav a:nth-child(3){--t:-1deg;--str:56px;margin-top:56px;animation-delay:-3.4s}
+  .hangnav a:nth-child(4){--t:2deg;--str:66px;margin-top:66px;animation-delay:-1.2s}
+  .hangnav a:nth-child(5){--t:-1.6deg;--str:46px;margin-top:46px;animation-delay:-2.8s}
+  .hangnav a:nth-child(6){--t:1.2deg;--str:78px;margin-top:78px;animation-delay:-.2s}
+  .hangnav a:hover{rotate:0deg;animation-play-state:paused;scale:1.06}
+  @keyframes sway{
+    from{rotate:calc(var(--t) - 1.3deg)}
+    to{rotate:calc(var(--t) + 1.5deg)}
+  }
+  @media (prefers-reduced-motion: reduce){ .hangnav a{animation:none} }
+
+  /* ═══ hotspots ═══ */
+  .hs{
+    position:absolute;display:block;cursor:pointer;
+    border-radius:6px;
+    transition:background .25s, box-shadow .25s;
+  }
+  .hs:hover, .hs:focus-visible{
+    background:
+      radial-gradient(ellipse at 50% 45%, rgba(255,222,130,.35), var(--glow) 70%, transparent 100%);
+    box-shadow:0 0 34px 8px rgba(255,205,90,.45), inset 0 0 22px rgba(255,230,160,.4);
+    outline:none;
+  }
+  .hs em{
+    position:absolute;left:50%;top:100%;transform:translate(-50%,8px) rotate(-1deg);
+    font-style:normal;font-family:'Caveat',cursive;font-size:clamp(16px,1.7vw,24px);
+    color:#fff;background:rgba(23,19,16,.82);padding:4px 16px;border-radius:24px;
+    white-space:nowrap;opacity:0;transition:opacity .2s;pointer-events:none;z-index:5;
+  }
+  .hs:hover em, .hs:focus-visible em{opacity:1}
+  .hs.up em{top:auto;bottom:100%;transform:translate(-50%,-8px) rotate(1deg)}
+
+  /* the door gets a standing invitation */
+  .hs.door::after{
+    content:"";position:absolute;inset:-6px;border-radius:8px;
+    box-shadow:0 0 0 0 rgba(255,215,110,.0);
+    animation:knock 3.2s ease-in-out infinite;pointer-events:none;
+  }
+  @keyframes knock{
+    0%,100%{box-shadow:0 0 0 0 rgba(255,215,110,0)}
+    50%{box-shadow:0 0 26px 4px rgba(255,215,110,.35)}
+  }
+
+
+  /* ═══ the spinning pole sign ═══ */
+  .polesign{
+    position:absolute;left:89.4%;top:38.3%;width:10.7%;height:58.9%;
+    pointer-events:none;z-index:3;
+  }
+  .polesign .pole{
+    position:absolute;left:46%;top:0;width:8%;height:100%;
+    background:linear-gradient(90deg,#8a8578,#d9d4c6 45%,#7c776b);
+    border-radius:3px;
+  }
+  .polesign .scene{
+    position:absolute;left:-45%;top:6%;width:190%;aspect-ratio:1.87;
+    perspective:700px;pointer-events:none;
+  }
+  .polesign .panel{
+    position:absolute;inset:0;transform-style:preserve-3d;
+    animation:signspin 8s linear infinite;
+  }
+  .polesign .face{
+    position:absolute;inset:0;backface-visibility:hidden;
+    background:url('assets/sign-face.jpg') center/100% 100% no-repeat;
+    background-clip:padding-box;
+    border:4px solid #3f2a1a;          /* thin dark brown frame */
+    border-radius:2px;
+    box-shadow:inset 0 0 12px rgba(90,70,20,.25);
+    transform:translateZ(6px);
+  }
+  .polesign .face.back{transform:rotateY(180deg) translateZ(6px)}
+  /* metal edges give the panel its 12px thickness */
+  .polesign .edge{position:absolute;background:linear-gradient(#d8d2c2,#8f897a 70%,#6d675c)}
+  .polesign .edge.l{width:12px;height:100%;left:-6px;transform:rotateY(90deg)}
+  .polesign .edge.r{width:12px;height:100%;right:-6px;transform:rotateY(90deg)}
+  .polesign .edge.t{height:12px;width:100%;top:-6px;transform:rotateX(90deg);background:linear-gradient(90deg,#a5493c,#7e352b)}
+  .polesign .edge.b{height:12px;width:100%;bottom:-6px;transform:rotateX(90deg)}
+  @keyframes signspin{to{transform:rotateY(360deg)}}
+  .polesign .tip{
+    position:absolute;left:50%;top:105%;transform:translateX(-50%);
+    font-family:'Caveat',cursive;font-size:clamp(14px,1.5vw,20px);color:#fff;
+    background:rgba(23,19,16,.82);padding:3px 14px;border-radius:20px;
+    white-space:nowrap;opacity:0;transition:opacity .2s;pointer-events:none;
+  }
+  .polesign .scene:hover ~ .tip, .polesign .scene:hover .tip{opacity:1}
+  @media (prefers-reduced-motion: reduce){
+    .polesign .panel{animation:none;transform:rotateY(18deg)}
+  }
+
+  /* ═══ sections below the street ═══ */
+  .below{
+    background:linear-gradient(#241318, #180c10);color:var(--paper);
+    padding:70px 20px 90px;
+  }
+  .sec{
+    max-width:1080px;margin:0 auto 90px;
+    display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;
+  }
+  .sec.flip .txt{order:2}
+  .sec.solo{display:block;max-width:880px}
+  .eyebrow{
+    font-family:'Permanent Marker';font-size:15px;letter-spacing:.06em;
+    color:var(--pink);margin-bottom:10px;transform:rotate(-1deg);display:inline-block;
+  }
+  .sec:nth-child(even) .eyebrow{color:var(--cyan)}
+  .sec h2{
+    font-family:'Young Serif',serif;font-size:clamp(26px,3.2vw,42px);
+    line-height:1.12;margin-bottom:8px;
+  }
+  .kick{
+    font-family:'Caveat',cursive;font-size:clamp(19px,2vw,26px);
+    color:#c9a8bb;margin-bottom:16px;
+  }
+  .sec p{
+    font-family:'Oswald',sans-serif;font-weight:400;
+    font-size:16.5px;line-height:1.7;color:#d9cfc2;margin-bottom:14px;
+  }
+  .pull{
+    border-left:3px solid var(--pink);padding:4px 0 4px 18px;margin:18px 0;
+    font-family:'Young Serif',serif;font-size:19px;line-height:1.45;color:var(--paper);
+  }
+  .pull small{display:block;font-family:'Oswald';font-weight:600;font-size:13px;
+    letter-spacing:.1em;color:#a89aa4;margin-top:8px;text-transform:uppercase}
+  .go{
+    display:inline-block;font-family:'Permanent Marker';font-size:17px;
+    color:var(--ink);background:#f2c018;padding:9px 18px;text-decoration:none;
+    transform:rotate(-1.2deg);box-shadow:0 4px 9px rgba(0,0,0,.4);margin-top:6px;
+  }
+  .go:hover{transform:rotate(0) scale(1.05)}
+  .go.pinkgo{background:var(--pink);color:var(--paper)}
+  .go.cyango{background:var(--cyan)}
+  /* photos as taped prints */
+  .print{
+    background:#fdfdf8;padding:10px 10px 0;box-shadow:0 10px 26px rgba(0,0,0,.5);
+    transform:rotate(2deg);
+  }
+  .sec.flip .print{transform:rotate(-2deg)}
+  .print img{width:100%;display:block}
+  .print figcaption{
+    font-family:'Caveat',cursive;font-size:19px;text-align:center;
+    padding:8px 4px 10px;color:#241d14;
+  }
+  .printpair{display:grid;gap:26px}
+  .printpair .print:nth-child(2){transform:rotate(-2.4deg)}
+  /* wall of fame ticker */
+  .fameticker{
+    margin:26px 0 30px;border-top:3px solid var(--pink);border-bottom:3px solid var(--pink);
+    overflow:hidden;background:#140a0e;
+  }
+  .fameticker span{
+    display:inline-block;white-space:nowrap;font-family:'Anton';text-transform:uppercase;
+    font-size:24px;letter-spacing:.03em;padding:13px 0;
+    animation:famescroll 60s linear infinite;
+  }
+  .fameticker b{font-weight:400;padding:0 18px;color:#8d7f88}
+  .fameticker b:nth-child(4n+1){color:var(--paper)}
+  .fameticker b:nth-child(6n+3){color:var(--pink)}
+  .fameticker b:nth-child(8n+5){color:var(--cyan)}
+  @keyframes famescroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion: reduce){ .fameticker span{animation:none} }
+  /* contact receipt */
+  .receipt{
+    background:#fbf7ec;color:#222;padding:22px 26px 26px;max-width:330px;
+    font-family:'Special Elite',monospace;font-size:15px;line-height:1.8;
+    box-shadow:0 10px 26px rgba(0,0,0,.5);transform:rotate(1.6deg);
+  }
+  .receipt h4{font-size:16px;border-bottom:2px dashed #999;padding-bottom:6px;margin-bottom:8px}
+  .receipt .tot{border-top:2px dashed #999;margin-top:10px;padding-top:10px;font-weight:bold}
+  .receipt em{font-style:normal;background:#ffe66b;padding:0 3px}
+  @media(max-width:860px){
+    .sec{grid-template-columns:1fr;gap:34px}
+    .sec.flip .txt{order:0}
+  }
+  .foot{
+    text-align:center;background:#171310;
+    font-family:'Special Elite',monospace;font-size:13px;color:#9d9484;
+    padding:14px 0 16px;letter-spacing:.1em;
+  }
+
+  @media(max-width:760px){
+    .hs em{font-size:14px}
+    .underhint{
+    text-align:center;font-family:'Caveat',cursive;
+    font-size:clamp(16px,1.8vw,24px);color:#fff;
+    text-shadow:0 2px 6px rgba(0,0,0,.7);color:#cfc4c9;
+    padding:16px 0 4px;
+  }
+  .hint{font-size:15px}
+  }
+</style>
+</head>
+<body>
+
+  <div class="street">
+    <div class="bldg">
+    <img class="facade" src="assets/facade-alpha.png" alt="House of Guitars, 645 Titus Ave">
+    <h1 class="bannertext">HOUSE OF GUITARS INC</h1>
+    <span class="addr">645</span>
+    <nav class="hangnav">
+      <a href="#history">History</a>
+      <a href="#shop">Shop</a>
+      <a href="#beginners">For Beginners</a>
+      <a href="#cds">CDs &amp; Vinyl</a>
+      <a href="#fame">Wall of Fame</a>
+      <a href="#happening">What's Happening?</a>
+    </nav>
+
+    <!-- hotspots: % boxes over the facade -->
+    <a class="hs door" href="#shop"     style="left:42.4%;top:60.7%;width:13.6%;height:21.3%"><em>come in. seriously.</em></a>
+
+    <!-- the spinning pole sign, rebuilt in 3D -->
+    <div class="polesign">
+      <div class="pole"></div>
+      <div class="scene">
+        <div class="panel">
+          <div class="face"></div>
+          <div class="face back"></div>
+          <div class="edge l"></div><div class="edge r"></div>
+          <div class="edge t"></div><div class="edge b"></div>
+        </div>
+      </div>
+    </div>
+    </div><!-- /.bldg -->
+    <div class="underhint">psst — the building itself works too. everything is a door.</div>
+  </div>
+
+  <div class="below">
+
+    <div class="sec" id="history">
+      <div class="txt">
+        <span class="eyebrow">Est. 1964 · the Grange Hall, Irondequoit</span>
+        <h2>From Basement to Rock Royalty</h2>
+        <div class="kick">You say you want a revolution&hellip;</div>
+        <p>In 1964, Beatle-mania came to America and brothers Armand and Bruce opened their first store in their mom&rsquo;s basement. By day they were average Joes delivering newspapers and working at the local meat market. By night, they were plotting how they could take part in the rock revolution. As they started selling guitars out of their basement, they quickly became a destination for riff-raff to hang out. It wasn&rsquo;t long before Mom had enough of the lingering smoke and loud riffing and had to kick them to the curb!</p>
+        <div class="pull">&ldquo;People hear from major bands that we&rsquo;re the place to go, all the national acts know about us. They trust us because of our reputation.&rdquo;
+          <small>&mdash; Armand Schaubroeck, Owner</small></div>
+        <a class="go" href="#">The whole saga &rarr;</a>
+      </div>
+      <div class="printpair">
+        <figure class="print"><img src="assets/the-store-that-ate-my-brain.jpg" alt="The Store That Ate My Brain — vintage HOG poster"><figcaption>this poster is older than you. still true.</figcaption></figure>
+        <figure class="print"><img src="assets/1-HOG-60TH-mag-cover.jpg" alt="House of Guitars 60th anniversary art"><figcaption>60 years &amp; still going &#9733;</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="sec flip" id="shop">
+      <div class="txt">
+        <span class="eyebrow">The Largest Guitar Store in the World</span>
+        <h2>Rock &rsquo;n&rsquo; Roll Wonderland</h2>
+        <p>Imagine multiple levels packed with new, vintage, and used guitars, along with drums, keyboards, and an in-house repair shop. Dive into the back rooms for a treasure trove of musical goodies and walls adorned with rock &rsquo;n&rsquo; roll history.</p>
+        <p>From new guitars to vintage ones, plus drums, keyboards, and accessories &mdash; we believe that music is a lifestyle and the best way to embrace your wild side.</p>
+        <a class="go pinkgo" href="#">Find your instrument &rarr;</a>
+      </div>
+      <figure class="print"><img src="assets/wof.jpg" alt="The guitar tower inside House of Guitars"><figcaption>the tower. yes it&rsquo;s real. no you can&rsquo;t climb it.</figcaption></figure>
+    </div>
+
+    <div class="sec" id="beginners">
+      <div class="txt">
+        <span class="eyebrow">Guitar lessons powered by HOG</span>
+        <h2>Jam Like a Pro From Day One</h2>
+        <div class="kick">Time to ditch the air guitar &ndash; destiny awaits.</div>
+        <p>So, you&rsquo;ve got that spirit burning inside you, huh? And you&rsquo;re ready to unleash your inner guitar hero? When&rsquo;s the right time to get started? Well, how soon is now?</p>
+        <p>Led by a crew of HOG instructors, our lessons are a one-way ticket to proficiency. Whether you&rsquo;re just starting out or a seasoned pro, we&rsquo;ve got you covered &mdash; all ages, all styles, all instruments!</p>
+        <a class="go cyango" href="tel:5855443500">Call for lesson info &rarr;</a>
+      </div>
+      <figure class="print"><img src="assets/DSC01658.jpg" alt="House of Guitars storefront, 645 Titus Ave"><figcaption>645 Titus Ave &mdash; you can&rsquo;t miss it</figcaption></figure>
+    </div>
+
+    <div class="sec flip" id="cds">
+      <div class="txt">
+        <span class="eyebrow">Spin, groove, repeat</span>
+        <h2>Find Your Next Favorite Record</h2>
+        <div class="kick">Because streaming services lack the finesse of physical media.</div>
+        <p>Stage dive headfirst into the music oasis at House of Guitars. We&rsquo;ve put together a killer collection of vintage vinyls and the latest CDs that&rsquo;s sure to get every music lover&rsquo;s heart racing. With genres ranging from rock to jazz to blues, there&rsquo;s something here for every sonic soul.</p>
+        <div class="pull">Ask if your album is in stock! If we don&rsquo;t have what you&rsquo;re looking for, no one does.</div>
+        <a class="go" href="#">Explore the record shop &rarr;</a>
+      </div>
+      <figure class="print"><img src="assets/cds-and-vinyls.jpg" alt="CD bins with hand-written dividers"><figcaption>filed by hand. every single one.</figcaption></figure>
+    </div>
+
+    <div class="sec solo" id="fame">
+      <span class="eyebrow">The HOG Wall of Fame</span>
+      <h2>From Aerosmith to ZZ Top</h2>
+      <p>House of Guitars is more than just a store, it&rsquo;s a mecca for music lovers all across Rochester, NY and across the nation! Our walls are adorned with the signatures and photos of legendary musicians, each one a testament to the impact that we&rsquo;ve had on the industry.</p>
+      <div class="fameticker"><span>
+        <b>Aerosmith</b><b>&#9733;</b><b>Metallica</b><b>&#9733;</b><b>Ozzy Osbourne</b><b>&#9733;</b><b>Run DMC</b><b>&#9733;</b><b>Lemmy</b><b>&#9733;</b><b>ZZ Top</b><b>&#9733;</b><b>Green Day</b><b>&#9733;</b><b>Sheryl Crow</b><b>&#9733;</b><b>M&ouml;tley Cr&uuml;e</b><b>&#9733;</b><b>Kid Rock</b><b>&#9733;</b><b>Cheap Trick</b><b>&#9733;</b><b>Goo Goo Dolls</b><b>&#9733;</b><b>Twenty One Pilots</b><b>&#9733;</b><b>Tyler, the Creator</b><b>&#9733;</b><b>Kevin Bacon</b><b>&#9733;</b><b>Pantera</b><b>&#9733;</b><b>Korn</b><b>&#9733;</b><b>Bon Jovi</b><b>&#9733;</b><b>Steve Vai</b><b>&#9733;</b><b>Zakk Wylde</b><b>&#9733;</b>
+        <b>Aerosmith</b><b>&#9733;</b><b>Metallica</b><b>&#9733;</b><b>Ozzy Osbourne</b><b>&#9733;</b><b>Run DMC</b><b>&#9733;</b><b>Lemmy</b><b>&#9733;</b><b>ZZ Top</b><b>&#9733;</b><b>Green Day</b><b>&#9733;</b><b>Sheryl Crow</b><b>&#9733;</b><b>M&ouml;tley Cr&uuml;e</b><b>&#9733;</b><b>Kid Rock</b><b>&#9733;</b><b>Cheap Trick</b><b>&#9733;</b><b>Goo Goo Dolls</b><b>&#9733;</b><b>Twenty One Pilots</b><b>&#9733;</b><b>Tyler, the Creator</b><b>&#9733;</b><b>Kevin Bacon</b><b>&#9733;</b><b>Pantera</b><b>&#9733;</b><b>Korn</b><b>&#9733;</b><b>Bon Jovi</b><b>&#9733;</b><b>Steve Vai</b><b>&#9733;</b><b>Zakk Wylde</b><b>&#9733;</b>
+      </span></div>
+      <p>You name &rsquo;em, they&rsquo;ve shopped at the House of Guitars. These music gods know that when they walk through those doors, they&rsquo;re stepping into a rock &rsquo;n&rsquo; roll heaven built on trust and pure awesomeness.</p>
+      <a class="go pinkgo" href="#">Explore the Wall of Fame &rarr;</a>
+    </div>
+
+    <div class="sec flip" id="happening">
+      <div class="txt">
+        <span class="eyebrow">Gigs, events, jam sessions &amp; so much more</span>
+        <h2>Where the Music is Loud and the Good Times Are Even Louder</h2>
+        <p>Seriously, we have everything from low-key guitar clinics to cool concerts that&rsquo;ll make you tap your feet. So take a second to browse, chill out, and maybe mark a few dates in your calendar.</p>
+        <a class="go cyango" href="#">See what&rsquo;s happening &rarr;</a>
+      </div>
+      <figure class="print"><img src="assets/special-events.jpg" alt="60 years of House of Guitars"><figcaption>always something happening at HOG</figcaption></figure>
+    </div>
+
+    <div class="sec" id="contact">
+      <div class="txt">
+        <span class="eyebrow">For Rising Young Stars of Earth</span>
+        <h2>Give House of Guitars a Shout!</h2>
+        <div class="kick">Save the screaming for your next concert, but by all means, let your voice be heard!</div>
+        <p>We&rsquo;re not just a store; we&rsquo;re a way of life for anyone who eats, sleeps, and breathes music. So crank up the amps, free your inner rockstar, and come get lost in a world of guitars, vinyls, and a bunch of other cool crap that&rsquo;ll stimulate your senses.</p>
+        <a class="go" href="tel:5855443500">Swing by &amp; jam &rarr;</a>
+      </div>
+      <div class="receipt">
+        <h4>HOUSE OF GUITARS INC.</h4>
+        645 Titus Ave<br>
+        Rochester NY 14617<br>
+        Mon&ndash;Sat &nbsp;10&ndash;9<br>
+        Sun &nbsp;1&ndash;5<br>
+        sales@houseofguitars.com
+        <div class="tot">RING <em>585-544-3500</em><br>ASK FOR ANYBODY</div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="foot">CONCEPT 9 · THE BUILDING IS THE WEBSITE · HOVER THE WINDOWS · HOUSE OF GUITARS, ROCHESTER NY</div>
+
+<script>
+(function(){
+  function fitBanner(){
+    var el = document.querySelector('.bannertext');
+    var img = document.querySelector('.facade');
+    if (!el || !img || !img.clientWidth) return;
+    el.style.fontSize = '30px';
+    var r = document.createRange(); r.selectNodeContents(el);
+    var rect = r.getBoundingClientRect();
+    var box = el.getBoundingClientRect();
+    var scale = Math.min(box.width*0.94/rect.width, box.height*1.5/rect.height);
+    el.style.fontSize = (30*scale) + 'px';
+  }
+  document.fonts.ready.then(fitBanner);
+  window.addEventListener('resize', fitBanner);
+  window.addEventListener('load', fitBanner);
+})();
+</script>
+</body>
+</html>

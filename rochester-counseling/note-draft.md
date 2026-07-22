@@ -25,7 +25,7 @@ The site is currently served without a security certificate. On a computer, Chro
 
 The fix is not dramatic. This is almost certainly a setting or plan issue in Weebly, the platform the site is built on, not a breach of anything. Whoever manages the site can likely turn it on in an afternoon, and it is worth doing this week whether or not you ever write back to me.
 
-I noticed a few smaller things while I was there. Happy to send them over if useful, free and no strings attached. And if you ever decide the site should work as hard as the people on your team page, that is the work I do.
+I noticed a few smaller things while I was there. Happy to send them over if useful, free and no strings attached. And if you ever decide the site should work as hard as the people on your team do, that is the work I do.
 
 Eli Harrigan
 585.747.0851
@@ -39,6 +39,6 @@ eliharrigan.com
 1. The security certificate failure also blocks services that require secure connections: link-preview tools and HTTPS-first browsers cannot reach the site at all. Verified July 8: TLS handshake fails on both rochestercounseling.com and www.
 2. Meta description reads like a directory, not a practice: "Find Experienced counselors, therapists in Rochester NY. We make your search easy." Random capitalization, double spaces.
 3. When someone texts the site to a friend, the preview card says only "Rochester Counseling" with no image. Texting a link is how people recommend a therapist.
-4. Weebly template underneath; page addresses like /meet-our-team.html.
+4. Weebly template underneath; page addresses like /meet-our-team.html. The favicon is Weebly's default gray "W" (verified Jul 20) — every browser tab and bookmark shows Weebly's logo, not theirs.
 5. Fit notes for the conversation: ~12 clinicians at ~$150/session private pay. Teal's bio: 24 years, ex-VA clinical lead, works with entrepreneurs and helping professionals, values transparency and humor. Clinical Director is Courtney Wink, LCSW.
 6. Practice founded 2022, 600+ clients served, featured in Westside News May 2025 (they invest in community visibility). A founder still in growth mode is a live buyer.

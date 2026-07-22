@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>House of Guitars — concept v5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Alfa+Slab+One&family=Permanent+Marker&family=Special+Elite&family=Caveat:wght@700&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cork:#b1834f;
+    --cork-dk:#96683a;
+    --frame:#5b3d1e;
+    --frame-hi:#7c5731;
+    --paper:#f3ead6;
+    --pink:#ff3d9e;
+    --cyan:#3cd6e0;
+    --ink:#171310;
+    --wood:#d9a969;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:'Oswald',sans-serif;color:var(--ink);
+    background:var(--frame);
+  }
+
+  /* ═══ the giant framed corkboard ═══ */
+  .board{
+    margin:14px;min-height:calc(100vh - 28px);
+    border:16px solid transparent;
+    border-image:linear-gradient(135deg,var(--frame-hi),var(--frame) 40%,#3f2a13 60%,var(--frame-hi)) 1;
+    box-shadow:inset 0 0 0 3px rgba(0,0,0,.4), 0 10px 40px rgba(0,0,0,.5);
+    background:
+      radial-gradient(ellipse at 30% 15%, rgba(255,235,200,.14), transparent 55%),
+      radial-gradient(ellipse at 80% 90%, rgba(0,0,0,.22), transparent 60%),
+      var(--cork);
+    position:relative;overflow:hidden;
+  }
+  /* cork speckle */
+  .board::before{
+    content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;z-index:0;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' seed='7'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.30 0 0 0 0 0.14 0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23c)'/></svg>");
+  }
+
+  /* ═══ pins ═══ */
+  .pin{position:relative}
+  .pin::before{
+    content:"";position:absolute;top:-9px;left:50%;margin-left:-9px;width:18px;height:18px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #ff8181, #c8352a 65%, #6d1208);
+    box-shadow:0 3px 5px rgba(0,0,0,.45);z-index:6;
+  }
+  .pin-cyan::before{background:radial-gradient(circle at 35% 30%, #b6f3f8, #23aab8 65%, #0c5a63)}
+  .pin-ink::before{background:radial-gradient(circle at 35% 30%, #777, #222 65%, #000)}
+
+  /* ═══ HERO — the pit where guitars rain ═══ */
+  .pit{
+    position:relative;z-index:1;
+    padding:20px 12px 230px;   /* bottom padding = reserved pile band */
+    min-height:calc(100vh - 60px);
+    display:flex;flex-direction:column;align-items:center;
+    overflow:hidden;
+  }
+  /* the real wall of records, tinted back so the scraps own the light */
+  .pit::before{
+    content:"";position:absolute;inset:0;z-index:0;
+    background:url('assets/store-wall.jpg') center 30%/cover no-repeat;
+    filter:saturate(.55) brightness(.48) contrast(.92) sepia(.22);
+  }
+  .pit::after{
+    content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(ellipse at 50% 26%, rgba(60,42,22,.10), rgba(23,15,7,.60) 95%),
+      linear-gradient(rgba(43,30,15,.30), rgba(43,30,15,.12) 30%, rgba(30,20,9,.45) 100%);
+  }
+  .pit > *{position:relative}
+
+  nav{
+    position:relative;z-index:5;
+    display:flex;justify-content:center;gap:12px;flex-wrap:wrap;padding:0 12px;
+  }
+  nav a{
+    text-decoration:none;color:var(--ink);
+    font-family:'Permanent Marker';font-size:16px;
+    background:var(--paper);padding:9px 15px 8px;
+    box-shadow:0 4px 9px rgba(0,0,0,.35);
+  }
+  nav a:nth-child(odd){transform:rotate(-1.4deg)}
+  nav a:nth-child(even){transform:rotate(1.2deg)}
+  nav a:nth-child(3){background:var(--pink);color:var(--paper)}
+  nav a:nth-child(5){background:var(--cyan)}
+  nav a:hover{transform:rotate(0) scale(1.05)}
+
+  .medal{
+    position:relative;margin:26px auto 0;width:152px;height:152px;z-index:4;
+    border-radius:50%;overflow:hidden;border:4px solid var(--ink);
+    box-shadow:0 10px 22px rgba(0,0,0,.4);background:#f6a8d8;
+  }
+  .medal .spin{position:absolute;inset:0;animation:logospin 14s linear infinite}
+  .medal img{position:absolute;width:153%;left:-26.5%;top:-9.3%;max-width:none}
+  @keyframes logospin{to{transform:rotate(360deg)}}
+
+  .ransom{
+    position:relative;margin:30px auto 0;
+    width:min(780px,94vw);text-align:center;z-index:3;
+  }
+  .ransom .word{
+    display:inline-block;margin:4px 4px;padding:6px 15px 8px;
+    box-shadow:0 5px 9px rgba(0,0,0,.35);
+    text-transform:uppercase;line-height:1;background:var(--paper);
+  }
+  .w1{font-family:'Anton';font-size:40px;transform:rotate(-2deg)}
+  .w2{font-family:'Special Elite';font-size:36px;background:var(--cyan)!important;transform:rotate(1.4deg)}
+  .w3{font-family:'Alfa Slab One';font-size:38px;transform:rotate(-1deg)}
+  .w4{font-family:'Anton';font-size:40px;background:var(--pink)!important;color:var(--paper);transform:rotate(2deg)}
+  .w5{font-family:'Alfa Slab One';font-size:42px;background:var(--ink)!important;color:var(--paper);transform:rotate(-1.6deg)}
+  .w6{font-family:'Special Elite';font-size:34px;transform:rotate(1deg)}
+  .w7{font-family:'Anton';font-size:40px;background:var(--cyan)!important;transform:rotate(-2.2deg)}
+  .ransom .sub{
+    display:inline-block;margin-top:14px;transform:rotate(-1.2deg);
+    font-family:'Caveat',cursive;font-size:29px;color:var(--paper);
+    text-shadow:0 2px 4px rgba(0,0,0,.85), 0 0 18px rgba(0,0,0,.55);
+  }
+  .ransom .sub b{color:var(--cyan)}
+
+  .dig{
+    position:relative;margin:34px auto 0;transform:rotate(-1.5deg);z-index:3;
+    font-family:'Permanent Marker';font-size:21px;color:var(--paper);text-decoration:none;
+    background:var(--ink);padding:13px 30px;box-shadow:0 6px 0 rgba(0,0,0,.35);
+    display:inline-block;
+  }
+  .dig:hover{transform:rotate(0) scale(1.04)}
+
+  .pickup{
+    position:absolute;bottom:36px;left:50%;transform:translateX(-50%) rotate(-1deg);z-index:3;
+    font-family:'Caveat',cursive;font-size:24px;color:var(--paper);
+    text-shadow:0 2px 4px rgba(0,0,0,.85), 0 0 18px rgba(0,0,0,.55);pointer-events:none;
+  }
+
+  /* the shelf the guitars land on */
+  .ledge{
+    position:absolute;left:-20px;right:-20px;bottom:0;height:30px;z-index:2;
+    background:linear-gradient(#8a6a3f,#5d4527);
+    box-shadow:0 -4px 10px rgba(0,0,0,.35);
+  }
+
+  /* ═══ guitars ═══ */
+  .gtr{
+    position:absolute;left:0;top:0;z-index:8;cursor:grab;
+    touch-action:none;user-select:none;-webkit-user-select:none;
+    filter:drop-shadow(0 8px 8px rgba(0,0,0,.35));
+    will-change:transform;
+  }
+  .gtr:active{cursor:grabbing}
+  .gtr svg{display:block;pointer-events:none}
+
+  /* ═══ below the fold: organized chaos bands ═══ */
+  .band{
+    position:relative;z-index:1;max-width:1180px;margin:0 auto;
+    padding:64px 26px 10px;
+    display:flex;gap:44px;justify-content:center;align-items:flex-start;flex-wrap:wrap;
+  }
+  .card{
+    background:var(--paper);box-shadow:0 6px 14px rgba(0,0,0,.35);
+  }
+  .print{padding:10px 10px 0}
+  .print img{width:100%;display:block}
+  .print figcaption{
+    font-family:'Caveat',cursive;font-size:20px;text-align:center;
+    padding:8px 4px 10px;color:var(--ink);
+  }
+  .r-l{transform:rotate(-2deg)}
+  .r-r{transform:rotate(2deg)}
+  .r-l2{transform:rotate(-1.2deg)}
+  .r-r2{transform:rotate(1.4deg)}
+
+  .receipt{
+    padding:18px 20px 22px;width:250px;
+    font-family:'Special Elite',monospace;font-size:14px;line-height:1.75;
+  }
+  .receipt h4{font-size:15px;border-bottom:2px dashed #999;padding-bottom:6px;margin-bottom:8px;letter-spacing:.05em}
+  .receipt .tot{border-top:2px dashed #999;margin-top:8px;padding-top:8px;font-weight:bold}
+  .receipt em{font-style:normal;background:#ffe66b;padding:0 3px}
+
+  .brain{width:250px}
+  .tower{width:400px}
+  .front{width:300px}
+  .bins{width:400px}
+  .sixty{width:300px}
+
+  .flyer{
+    padding:16px 18px 18px;width:220px;text-transform:uppercase;text-align:center;
+    font-family:'Anton';font-size:23px;line-height:1.2;background:var(--cyan);
+  }
+  .flyer small{display:block;font-family:'Special Elite';font-size:12px;text-transform:none;margin-top:8px}
+  .flyer.pinkf{background:var(--pink);color:var(--paper)}
+  .flyer.pinkf small{color:var(--ink)}
+
+  .cardboard{
+    background:
+      repeating-linear-gradient(0deg, rgba(0,0,0,.05) 0 2px, transparent 2px 6px),
+      #c9a06a;
+    border:3px solid #7a5b33;
+    padding:24px 38px 28px;text-align:center;
+    box-shadow:0 8px 16px rgba(0,0,0,.4);
+    max-width:430px;transform:rotate(-1.2deg);
+  }
+  .cardboard .mark{font-family:'Permanent Marker';font-size:32px;line-height:1.15}
+  .cardboard .mark span{color:#c8352a;text-decoration:underline wavy 3px}
+  .cardboard a{
+    display:inline-block;margin-top:14px;
+    font-family:'Permanent Marker';font-size:21px;color:var(--paper);text-decoration:none;
+    background:var(--ink);padding:10px 26px;box-shadow:0 4px 0 rgba(0,0,0,.35);
+  }
+
+  .since{
+    text-align:center;padding:56px 20px 46px;
+    font-family:'Permanent Marker';font-size:26px;color:var(--paper);
+    text-shadow:1px 2px 0 rgba(0,0,0,.5);
+  }
+  .since b{color:var(--pink)}
+
+  .shelf-label{
+    text-align:center;background:#241708;
+    font-family:'Special Elite';font-size:13px;color:#9d9484;
+    padding:14px 0 16px;letter-spacing:.1em;margin:14px;margin-top:0;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .medal .spin{animation:none}
+  }
+  @media(max-width:760px){
+    .pit{padding-bottom:190px}
+    .w1,.w3,.w4,.w5,.w7{font-size:30px}.w2,.w6{font-size:27px}
+    .band{gap:30px}
+  }
+</style>
+</head>
+<body>
+
+<div class="board">
+
+  <!-- ═══ HERO PIT ═══ -->
+  <section class="pit" id="pit">
+    <nav>
+      <a href="#" class="pin pin-ink">History</a>
+      <a href="#">Shop</a>
+      <a href="#" class="pin pin-cyan">For Beginners</a>
+      <a href="#">CDs &amp; Vinyl</a>
+      <a href="#" class="pin pin-ink">Wall of Fame</a>
+      <a href="#">What's Happening?</a>
+    </nav>
+
+    <div class="medal">
+      <div class="spin"><img src="assets/logo-2-lines.png" alt="House of Guitars Inc."></div>
+    </div>
+
+    <div class="ransom">
+      <span class="word w1">For</span>
+      <span class="word w2">the</span>
+      <span class="word w3">Rising</span>
+      <span class="word w4">Young</span>
+      <span class="word w5">Stars</span>
+      <span class="word w6">from</span>
+      <span class="word w7">Earth</span>
+      <br>
+      <span class="sub">— everything you need to start your band, <b>somewhere in here</b> —</span>
+    </div>
+
+    <a class="dig" href="#more">COME DIG THROUGH IT ↓</a>
+
+    <div class="pickup">go ahead, pick one up. throw it. we don't mind.</div>
+    <div class="ledge"></div>
+    <!-- guitars injected here -->
+  </section>
+
+  <!-- ═══ BAND 1: who/where ═══ -->
+  <div class="band" id="more">
+    <div class="card receipt pin r-l">
+      <h4>HOUSE OF GUITARS INC.</h4>
+      645 Titus Ave<br>
+      Rochester NY 14617<br>
+      Mon–Sat &nbsp;10–9<br>
+      Sun &nbsp;1–5<br>
+      <div class="tot">RING <em>585-544-3500</em><br>ASK FOR ANYBODY</div>
+    </div>
+    <figure class="card print brain pin pin-cyan r-r">
+      <img src="assets/the-store-that-ate-my-brain.jpg" alt="The Store That Ate My Brain — vintage House of Guitars poster">
+      <figcaption>this poster is older than you. still true.</figcaption>
+    </figure>
+    <div class="card flyer pin pin-ink r-l2">
+      Amps · Drums<br>Mics · Strings
+      <small>and a slew of rare finds only available at HOG. you get the jist.</small>
+    </div>
+  </div>
+
+  <!-- ═══ BAND 2: the store itself ═══ -->
+  <div class="band">
+    <figure class="card print tower pin r-l2">
+      <img src="assets/wof.jpg" alt="The guitar tower inside House of Guitars">
+      <figcaption>the tower. yes it's real. no you can't climb it.</figcaption>
+    </figure>
+    <figure class="card print front pin pin-cyan r-r2">
+      <img src="assets/DSC01658.jpg" alt="House of Guitars storefront, 645 Titus Ave">
+      <figcaption>645 Titus Ave — you can't miss it</figcaption>
+    </figure>
+  </div>
+
+  <div class="band">
+    <figure class="card print bins pin pin-ink r-r2">
+      <img src="assets/cds-and-vinyls.jpg" alt="CD bins with hand-written dividers">
+      <figcaption>filed by hand. every single one.</figcaption>
+    </figure>
+    <figure class="card print sixty pin r-l">
+      <img src="assets/special-events.jpg" alt="60 years of House of Guitars">
+      <figcaption>60 years &amp; still going ★ est. 1964</figcaption>
+    </figure>
+    <div class="card flyer pinkf pin pin-cyan r-l2">
+      Vinyl by<br>the mile
+      <small>CDs · 45s · LPs · WHO KNOWS</small>
+    </div>
+  </div>
+
+  <!-- ═══ BAND 3: the sign ═══ -->
+  <div class="band">
+    <div class="cardboard pin pin-ink">
+      <div class="mark">Yes, it's in here.<br><span>No,</span> we're not sure where.</div>
+      <a href="#">COME DIG →</a>
+    </div>
+  </div>
+
+  <div class="since">packed floor to ceiling since <b>1964</b></div>
+
+</div>
+
+<div class="shelf-label">CONCEPT 5 · THE BULLETIN BOARD · GUITARS FALL, YOU THROW THEM · HOUSE OF GUITARS, ROCHESTER NY</div>
+
+<!-- ═══ screenprint guitars (SVG defs) ═══ -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <!-- electric double-cut (strat) — viewBox 0 0 120 344 -->
+    <g id="g-strat">
+      <path d="M46 42 L74 42 L70 196 L50 196 Z" fill="#2a2118" stroke="#171310" stroke-width="4"/>
+      <path d="M44 4 L72 0 L78 38 L46 42 Z" fill="#171310"/>
+      <circle cx="53" cy="12" r="2.6" fill="#f3ead6"/><circle cx="53" cy="22" r="2.6" fill="#f3ead6"/><circle cx="53" cy="32" r="2.6" fill="#f3ead6"/>
+      <path d="M34 186
+               C 18 208, 14 224, 22 254
+               C 28 288, 40 316, 62 318
+               C 86 316, 98 292, 101 256
+               C 105 222, 98 200, 88 184
+               C 84 196, 76 202, 61 203
+               C 47 203, 38 197, 34 186 Z"
+            fill="var(--gcol,#ff3d9e)" stroke="#171310" stroke-width="5"/>
+      <path d="M42 206 C 34 224, 32 244, 38 268 C 43 290, 52 300, 62 300 C 74 300, 82 288, 85 264 C 88 240, 84 218, 76 204 C 70 210, 52 211, 42 206 Z"
+            fill="#f3ead6" stroke="#171310" stroke-width="3"/>
+      <rect x="48" y="222" width="26" height="8" rx="4" fill="#171310"/>
+      <rect x="48" y="240" width="26" height="8" rx="4" fill="#171310"/>
+      <rect x="46" y="262" width="30" height="9" rx="3" fill="#171310"/>
+      <circle cx="84" cy="282" r="5" fill="#171310"/><circle cx="90" cy="266" r="5" fill="#171310"/>
+      <line x1="55" y1="42" x2="58" y2="262" stroke="#171310" stroke-width="1.5"/>
+      <line x1="60" y1="42" x2="61" y2="262" stroke="#171310" stroke-width="1.5"/>
+      <line x1="65" y1="42" x2="64" y2="262" stroke="#171310" stroke-width="1.5"/>
+      <line x1="50" y1="70" x2="70" y2="70" stroke="#171310" stroke-width="2"/>
+      <line x1="50" y1="98" x2="70" y2="98" stroke="#171310" stroke-width="2"/>
+      <line x1="51" y1="126" x2="69" y2="126" stroke="#171310" stroke-width="2"/>
+      <line x1="51" y1="154" x2="69" y2="154" stroke="#171310" stroke-width="2"/>
+    </g>
+    <!-- flying V -->
+    <g id="g-v">
+      <path d="M46 40 L74 40 L70 188 L50 188 Z" fill="#2a2118" stroke="#171310" stroke-width="4"/>
+      <path d="M44 2 L72 -2 L78 36 L46 40 Z" fill="#171310"/>
+      <circle cx="53" cy="10" r="2.6" fill="#f3ead6"/><circle cx="53" cy="20" r="2.6" fill="#f3ead6"/><circle cx="53" cy="30" r="2.6" fill="#f3ead6"/>
+      <path d="M38 182
+               C 46 194, 74 194, 82 182
+               L 106 306 L 76 314 L 60 246 L 44 314 L 14 306 Z"
+            fill="var(--gcol,#3cd6e0)" stroke="#171310" stroke-width="5"/>
+      <rect x="47" y="200" width="26" height="8" rx="4" fill="#171310"/>
+      <rect x="47" y="216" width="26" height="8" rx="4" fill="#171310"/>
+      <line x1="55" y1="40" x2="58" y2="232" stroke="#171310" stroke-width="1.5"/>
+      <line x1="60" y1="40" x2="60" y2="232" stroke="#171310" stroke-width="1.5"/>
+      <line x1="65" y1="40" x2="62" y2="232" stroke="#171310" stroke-width="1.5"/>
+      <line x1="50" y1="66" x2="70" y2="66" stroke="#171310" stroke-width="2"/>
+      <line x1="50" y1="94" x2="70" y2="94" stroke="#171310" stroke-width="2"/>
+      <line x1="51" y1="122" x2="69" y2="122" stroke="#171310" stroke-width="2"/>
+      <line x1="51" y1="150" x2="69" y2="150" stroke="#171310" stroke-width="2"/>
+    </g>
+    <!-- acoustic dreadnought -->
+    <g id="g-ac">
+      <path d="M48 36 L72 36 L69 178 L51 178 Z" fill="#5b3d1e" stroke="#171310" stroke-width="4"/>
+      <path d="M46 0 L72 -4 L76 32 L48 36 Z" fill="#171310"/>
+      <circle cx="54" cy="8" r="2.6" fill="#f3ead6"/><circle cx="54" cy="18" r="2.6" fill="#f3ead6"/><circle cx="54" cy="28" r="2.6" fill="#f3ead6"/>
+      <path d="M60 172
+               C 42 172, 30 182, 28 200
+               C 26 216, 31 226, 29 236
+               C 24 250, 18 264, 20 286
+               C 23 316, 38 334, 60 336
+               C 82 334, 97 316, 100 286
+               C 102 264, 96 250, 91 236
+               C 89 226, 94 216, 92 200
+               C 90 182, 78 172, 60 172 Z"
+            fill="var(--gcol,#d9a969)" stroke="#171310" stroke-width="5"/>
+      <circle cx="60" cy="250" r="23" fill="#171310"/>
+      <circle cx="60" cy="250" r="16" fill="#3a2a16"/>
+      <circle cx="60" cy="250" r="26" fill="none" stroke="#171310" stroke-width="2.5"/>
+      <rect x="41" y="292" width="38" height="10" rx="3" fill="#171310"/>
+      <line x1="56" y1="36" x2="58" y2="292" stroke="#171310" stroke-width="1.5"/>
+      <line x1="60" y1="36" x2="60" y2="292" stroke="#171310" stroke-width="1.5"/>
+      <line x1="64" y1="36" x2="62" y2="292" stroke="#171310" stroke-width="1.5"/>
+      <line x1="52" y1="62" x2="69" y2="62" stroke="#171310" stroke-width="2"/>
+      <line x1="52" y1="90" x2="69" y2="90" stroke="#171310" stroke-width="2"/>
+      <line x1="52" y1="118" x2="68" y2="118" stroke="#171310" stroke-width="2"/>
+      <line x1="53" y1="146" x2="68" y2="146" stroke="#171310" stroke-width="2"/>
+    </g>
+    <!-- single-cut (LP-ish) -->
+    <g id="g-lp">
+      <path d="M46 42 L74 42 L70 192 L50 192 Z" fill="#2a2118" stroke="#171310" stroke-width="4"/>
+      <path d="M44 4 L72 0 L78 38 L46 42 Z" fill="#171310"/>
+      <circle cx="53" cy="12" r="2.6" fill="#f3ead6"/><circle cx="53" cy="22" r="2.6" fill="#f3ead6"/><circle cx="53" cy="32" r="2.6" fill="#f3ead6"/>
+      <path d="M50 188
+               C 34 190, 22 206, 20 234
+               C 18 272, 32 312, 62 316
+               C 90 312, 103 284, 101 250
+               C 100 222, 90 202, 76 190
+               C 72 197, 62 199, 50 188 Z"
+            fill="var(--gcol,#f3ead6)" stroke="#171310" stroke-width="5"/>
+      <rect x="47" y="212" width="28" height="9" rx="4" fill="#171310"/>
+      <rect x="47" y="232" width="28" height="9" rx="4" fill="#171310"/>
+      <rect x="45" y="256" width="32" height="7" rx="2" fill="#171310"/>
+      <circle cx="86" cy="284" r="5" fill="#171310"/><circle cx="78" cy="294" r="5" fill="#171310"/>
+      <line x1="55" y1="42" x2="58" y2="256" stroke="#171310" stroke-width="1.5"/>
+      <line x1="60" y1="42" x2="61" y2="256" stroke="#171310" stroke-width="1.5"/>
+      <line x1="65" y1="42" x2="64" y2="256" stroke="#171310" stroke-width="1.5"/>
+      <line x1="50" y1="70" x2="70" y2="70" stroke="#171310" stroke-width="2"/>
+      <line x1="50" y1="98" x2="70" y2="98" stroke="#171310" stroke-width="2"/>
+      <line x1="51" y1="126" x2="69" y2="126" stroke="#171310" stroke-width="2"/>
+      <line x1="51" y1="154" x2="69" y2="154" stroke="#171310" stroke-width="2"/>
+    </g>
+  </defs>
+</svg>
+
+<script>
+(function(){
+  var pit = document.getElementById('pit');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var SPECS = [
+    {use:'g-strat', col:'#ff3d9e', s:0.86},
+    {use:'g-ac',    col:'#d9a969', s:0.94},
+    {use:'g-v',     col:'#3cd6e0', s:0.80},
+    {use:'g-lp',    col:'#f3ead6', s:0.88},
+    {use:'g-strat', col:'#3cd6e0', s:0.76},
+    {use:'g-lp',    col:'#171310', s:0.82},
+    {use:'g-v',     col:'#ff3d9e', s:0.72},
+    {use:'g-ac',    col:'#d9a969', s:0.90}
+  ];
+
+  var G = 2600, guitars = [];
+
+  /* photo slots: drop g1..g7.png (transparent) or .jpg (white bg)
+     into assets/guitars/ — auto-detected, SVG fallback */
+  var PHOTO_BASE = 'assets/guitars/';
+  var PHOTO_V = '?v=6';   // bump when guitar files change (cache-bust)
+  function loadPhoto(i){
+    return new Promise(function(res){
+      var tried = 0, exts = ['png','jpg'];
+      (function next(){
+        if (tried >= exts.length) return res(null);
+        var ext = exts[tried++];
+        var im = new Image();
+        im.onload = function(){ res({src: PHOTO_BASE+'g'+(i+1)+'.'+ext+PHOTO_V, iw: im.naturalWidth, ih: im.naturalHeight, ext: ext}); };
+        im.onerror = next;
+        im.src = PHOTO_BASE+'g'+(i+1)+'.'+ext+PHOTO_V;
+      })();
+    });
+  }
+
+  function make(spec, i, photo){
+    var el = document.createElement('div');
+    el.className = 'gtr';
+    var w, h;
+    if (photo){
+      h = Math.round(344*spec.s);
+      w = Math.round(h * (photo.iw / photo.ih));
+      var blend = photo.ext === 'jpg' ? 'mix-blend-mode:multiply;' : '';
+      el.innerHTML = '<img src="'+photo.src+'" width="'+w+'" height="'+h+'" style="display:block;pointer-events:none;'+blend+'" alt="">';
+    } else {
+      w = Math.round(120*spec.s); h = Math.round(344*spec.s);
+      el.innerHTML = '<svg width="'+w+'" height="'+h+'" viewBox="0 -8 120 352" style="--gcol:'+spec.col+'"><use href="#'+spec.use+'"/></svg>';
+    }
+    pit.appendChild(el);
+    var W = pit.clientWidth;
+    var g = {
+      el:el, w:w, h:h, r:w*0.62,
+      cx: 60 + Math.random()*(W-120),
+      cy: -300 - Math.random()*300,
+      vx:(Math.random()-.5)*120, vy:0,
+      a:(Math.random()-.5)*60, va:(Math.random()-.5)*160,
+      restJit: Math.random()*26,
+      lieMag: 78+Math.random()*20,   // how flat this one likes to lie
+      settleTarget: null,
+      asleep:false, drag:null, wait: reduce ? 0 : 0.4 + i*0.42
+    };
+    if (reduce){ g.cy = floorY(g) ; g.a = (Math.random()<.5?-1:1)*g.lieMag; g.vy=0; g.va=0; g.asleep=true; }
+    el.style.zIndex = 8+i;
+    guitars.push(g);
+    hook(g);
+    render(g);
+  }
+
+  function floorY(g){ return pit.clientHeight - 30 - g.r - g.restJit; }
+
+  function render(g){
+    g.el.style.transform = 'translate('+(g.cx-g.w/2)+'px,'+(g.cy-g.h/2)+'px) rotate('+g.a+'deg)';
+  }
+
+  function hook(g){
+    g.el.addEventListener('pointerdown', function(e){
+      e.preventDefault();
+      g.el.setPointerCapture(e.pointerId);
+      g.drag = {ox: g.cx - e.clientX, oy: g.cy - e.clientY, hist:[]};
+      g.asleep = false; g.vx = 0; g.vy = 0; g.va = 0; g.settleTarget = null;
+      g.el.style.zIndex = 40;
+    });
+    g.el.addEventListener('pointermove', function(e){
+      if(!g.drag) return;
+      g.cx = e.clientX + g.drag.ox;
+      g.cy = e.clientY + g.drag.oy;
+      var now = performance.now();
+      g.drag.hist.push({x:e.clientX, y:e.clientY, t:now});
+      if (g.drag.hist.length > 6) g.drag.hist.shift();
+      render(g);
+    });
+    function release(e){
+      if(!g.drag) return;
+      var h = g.drag.hist;
+      if (h.length >= 2){
+        var a = h[0], b = h[h.length-1];
+        var dt = Math.max((b.t - a.t)/1000, 0.016);
+        g.vx = Math.max(-2600, Math.min(2600, (b.x-a.x)/dt));
+        g.vy = Math.max(-2600, Math.min(2600, (b.y-a.y)/dt));
+        g.va = g.vx * 0.12 + (Math.random()-.5)*80;
+      }
+      g.drag = null;
+    }
+    g.el.addEventListener('pointerup', release);
+    g.el.addEventListener('pointercancel', release);
+  }
+
+  var last = performance.now();
+  document.addEventListener('visibilitychange', function(){
+    if (!document.hidden) last = performance.now();
+  });
+  function frame(now){
+    var dt = Math.min((now - last)/1000, 0.033);
+    last = now;
+    var W = pit.clientWidth;
+    guitars.forEach(function(g){
+      if (g.drag || g.asleep) return;
+      if (g.wait > 0){ g.wait -= dt; return; }
+      g.vy += G*dt;
+      g.cx += g.vx*dt;
+      g.cy += g.vy*dt;
+      g.a  += g.va*dt;
+      var fy = floorY(g);
+      if (g.cy > fy){
+        g.cy = fy;
+        if (Math.abs(g.vy) > 140){
+          g.vy = -g.vy*0.32;
+          g.vx *= 0.7;
+          g.va = g.vx * 0.45 + (Math.random()-.5)*40;  // spin follows motion
+          g.settleTarget = null;
+        } else {
+          g.vy = 0; g.vx *= 0.82;
+          // tip over to the NEAREST flat pose from wherever it landed
+          if (g.settleTarget === null){
+            var best = null, bestD = 1e9;
+            for (var k = -2; k <= 2; k++){
+              [g.lieMag, -g.lieMag].forEach(function(m){
+                var cand = k*360 + m;
+                var dd = Math.abs(cand - g.a);
+                if (dd < bestD){ bestD = dd; best = cand; }
+              });
+            }
+            g.settleTarget = best;
+          }
+          var d = g.settleTarget - g.a;
+          g.a += d * Math.min(1, dt*7);
+          if (Math.abs(g.vx) < 6 && Math.abs(d) < 1.2){
+            g.a = g.settleTarget; g.vx = 0; g.va = 0; g.asleep = true;
+          }
+        }
+      }
+      if (g.cx < g.r*0.6){ g.cx = g.r*0.6; g.vx = Math.abs(g.vx)*0.5; }
+      if (g.cx > W - g.r*0.6){ g.cx = W - g.r*0.6; g.vx = -Math.abs(g.vx)*0.5; }
+      render(g);
+    });
+    requestAnimationFrame(frame);
+  }
+
+  Promise.all(SPECS.map(function(_, i){ return loadPhoto(i); })).then(function(photos){
+    SPECS.forEach(function(spec, i){ make(spec, i, photos[i]); });
+    requestAnimationFrame(frame);
+  });
+
+  window.addEventListener('resize', function(){
+    guitars.forEach(function(g){
+      if (g.asleep){ g.cy = floorY(g); render(g); }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

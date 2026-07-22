@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>House of Guitars — concept v3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Rye&family=Alfa+Slab+One&family=Permanent+Marker&family=Special+Elite&family=Bungee+Shade&family=Caveat:wght@700&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --wall:#2b2119;
+    --pink:#ff3d9e;
+    --cyan:#3cd6e0;
+    --gold:#f0b431;
+    --paper:#f0e6d2;
+    --news:#e8ddc4;
+    --card:#c9a06a;
+    --red:#d63c2a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(255,255,255,.045), transparent 50%),
+      radial-gradient(ellipse at 75% 80%, rgba(0,0,0,.35), transparent 60%),
+      var(--wall);
+    color:#111;
+    font-family:'Oswald',sans-serif;
+    overflow-x:hidden;
+    min-height:100vh;
+  }
+  /* wood grain-ish streaks + grime */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:
+      repeating-linear-gradient(92deg, rgba(0,0,0,.12) 0 3px, transparent 3px 90px),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.16'/></svg>");
+  }
+
+  /* ═══ every scrap on the wall ═══ */
+  .scrap{position:absolute;z-index:2}
+
+  /* masking tape */
+  .tape::before,.tape::after{
+    content:"";position:absolute;width:82px;height:26px;
+    background:rgba(240,230,205,.75);
+    box-shadow:0 1px 3px rgba(0,0,0,.35);
+    z-index:5;
+  }
+  .tape::before{top:-13px;left:-26px;transform:rotate(-42deg)}
+  .tape::after{top:-13px;right:-26px;transform:rotate(38deg)}
+  .tape-one::after{display:none}
+
+  /* pinned instead of taped */
+  .pin::before{
+    content:"";position:absolute;top:-9px;left:50%;margin-left:-9px;width:18px;height:18px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #ff8181, var(--red) 65%, #7d1409);
+    box-shadow:0 3px 4px rgba(0,0,0,.5);z-index:5;
+  }
+
+  .stage{position:relative;max-width:1400px;margin:0 auto;height:950px}
+
+  /* ── receipt strip: hours & address ── */
+  .receipt{
+    top:18px;left:26px;transform:rotate(-3.5deg);
+    background:#fbf7ec;padding:18px 20px 24px;width:250px;
+    font-family:'Special Elite',monospace;font-size:14px;line-height:1.75;color:#222;
+    box-shadow:4px 6px 14px rgba(0,0,0,.45);
+  }
+  .receipt h4{font-family:'Special Elite';font-size:15px;border-bottom:2px dashed #999;padding-bottom:6px;margin-bottom:8px;letter-spacing:.05em}
+  .receipt .tot{border-top:2px dashed #999;margin-top:8px;padding-top:8px;font-weight:bold}
+  .receipt em{font-style:normal;background:#ffe66b;padding:0 3px}
+
+  /* ── the big ransom headline, center ── */
+  .ransom{
+    top:150px;left:50%;transform:translateX(-50%);width:min(760px,92vw);
+    text-align:center;z-index:3;
+  }
+  .ransom .word{
+    display:inline-block;margin:5px 4px;padding:6px 16px 8px;
+    box-shadow:3px 4px 8px rgba(0,0,0,.45);
+    text-transform:uppercase;line-height:1;
+  }
+  .w1{font-family:'Anton';font-size:44px;background:var(--paper);transform:rotate(-2.5deg)}
+  .w2{font-family:'Rye';font-size:40px;background:var(--cyan);transform:rotate(1.8deg)}
+  .w3{font-family:'Bungee Shade';font-size:42px;background:var(--gold);transform:rotate(-1.2deg)}
+  .w4{font-family:'Alfa Slab One';font-size:41px;background:var(--pink);color:var(--paper);transform:rotate(2.6deg)}
+  .w5{font-family:'Anton';font-size:46px;background:#111;color:var(--paper);transform:rotate(-1.8deg)}
+  .w6{font-family:'Special Elite';font-size:38px;background:var(--news);transform:rotate(1.2deg)}
+  .w7{font-family:'Rye';font-size:44px;background:var(--pink);color:#111;transform:rotate(-2.2deg)}
+  .w8{font-family:'Alfa Slab One';font-size:40px;background:var(--paper);transform:rotate(2deg)}
+
+  .ransom .sub{
+    display:inline-block;margin-top:16px;transform:rotate(-1.4deg);
+    font-family:'Caveat',cursive;font-size:30px;color:var(--paper);
+    text-shadow:2px 2px 0 rgba(0,0,0,.6);
+  }
+  .ransom .sub b{color:var(--gold)}
+
+  /* ── cardboard CTA, marker ── */
+  .cardboard{
+    top:508px;left:50%;transform:translateX(-50%) rotate(-2deg);
+    background:
+      repeating-linear-gradient(0deg, rgba(0,0,0,.05) 0 2px, transparent 2px 6px),
+      var(--card);
+    border:3px solid #7a5b33;
+    padding:22px 34px 26px;text-align:center;z-index:4;
+    box-shadow:6px 8px 16px rgba(0,0,0,.5);
+    width:400px;
+  }
+  .cardboard .mark{font-family:'Permanent Marker';font-size:34px;color:#1c1109;line-height:1.1}
+  .cardboard .mark span{color:var(--red);text-decoration:underline wavy 3px}
+  .cardboard a{
+    display:inline-block;margin-top:14px;
+    font-family:'Permanent Marker';font-size:22px;color:var(--paper);text-decoration:none;
+    background:#1c1109;padding:10px 26px;transform:rotate(1.4deg);
+    box-shadow:4px 4px 0 rgba(0,0,0,.4);
+  }
+  .cardboard a:hover{transform:rotate(1.4deg) scale(1.04)}
+
+  /* ── medallion slapped like a sticker ── */
+  .sticker-logo{
+    top:96px;right:5%;width:210px;height:210px;transform:rotate(7deg);z-index:4;
+    border-radius:50%;overflow:hidden;border:4px solid #0d0a07;
+    box-shadow:0 10px 22px rgba(0,0,0,.55);
+    background:#f6a8d8;
+  }
+  .sticker-logo img{position:absolute;width:153%;left:-26.5%;top:-9.3%;max-width:none}
+
+  /* ── flyers behind everything ── */
+  .flyer{
+    padding:14px 16px 18px;text-transform:uppercase;text-align:center;
+    box-shadow:4px 6px 12px rgba(0,0,0,.4);
+  }
+  .f1{
+    top:70px;left:24%;width:190px;transform:rotate(-6deg);background:var(--news);z-index:1;
+    font-family:'Special Elite';font-size:13px;line-height:1.5;
+  }
+  .f1 h3{font-family:'Anton';font-size:26px;margin-bottom:4px}
+  .f1 .rip{border-top:2px dashed #888;margin-top:10px;padding-top:8px;font-size:11px}
+  .f2{
+    top:330px;left:2.5%;width:215px;transform:rotate(4deg);background:var(--pink);z-index:2;
+    font-family:'Alfa Slab One';color:var(--paper);font-size:21px;line-height:1.25;
+  }
+  .f2 small{display:block;font-family:'Oswald';font-weight:600;font-size:13px;letter-spacing:.12em;margin-top:8px;color:#111}
+  .f3{
+    top:360px;right:2.5%;width:210px;transform:rotate(-4.5deg);background:var(--cyan);z-index:2;
+    font-family:'Anton';font-size:24px;line-height:1.15;color:#0d0a07;
+  }
+  .f3 small{display:block;font-family:'Special Elite';font-size:12px;text-transform:none;margin-top:8px}
+
+  /* ── price tags ── */
+  .tag{
+    background:var(--gold);color:#111;font-family:'Permanent Marker';
+    padding:10px 16px;font-size:19px;z-index:4;
+    clip-path:polygon(14px 0,100% 0,100% 100%,14px 100%,0 50%);
+    box-shadow:3px 4px 8px rgba(0,0,0,.4);
+  }
+  .t1{top:548px;left:12%;transform:rotate(-8deg)}
+  .t2{top:470px;left:23%;transform:rotate(5deg);background:var(--paper)}
+  .t3{top:610px;right:9%;transform:rotate(6deg);background:var(--pink);color:var(--paper)}
+
+  /* ── polaroid: wall of fame ── */
+  .polaroid{
+    top:575px;left:4%;width:190px;background:#fdfdf8;padding:10px 10px 0;z-index:3;
+    transform:rotate(-5deg);box-shadow:5px 7px 16px rgba(0,0,0,.5);
+  }
+  .polaroid .photo{
+    height:150px;position:relative;overflow:hidden;
+    background:
+      repeating-linear-gradient(0deg,#3a2e22 0 26px,#463526 26px 52px);
+  }
+  /* scrawled signatures on the wall */
+  .polaroid .photo i{
+    position:absolute;font-family:'Caveat';font-weight:700;color:rgba(240,230,210,.85);
+    font-style:normal;transform:rotate(-9deg);
+  }
+  .polaroid .photo i:nth-child(1){top:12px;left:10px;font-size:21px}
+  .polaroid .photo i:nth-child(2){top:48px;left:64px;font-size:17px;transform:rotate(6deg);color:var(--cyan)}
+  .polaroid .photo i:nth-child(3){top:80px;left:18px;font-size:19px;transform:rotate(-4deg);color:var(--pink)}
+  .polaroid .photo i:nth-child(4){top:112px;left:56px;font-size:16px;transform:rotate(8deg)}
+  .polaroid figcaption{font-family:'Permanent Marker';font-size:15px;text-align:center;padding:8px 2px 10px;color:#222}
+
+  /* ── stack of 45s, bottom right ── */
+  .stack{top:640px;right:3.5%;z-index:2;width:210px;height:190px}
+  .vinyl{
+    position:absolute;width:150px;height:150px;border-radius:50%;
+    background:radial-gradient(circle, var(--gold) 0 22px, #131313 23px 27px, #221f1c 28px 31px, #131313 32px 100%);
+    box-shadow:0 8px 18px rgba(0,0,0,.55);
+    border:2px solid #000;
+  }
+  .vinyl:nth-child(1){top:34px;left:44px;transform:rotate(0)}
+  .vinyl:nth-child(2){top:20px;left:18px}
+  .vinyl:nth-child(3){
+    top:6px;left:34px;
+    background:radial-gradient(circle, var(--pink) 0 22px, #131313 23px 27px, #221f1c 28px 31px, #131313 32px 100%);
+  }
+  .vinyl:nth-child(3)::after{
+    content:"PLAY OUR VIDEO WEBSITE";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    text-align:center;font-family:'Oswald';font-weight:700;font-size:13px;letter-spacing:.06em;color:var(--paper);
+    padding:0 34px;text-shadow:0 2px 3px #000;
+  }
+  .stack a{position:absolute;inset:0;z-index:6}
+  .stack:hover .vinyl:nth-child(3){animation:wobble 1s ease-in-out infinite}
+  @keyframes wobble{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(3deg)}}
+
+  /* ── marker arrows & scribbles ── */
+  .scribble{
+    font-family:'Permanent Marker';color:var(--paper);z-index:3;
+    text-shadow:2px 2px 0 rgba(0,0,0,.55);
+  }
+  .sc1{top:462px;right:20%;font-size:24px;transform:rotate(-4deg)}
+  .sc2{top:748px;left:29%;font-size:21px;transform:rotate(2deg);color:var(--cyan)}
+  .sc3{top:64px;left:44%;font-size:19px;transform:rotate(-6deg);color:var(--gold);z-index:1}
+
+  /* ── nav — crooked shelf of signs ── */
+  nav{position:relative;z-index:6;display:flex;justify-content:center;gap:10px;padding:20px 12px 6px;flex-wrap:wrap}
+  nav a{
+    text-decoration:none;color:#111;font-family:'Permanent Marker';font-size:17px;
+    background:var(--paper);padding:8px 16px;box-shadow:3px 4px 8px rgba(0,0,0,.45);
+    display:inline-block;
+  }
+  nav a:nth-child(odd){transform:rotate(-2deg)}
+  nav a:nth-child(even){transform:rotate(1.6deg);background:var(--cyan)}
+  nav a:nth-child(3){background:var(--pink);color:var(--paper)}
+  nav a:nth-child(5){background:var(--gold)}
+  nav a:hover{transform:rotate(0) scale(1.06)}
+
+  /* ── bottom: shelf edge ── */
+  .shelf{
+    position:relative;z-index:5;margin-top:-40px;height:26px;
+    background:linear-gradient(#8a6a3f,#5d4527);box-shadow:0 -3px 8px rgba(0,0,0,.4);
+  }
+  .shelf-label{
+    position:relative;z-index:5;text-align:center;background:#191410;
+    font-family:'Special Elite';font-size:13px;color:#9d9484;padding:14px 0 18px;letter-spacing:.1em;
+  }
+
+  @media(max-width:980px){
+    .stage{height:auto;min-height:100vh}
+    .scrap{position:static;transform:none!important;margin:18px auto;display:block}
+    .receipt,.flyer,.polaroid,.cardboard{width:min(320px,88vw)}
+    .stack{position:relative;margin:20px auto;display:block}
+    .tag,.scribble{display:none}
+    .ransom{width:94vw}
+  }
+</style>
+</head>
+<body>
+
+  <nav>
+    <a href="#">History</a>
+    <a href="#">Shop</a>
+    <a href="#">For Beginners</a>
+    <a href="#">CDs &amp; Vinyl</a>
+    <a href="#">Wall of Fame</a>
+    <a href="#">What's Happening?</a>
+  </nav>
+
+  <div class="stage">
+
+    <!-- receipt: the practical info -->
+    <div class="scrap receipt tape tape-one">
+      <h4>HOUSE OF GUITARS INC.</h4>
+      645 Titus Ave<br>
+      Rochester NY 14617<br>
+      Mon–Sat &nbsp;10–9<br>
+      Sun &nbsp;1–5<br>
+      <div class="tot">RING <em>585-544-3500</em><br>ASK FOR ANYBODY</div>
+    </div>
+
+    <!-- old gig flyer -->
+    <div class="scrap flyer f1 pin">
+      <h3>Tonight!</h3>
+      In-store show<br>bring your own earplugs
+      <div class="rip">see What's Happening? for the real calendar</div>
+    </div>
+
+    <!-- dept flyers -->
+    <div class="scrap flyer f2 tape">
+      Vinyl by<br>the mile
+      <small>CDs · 45s · LPs · WHO KNOWS</small>
+    </div>
+    <div class="scrap flyer f3 tape">
+      Amps · Drums<br>Mics · Strings
+      <small>and a slew of rare finds only available at HOG. you get the jist.</small>
+    </div>
+
+    <!-- the real logo, slapped on like a sticker -->
+    <div class="scrap sticker-logo">
+      <img src="assets/logo-2-lines.png" alt="House of Guitars Inc.">
+    </div>
+
+    <!-- THE headline -->
+    <div class="scrap ransom">
+      <span class="word w1">For</span>
+      <span class="word w2">the</span>
+      <span class="word w3">Rising</span>
+      <span class="word w4">Young</span>
+      <span class="word w5">Stars</span>
+      <span class="word w6">from</span>
+      <span class="word w7">Earth</span>
+      <br>
+      <span class="sub">— everything you need to start your band, <b>somewhere in here</b> —</span>
+    </div>
+
+    <!-- cardboard CTA -->
+    <div class="scrap cardboard tape">
+      <div class="mark">Yes, it's in here.<br><span>No,</span> we're not sure where.</div>
+      <a href="#">COME DIG →</a>
+    </div>
+
+    <!-- price tags -->
+    <div class="scrap tag t1">RARE!</div>
+    <div class="scrap tag t2">ask us</div>
+    <div class="scrap tag t3">$ make an offer</div>
+
+    <!-- wall of fame polaroid -->
+    <figure class="scrap polaroid tape tape-one">
+      <div class="photo">
+        <i>[band name]</i>
+        <i>[band name]</i>
+        <i>[band name]</i>
+        <i>your name here</i>
+      </div>
+      <figcaption>the HOG Wall of Fame ★</figcaption>
+    </figure>
+
+    <!-- stack of 45s = video website button -->
+    <div class="scrap stack">
+      <div class="vinyl"></div>
+      <div class="vinyl"></div>
+      <div class="vinyl"></div>
+      <a href="#" aria-label="Play our video website"></a>
+    </div>
+
+    <!-- marker scribbles -->
+    <div class="scrap scribble sc1">← beginners start here</div>
+    <div class="scrap scribble sc2">packed floor to ceiling since [year] ↑</div>
+    <div class="scrap scribble sc3">↓ new old stuff every week ↓</div>
+
+  </div>
+
+  <div class="shelf"></div>
+  <div class="shelf-label">CONCEPT 3 OF 3 · THE WALL IS THE WEBSITE · HOUSE OF GUITARS, ROCHESTER NY</div>
+
+</body>
+</html>

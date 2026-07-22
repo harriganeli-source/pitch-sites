@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>House of Guitars — concept v8 (after close)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Alfa+Slab+One&family=Permanent+Marker&family=Special+Elite&family=Caveat:wght@700&family=Oswald:wght@600;700&family=Young+Serif&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cork:#b1834f;
+    --cork-dk:#96683a;
+    --frame:#5b3d1e;
+    --frame-hi:#7c5731;
+    --paper:#f3ead6;
+    --pink:#ff3d9e;
+    --cyan:#3cd6e0;
+    --ink:#171310;
+    --wood:#d9a969;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:'Oswald',sans-serif;color:var(--ink);
+    background:var(--frame);
+  }
+
+  /* ═══ the giant framed corkboard ═══ */
+  .board{
+    margin:0;min-height:100vh;
+    background:
+      radial-gradient(ellipse at 30% 15%, rgba(255,235,200,.14), transparent 55%),
+      radial-gradient(ellipse at 80% 90%, rgba(0,0,0,.22), transparent 60%),
+      var(--cork);
+    position:relative;overflow:hidden;
+  }
+  /* cork speckle */
+  .board::before{
+    content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;z-index:0;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' seed='7'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.30 0 0 0 0 0.14 0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23c)'/></svg>");
+  }
+
+  /* ═══ pins ═══ */
+  .pin{position:relative}
+  .pin::before{
+    content:"";position:absolute;top:-9px;left:50%;margin-left:-9px;width:18px;height:18px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #ff8181, #c8352a 65%, #6d1208);
+    box-shadow:0 3px 5px rgba(0,0,0,.45);z-index:6;
+  }
+  .pin-cyan::before{background:radial-gradient(circle at 35% 30%, #b6f3f8, #23aab8 65%, #0c5a63)}
+  .pin-ink::before{background:radial-gradient(circle at 35% 30%, #777, #222 65%, #000)}
+
+  /* ═══ HERO — the pit where guitars rain ═══ */
+  .pit{
+    position:relative;z-index:1;
+    padding:20px 12px 230px;   /* bottom padding = reserved pile band */
+    min-height:calc(100vh - 60px);
+    display:flex;flex-direction:column;align-items:center;
+    overflow:hidden;
+  }
+  /* after close — dark shop, lit sign */
+  .pit::before{
+    content:"";position:absolute;inset:0;z-index:0;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 30%, rgba(60,50,30,.35), transparent 75%),
+      linear-gradient(#16120d 0%, #0d0b08 100%);
+  }
+  .pit::after{
+    content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/></svg>");
+  }
+  .pit > *{position:relative}
+
+  nav{
+    position:relative;z-index:5;
+    display:flex;justify-content:center;gap:12px;flex-wrap:wrap;padding:0 12px;
+  }
+  nav a{
+    text-decoration:none;color:var(--ink);
+    font-family:'Permanent Marker';font-size:16px;
+    background:var(--paper);padding:9px 15px 8px;
+    box-shadow:0 4px 9px rgba(0,0,0,.35);
+  }
+  nav a:nth-child(odd){transform:rotate(-1.4deg)}
+  nav a:nth-child(even){transform:rotate(1.2deg)}
+  nav a:nth-child(3){background:var(--pink);color:var(--paper)}
+  nav a:nth-child(5){background:var(--cyan)}
+  nav a:hover{transform:rotate(0) scale(1.05)}
+
+  .medal{
+    position:relative;margin:20px auto 0;width:124px;height:124px;z-index:4;
+    border-radius:50%;overflow:hidden;border:4px solid var(--ink);
+    box-shadow:0 10px 22px rgba(0,0,0,.4);background:#f6a8d8;
+  }
+  .medal .spin{position:absolute;inset:0;animation:logospin 14s linear infinite}
+  .medal img{position:absolute;width:153%;left:-26.5%;top:-9.3%;max-width:none}
+  @keyframes logospin{to{transform:rotate(360deg)}}
+
+  .ransom{
+    position:relative;margin:30px auto 0;
+    width:min(780px,94vw);text-align:center;z-index:3;
+  }
+  .ransom .word{
+    display:inline-block;margin:4px 4px;padding:6px 15px 8px;
+    box-shadow:0 5px 9px rgba(0,0,0,.35);
+    text-transform:uppercase;line-height:1;background:var(--paper);
+  }
+  .w1{font-family:'Anton';font-size:40px;transform:rotate(-2deg)}
+  .w2{font-family:'Special Elite';font-size:36px;background:var(--cyan)!important;transform:rotate(1.4deg)}
+  .w3{font-family:'Alfa Slab One';font-size:38px;transform:rotate(-1deg)}
+  .w4{font-family:'Anton';font-size:40px;background:var(--pink)!important;color:var(--paper);transform:rotate(2deg)}
+  .w5{font-family:'Alfa Slab One';font-size:42px;background:var(--ink)!important;color:var(--paper);transform:rotate(-1.6deg)}
+  .w6{font-family:'Special Elite';font-size:34px;transform:rotate(1deg)}
+  .w7{font-family:'Anton';font-size:40px;background:var(--cyan)!important;transform:rotate(-2.2deg)}
+  .ransom .sub{
+    display:inline-block;margin-top:14px;transform:rotate(-1.2deg);
+    font-family:'Caveat',cursive;font-size:29px;color:var(--paper);
+    text-shadow:0 2px 4px rgba(0,0,0,.85), 0 0 18px rgba(0,0,0,.55);
+  }
+  .ransom .sub b{color:var(--cyan)}
+
+  .dig{
+    position:relative;margin:34px auto 0;transform:rotate(-1.5deg);z-index:3;
+    font-family:'Permanent Marker';font-size:21px;color:var(--paper);text-decoration:none;
+    background:var(--ink);padding:13px 30px;box-shadow:0 6px 0 rgba(0,0,0,.35);
+    display:inline-block;
+  }
+  .dig:hover{transform:rotate(0) scale(1.04)}
+
+  .pickup{
+    position:absolute;bottom:36px;left:50%;transform:translateX(-50%) rotate(-1deg);z-index:3;
+    font-family:'Caveat',cursive;font-size:24px;color:var(--paper);
+    text-shadow:0 2px 4px rgba(0,0,0,.85), 0 0 18px rgba(0,0,0,.55);pointer-events:none;
+  }
+
+  /* the shelf the guitars land on */
+  .ledge{
+    position:absolute;left:-20px;right:-20px;bottom:0;height:30px;z-index:2;
+    background:linear-gradient(#8a6a3f,#5d4527);
+    box-shadow:0 -4px 10px rgba(0,0,0,.35);
+  }
+
+
+  /* ═══ the storefront sign — real lightbox photo, live type on top ═══ */
+  .signwrap{
+    position:relative;   /* NO z-index: it would isolate the blend */
+    width:min(1150px,97vw);margin:6px auto 0;
+  }
+  .signwrap img{
+    width:100%;display:block;
+    mix-blend-mode:screen;   /* black surround vanishes, glow adds light */
+    pointer-events:none;
+  }
+  .signtext{
+    position:absolute;left:9%;right:9%;top:33%;height:46%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Young Serif',serif;
+    font-size:40px;               /* autofit rescales */
+    letter-spacing:.2em;text-indent:.2em;word-spacing:.9em;
+    color:#1c1408;white-space:nowrap;
+    mix-blend-mode:multiply;      /* backlight glows through the paint */
+    opacity:.94;filter:blur(.3px);
+  }
+  .signtext em{font-style:normal;font-size:.42em;letter-spacing:.22em;vertical-align:.2em;opacity:.85}
+  .neon{
+    position:relative;margin:30px auto 0;z-index:3;
+    font-family:'Pacifico',cursive;font-size:clamp(22px,2.6vw,36px);
+    color:#5ee8f0;text-align:center;transform:rotate(-2deg);
+    text-shadow:
+      0 0 6px rgba(94,232,240,.9),
+      0 0 18px rgba(40,210,225,.75),
+      0 0 42px rgba(30,190,210,.5),
+      0 0 80px rgba(30,190,210,.3);
+  }
+  .neon i{font-style:normal;animation:neonflick 7s infinite}
+  @keyframes neonflick{
+    0%,91%,93.5%,100%{opacity:1}
+    91.8%,93%{opacity:.35}
+  }
+
+  /* ═══ guitars ═══ */
+  .gtr{
+    position:absolute;left:0;top:0;z-index:8;cursor:grab;
+    touch-action:none;user-select:none;-webkit-user-select:none;
+    filter:drop-shadow(0 8px 8px rgba(0,0,0,.35));
+    will-change:transform;
+  }
+  .gtr:active{cursor:grabbing}
+  .gtr svg{display:block;pointer-events:none}
+
+  /* ═══ below the fold: organized chaos bands ═══ */
+  .band{
+    position:relative;z-index:1;max-width:1180px;margin:0 auto;
+    padding:64px 26px 10px;
+    display:flex;gap:44px;justify-content:center;align-items:flex-start;flex-wrap:wrap;
+  }
+  .card{
+    background:var(--paper);box-shadow:0 6px 14px rgba(0,0,0,.35);
+  }
+  .print{padding:10px 10px 0}
+  .print img{width:100%;display:block}
+  .print figcaption{
+    font-family:'Caveat',cursive;font-size:20px;text-align:center;
+    padding:8px 4px 10px;color:var(--ink);
+  }
+  .r-l{transform:rotate(-2deg)}
+  .r-r{transform:rotate(2deg)}
+  .r-l2{transform:rotate(-1.2deg)}
+  .r-r2{transform:rotate(1.4deg)}
+
+  .receipt{
+    padding:18px 20px 22px;width:250px;
+    font-family:'Special Elite',monospace;font-size:14px;line-height:1.75;
+  }
+  .receipt h4{font-size:15px;border-bottom:2px dashed #999;padding-bottom:6px;margin-bottom:8px;letter-spacing:.05em}
+  .receipt .tot{border-top:2px dashed #999;margin-top:8px;padding-top:8px;font-weight:bold}
+  .receipt em{font-style:normal;background:#ffe66b;padding:0 3px}
+
+  .brain{width:250px}
+  .tower{width:400px}
+  .front{width:300px}
+  .bins{width:400px}
+  .sixty{width:300px}
+
+  .flyer{
+    padding:16px 18px 18px;width:220px;text-transform:uppercase;text-align:center;
+    font-family:'Anton';font-size:23px;line-height:1.2;background:var(--cyan);
+  }
+  .flyer small{display:block;font-family:'Special Elite';font-size:12px;text-transform:none;margin-top:8px}
+  .flyer.pinkf{background:var(--pink);color:var(--paper)}
+  .flyer.pinkf small{color:var(--ink)}
+
+  .cardboard{
+    background:
+      repeating-linear-gradient(0deg, rgba(0,0,0,.05) 0 2px, transparent 2px 6px),
+      #c9a06a;
+    border:3px solid #7a5b33;
+    padding:24px 38px 28px;text-align:center;
+    box-shadow:0 8px 16px rgba(0,0,0,.4);
+    max-width:430px;transform:rotate(-1.2deg);
+  }
+  .cardboard .mark{font-family:'Permanent Marker';font-size:32px;line-height:1.15}
+  .cardboard .mark span{color:#c8352a;text-decoration:underline wavy 3px}
+  .cardboard a{
+    display:inline-block;margin-top:14px;
+    font-family:'Permanent Marker';font-size:21px;color:var(--paper);text-decoration:none;
+    background:var(--ink);padding:10px 26px;box-shadow:0 4px 0 rgba(0,0,0,.35);
+  }
+
+  .since{
+    text-align:center;padding:56px 20px 46px;
+    font-family:'Permanent Marker';font-size:26px;color:var(--paper);
+    text-shadow:1px 2px 0 rgba(0,0,0,.5);
+  }
+  .since b{color:var(--pink)}
+
+  .shelf-label{
+    text-align:center;background:#241708;
+    font-family:'Special Elite';font-size:13px;color:#9d9484;
+    padding:14px 0 16px;letter-spacing:.1em;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .medal .spin{animation:none}
+  }
+  @media(max-width:760px){
+    .pit{padding-bottom:190px}
+    .w1,.w3,.w4,.w5,.w7{font-size:30px}.w2,.w6{font-size:27px}
+    .band{gap:30px}
+  }
+</style>
+</head>
+<body>
+
+<div class="board">
+
+  <!-- ═══ HERO PIT ═══ -->
+  <section class="pit" id="pit">
+    <nav>
+      <a href="#" class="pin pin-ink">History</a>
+      <a href="#">Shop</a>
+      <a href="#" class="pin pin-cyan">For Beginners</a>
+      <a href="#">CDs &amp; Vinyl</a>
+      <a href="#" class="pin pin-ink">Wall of Fame</a>
+      <a href="#">What's Happening?</a>
+    </nav>
+
+    <div class="signwrap">
+      <img src="assets/sign.jpg" alt="">
+      <h1 class="signtext">HOUSE OF GUITARS INC</h1>
+    </div>
+
+    <div class="medal">
+      <div class="spin"><img src="assets/logo-2-lines.png" alt="House of Guitars Inc."></div>
+    </div>
+
+    <div class="neon">for the rising young <i>stars</i> from earth</div>
+
+    <a class="dig" href="#more">COME DIG THROUGH IT ↓</a>
+
+    <div class="pickup">go ahead, pick one up. throw it. we don't mind.</div>
+    <div class="ledge"></div>
+    <!-- guitars injected here -->
+  </section>
+
+  <!-- ═══ BAND 1: who/where ═══ -->
+  <div class="band" id="more">
+    <div class="card receipt pin r-l">
+      <h4>HOUSE OF GUITARS INC.</h4>
+      645 Titus Ave<br>
+      Rochester NY 14617<br>
+      Mon–Sat &nbsp;10–9<br>
+      Sun &nbsp;1–5<br>
+      <div class="tot">RING <em>585-544-3500</em><br>ASK FOR ANYBODY</div>
+    </div>
+    <figure class="card print brain pin pin-cyan r-r">
+      <img src="assets/the-store-that-ate-my-brain.jpg" alt="The Store That Ate My Brain — vintage House of Guitars poster">
+      <figcaption>this poster is older than you. still true.</figcaption>
+    </figure>
+    <div class="card flyer pin pin-ink r-l2">
+      Amps · Drums<br>Mics · Strings
+      <small>and a slew of rare finds only available at HOG. you get the jist.</small>
+    </div>
+  </div>
+
+  <!-- ═══ BAND 2: the store itself ═══ -->
+  <div class="band">
+    <figure class="card print tower pin r-l2">
+      <img src="assets/wof.jpg" alt="The guitar tower inside House of Guitars">
+      <figcaption>the tower. yes it's real. no you can't climb it.</figcaption>
+    </figure>
+    <figure class="card print front pin pin-cyan r-r2">
+      <img src="assets/DSC01658.jpg" alt="House of Guitars storefront, 645 Titus Ave">
+      <figcaption>645 Titus Ave — you can't miss it</figcaption>
+    </figure>
+  </div>
+
+  <div class="band">
+    <figure class="card print bins pin pin-ink r-r2">
+      <img src="assets/cds-and-vinyls.jpg" alt="CD bins with hand-written dividers">
+      <figcaption>filed by hand. every single one.</figcaption>
+    </figure>
+    <figure class="card print sixty pin r-l">
+      <img src="assets/special-events.jpg" alt="60 years of House of Guitars">
+      <figcaption>60 years &amp; still going ★ est. 1964</figcaption>
+    </figure>
+    <div class="card flyer pinkf pin pin-cyan r-l2">
+      Vinyl by<br>the mile
+      <small>CDs · 45s · LPs · WHO KNOWS</small>
+    </div>
+  </div>
+
+  <!-- ═══ BAND 3: the sign ═══ -->
+  <div class="band">
+    <div class="cardboard pin pin-ink">
+      <div class="mark">Yes, it's in here.<br><span>No,</span> we're not sure where.</div>
+      <a href="#">COME DIG →</a>
+    </div>
+  </div>
+
+  <div class="since">packed floor to ceiling since <b>1964</b></div>
+
+</div>
+
+<div class="shelf-label">CONCEPT 8 · AFTER CLOSE · JUST THE SIGN AND THE NEON · HOUSE OF GUITARS, ROCHESTER NY</div>
+
+<!-- ═══ screenprint guitars (SVG defs) ═══ -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <!-- electric double-cut (strat) — viewBox 0 0 120 344 -->
+    <g id="g-strat">
+      <path d="M46 42 L74 42 L70 196 L50 196 Z" fill="#2a2118" stroke="#171310" stroke-width="4"/>
+      <path d="M44 4 L72 0 L78 38 L46 42 Z" fill="#171310"/>
+      <circle cx="53" cy="12" r="2.6" fill="#f3ead6"/><circle cx="53" cy="22" r="2.6" fill="#f3ead6"/><circle cx="53" cy="32" r="2.6" fill="#f3ead6"/>
+      <path d="M34 186
+               C 18 208, 14 224, 22 254
+               C 28 288, 40 316, 62 318
+               C 86 316, 98 292, 101 256
+               C 105 222, 98 200, 88 184
+               C 84 196, 76 202, 61 203
+               C 47 203, 38 197, 34 186 Z"
+            fill="var(--gcol,#ff3d9e)" stroke="#171310" stroke-width="5"/>
+      <path d="M42 206 C 34 224, 32 244, 38 268 C 43 290, 52 300, 62 300 C 74 300, 82 288, 85 264 C 88 240, 84 218, 76 204 C 70 210, 52 211, 42 206 Z"
+            fill="#f3ead6" stroke="#171310" stroke-width="3"/>
+      <rect x="48" y="222" width="26" height="8" rx="4" fill="#171310"/>
+      <rect x="48" y="240" width="26" height="8" rx="4" fill="#171310"/>
+      <rect x="46" y="262" width="30" height="9" rx="3" fill="#171310"/>
+      <circle cx="84" cy="282" r="5" fill="#171310"/><circle cx="90" cy="266" r="5" fill="#171310"/>
+      <line x1="55" y1="42" x2="58" y2="262" stroke="#171310" stroke-width="1.5"/>
+      <line x1="60" y1="42" x2="61" y2="262" stroke="#171310" stroke-width="1.5"/>
+      <line x1="65" y1="42" x2="64" y2="262" stroke="#171310" stroke-width="1.5"/>
+      <line x1="50" y1="70" x2="70" y2="70" stroke="#171310" stroke-width="2"/>
+      <line x1="50" y1="98" x2="70" y2="98" stroke="#171310" stroke-width="2"/>
+      <line x1="51" y1="126" x2="69" y2="126" stroke="#171310" stroke-width="2"/>
+      <line x1="51" y1="154" x2="69" y2="154" stroke="#171310" stroke-width="2"/>
+    </g>
+    <!-- flying V -->
+    <g id="g-v">
+      <path d="M46 40 L74 40 L70 188 L50 188 Z" fill="#2a2118" stroke="#171310" stroke-width="4"/>
+      <path d="M44 2 L72 -2 L78 36 L46 40 Z" fill="#171310"/>
+      <circle cx="53" cy="10" r="2.6" fill="#f3ead6"/><circle cx="53" cy="20" r="2.6" fill="#f3ead6"/><circle cx="53" cy="30" r="2.6" fill="#f3ead6"/>
+      <path d="M38 182
+               C 46 194, 74 194, 82 182
+               L 106 306 L 76 314 L 60 246 L 44 314 L 14 306 Z"
+            fill="var(--gcol,#3cd6e0)" stroke="#171310" stroke-width="5"/>
+      <rect x="47" y="200" width="26" height="8" rx="4" fill="#171310"/>
+      <rect x="47" y="216" width="26" height="8" rx="4" fill="#171310"/>
+      <line x1="55" y1="40" x2="58" y2="232" stroke="#171310" stroke-width="1.5"/>
+      <line x1="60" y1="40" x2="60" y2="232" stroke="#171310" stroke-width="1.5"/>
+      <line x1="65" y1="40" x2="62" y2="232" stroke="#171310" stroke-width="1.5"/>
+      <line x1="50" y1="66" x2="70" y2="66" stroke="#171310" stroke-width="2"/>
+      <line x1="50" y1="94" x2="70" y2="94" stroke="#171310" stroke-width="2"/>
+      <line x1="51" y1="122" x2="69" y2="122" stroke="#171310" stroke-width="2"/>
+      <line x1="51" y1="150" x2="69" y2="150" stroke="#171310" stroke-width="2"/>
+    </g>
+    <!-- acoustic dreadnought -->
+    <g id="g-ac">
+      <path d="M48 36 L72 36 L69 178 L51 178 Z" fill="#5b3d1e" stroke="#171310" stroke-width="4"/>
+      <path d="M46 0 L72 -4 L76 32 L48 36 Z" fill="#171310"/>
+      <circle cx="54" cy="8" r="2.6" fill="#f3ead6"/><circle cx="54" cy="18" r="2.6" fill="#f3ead6"/><circle cx="54" cy="28" r="2.6" fill="#f3ead6"/>
+      <path d="M60 172
+               C 42 172, 30 182, 28 200
+               C 26 216, 31 226, 29 236
+               C 24 250, 18 264, 20 286
+               C 23 316, 38 334, 60 336
+               C 82 334, 97 316, 100 286
+               C 102 264, 96 250, 91 236
+               C 89 226, 94 216, 92 200
+               C 90 182, 78 172, 60 172 Z"
+            fill="var(--gcol,#d9a969)" stroke="#171310" stroke-width="5"/>
+      <circle cx="60" cy="250" r="23" fill="#171310"/>
+      <circle cx="60" cy="250" r="16" fill="#3a2a16"/>
+      <circle cx="60" cy="250" r="26" fill="none" stroke="#171310" stroke-width="2.5"/>
+      <rect x="41" y="292" width="38" height="10" rx="3" fill="#171310"/>
+      <line x1="56" y1="36" x2="58" y2="292" stroke="#171310" stroke-width="1.5"/>
+      <line x1="60" y1="36" x2="60" y2="292" stroke="#171310" stroke-width="1.5"/>
+      <line x1="64" y1="36" x2="62" y2="292" stroke="#171310" stroke-width="1.5"/>
+      <line x1="52" y1="62" x2="69" y2="62" stroke="#171310" stroke-width="2"/>
+      <line x1="52" y1="90" x2="69" y2="90" stroke="#171310" stroke-width="2"/>
+      <line x1="52" y1="118" x2="68" y2="118" stroke="#171310" stroke-width="2"/>
+      <line x1="53" y1="146" x2="68" y2="146" stroke="#171310" stroke-width="2"/>
+    </g>
+    <!-- single-cut (LP-ish) -->
+    <g id="g-lp">
+      <path d="M46 42 L74 42 L70 192 L50 192 Z" fill="#2a2118" stroke="#171310" stroke-width="4"/>
+      <path d="M44 4 L72 0 L78 38 L46 42 Z" fill="#171310"/>
+      <circle cx="53" cy="12" r="2.6" fill="#f3ead6"/><circle cx="53" cy="22" r="2.6" fill="#f3ead6"/><circle cx="53" cy="32" r="2.6" fill="#f3ead6"/>
+      <path d="M50 188
+               C 34 190, 22 206, 20 234
+               C 18 272, 32 312, 62 316
+               C 90 312, 103 284, 101 250
+               C 100 222, 90 202, 76 190
+               C 72 197, 62 199, 50 188 Z"
+            fill="var(--gcol,#f3ead6)" stroke="#171310" stroke-width="5"/>
+      <rect x="47" y="212" width="28" height="9" rx="4" fill="#171310"/>
+      <rect x="47" y="232" width="28" height="9" rx="4" fill="#171310"/>
+      <rect x="45" y="256" width="32" height="7" rx="2" fill="#171310"/>
+      <circle cx="86" cy="284" r="5" fill="#171310"/><circle cx="78" cy="294" r="5" fill="#171310"/>
+      <line x1="55" y1="42" x2="58" y2="256" stroke="#171310" stroke-width="1.5"/>
+      <line x1="60" y1="42" x2="61" y2="256" stroke="#171310" stroke-width="1.5"/>
+      <line x1="65" y1="42" x2="64" y2="256" stroke="#171310" stroke-width="1.5"/>
+      <line x1="50" y1="70" x2="70" y2="70" stroke="#171310" stroke-width="2"/>
+      <line x1="50" y1="98" x2="70" y2="98" stroke="#171310" stroke-width="2"/>
+      <line x1="51" y1="126" x2="69" y2="126" stroke="#171310" stroke-width="2"/>
+      <line x1="51" y1="154" x2="69" y2="154" stroke="#171310" stroke-width="2"/>
+    </g>
+  </defs>
+</svg>
+
+<script src="assets/matter.min.js"></script>
+<script>
+(function(){
+  var pit = document.getElementById('pit');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var M = Matter;
+
+  // native sleep at default sensitivity — eager sleep freezes slow tip-overs
+  M.Sleeping._motionSleepThreshold = 0.08;
+  // wake threshold is DYNAMIC (set each tick below): sensitive while
+  // anything moves, near-deaf only when the whole pile is asleep —
+  // a fixed high value makes falling guitars land on frozen ones and pop
+
+  var PHOTO_BASE = 'assets/guitars/';
+  var PHOTO_V = '?v=6';
+  var SPECS = [
+    {use:'g-strat', col:'#ff3d9e', s:0.86},
+    {use:'g-ac',    col:'#d9a969', s:0.94},
+    {use:'g-v',     col:'#3cd6e0', s:0.80},
+    {use:'g-lp',    col:'#f3ead6', s:0.88},
+    {use:'g-strat', col:'#3cd6e0', s:0.76},
+    {use:'g-lp',    col:'#171310', s:0.82},
+    {use:'g-v',     col:'#ff3d9e', s:0.72},
+    {use:'g-ac',    col:'#d9a969', s:0.90}
+  ];
+
+  var engine = M.Engine.create({
+    enableSleeping: true,
+    positionIterations: 12,
+    velocityIterations: 8
+  });
+  // heavy for the opening rain; eased to 0.6 once the pile first settles
+  engine.gravity.y = 1.5;
+  var formationDone = false;
+  var world = engine.world;
+  var guitars = [];
+
+  function statics(){
+    var W = pit.clientWidth, H = pit.clientHeight;
+    return {
+      ground: M.Bodies.rectangle(W/2, H - 15 + 100, W + 600, 200, {isStatic:true, friction:0.9}),
+      left:   M.Bodies.rectangle(-40, H/2 - 200, 80, H + 1200, {isStatic:true}),
+      right:  M.Bodies.rectangle(W + 40, H/2 - 200, 80, H + 1200, {isStatic:true})
+    };
+  }
+  var st = statics();
+  M.Composite.add(world, [st.ground, st.left, st.right]);
+
+  function loadPhoto(i){
+    return new Promise(function(res){
+      var tried = 0, exts = ['png','jpg'];
+      (function next(){
+        if (tried >= exts.length) return res(null);
+        var ext = exts[tried++];
+        var im = new Image();
+        im.onload = function(){ res({src: PHOTO_BASE+'g'+(i+1)+'.'+ext+PHOTO_V, iw: im.naturalWidth, ih: im.naturalHeight, ext: ext}); };
+        im.onerror = next;
+        im.src = PHOTO_BASE+'g'+(i+1)+'.'+ext+PHOTO_V;
+      })();
+    });
+  }
+
+  function makeGuitar(spec, i, photo){
+    var el = document.createElement('div');
+    el.className = 'gtr';
+    var w, h;
+    if (photo){
+      h = Math.round(344 * spec.s);
+      w = Math.round(h * (photo.iw / photo.ih));
+      el.innerHTML = '<img src="' + photo.src + '" width="' + w + '" height="' + h + '" style="display:block;pointer-events:none;" alt="">';
+    } else {
+      w = Math.round(120*spec.s); h = Math.round(344*spec.s);
+      el.innerHTML = '<svg width="'+w+'" height="'+h+'" viewBox="0 -8 120 352" style="--gcol:'+spec.col+'"><use href="#'+spec.use+'"/></svg>';
+    }
+    pit.appendChild(el);
+
+    var W = pit.clientWidth;
+    // own lane + alternating heights: simultaneous drop, zero spawn overlap
+    var cx = W*(0.08 + 0.84*(i + 0.5)/SPECS.length) + (Math.random()-.5)*30;
+    var cy = reduce ? (pit.clientHeight - 60 - h*0.22) : (-280 - (i%2)*320 - Math.random()*70);
+
+    // simple hulls; dense neck = top-heavy so corner-balances tip over
+    var neck = M.Bodies.rectangle(cx, cy - h*0.22, w*0.20, h*0.54, {density:0.0018});
+    var bod  = M.Bodies.rectangle(cx, cy + h*0.27, w*0.80, h*0.44, {chamfer:{radius:w*0.22}});
+    var comp = M.Body.create({
+      parts: [neck, bod],
+      friction: 0.35, frictionAir: 0.03, restitution: 0.06,
+      slop: 0.06, sleepThreshold: 60,
+      angle: (Math.random()-.5)*0.9,
+      angularVelocity: (Math.random()-.5)*0.08
+    });
+    var off0 = {x: cx - comp.position.x, y: cy - comp.position.y};
+    if (reduce){
+      M.Body.setAngle(comp, (Math.random()<.5?-1:1)*(1.35 + Math.random()*0.3));
+      M.Sleeping.set(comp, true);
+    }
+    el.style.zIndex = 8+i;
+    var g = {el:el, body:comp, w:w, h:h, off0:off0, added:false, calm:0, delay: reduce ? 0 : 0.25 + Math.random()*0.35};
+    guitars.push(g);
+    sync(g);   // park at spawn point (above the viewport) until its drop
+    if (reduce){ M.Composite.add(world, comp); g.added = true; }
+    return g;
+  }
+
+  function sync(g){
+    var b = g.body, c = Math.cos(b.angle), s = Math.sin(b.angle);
+    var dx = g.off0.x*c - g.off0.y*s, dy = g.off0.x*s + g.off0.y*c;
+    var x = b.position.x + dx - g.w/2, y = b.position.y + dy - g.h/2;
+    g.el.style.transform = 'translate(' + x + 'px,' + y + 'px) rotate(' + (b.angle*180/Math.PI) + 'deg)';
+  }
+
+  var clock = 0;
+  M.Events.on(engine, 'afterUpdate', function(){
+    clock += engine.timing.lastDelta/1000;
+    // dynamic wake threshold: fortress only when everyone sleeps
+    var anyAwake = guitars.some(function(g){ return g.added && !g.body.isSleeping; });
+    M.Sleeping._motionWakeThreshold = anyAwake ? 0.18 : 50;   // absolute fortress when all asleep
+    // ease to play-gravity on a timer: heavy gravity itself prevents
+    // sleep (contact forces outrun the thresholds), so waiting for
+    // all-asleep deadlocks — the crash is over in ~1.5s anyway
+    if (!formationDone && clock >= 4){
+      engine.gravity.y = 0.85;
+      formationDone = true;
+    }
+    guitars.forEach(function(g){
+      if (!g.added && clock >= g.delay){ M.Composite.add(world, g.body); g.added = true; }
+      if (!g.added) return;
+      // watchdog: force-sleep anything calm for ~45 ticks — kills residual jitter
+      var b = g.body;
+      if (!b.isSleeping && (!mc.body || mc.body !== b)){
+        // guitars want to lie FLAT: standing on the body (neck up/down) is a
+        // false balance. While a guitar is settling but still leaning upright,
+        // nudge it toward the nearest horizontal so it topples onto its side.
+        if (b.speed < 1.4){
+          var a = Math.atan2(Math.sin(b.angle), Math.cos(b.angle));   // [-PI,PI]
+          var offFlat = Math.abs(Math.abs(a) - Math.PI/2);            // 0 = flat on its side
+          if (offFlat > 0.28){                                        // still >~16 deg from flat
+            var dir = Math.sin(2*a) >= 0 ? 1 : -1;                    // toward nearest horizontal
+            var lean = offFlat / (Math.PI/2);                         // 0..1, stronger when more upright
+            M.Body.setAngularVelocity(b, b.angularVelocity*0.7 + dir*0.09*lean);
+          }
+        }
+        // rotation is sacred: never force-sleep anything still turning,
+        // however slowly — that's a tip-over in progress
+        if (b.speed < 0.15 && b.angularSpeed < 0.004){ g.calm++; } else { g.calm = 0; }
+        if (b.speed < 1.0  && b.angularSpeed < 0.008){ g.calm2 = (g.calm2||0) + 1; } else { g.calm2 = 0; }
+        // tier 3: perpetual slow-rollers — creeping for 3s straight
+        // (real tip-overs accelerate past this and reset the counter)
+        if (b.speed < 2.0  && b.angularSpeed < 0.02){ g.calm3 = (g.calm3||0) + 1; } else { g.calm3 = 0; }
+        if (g.calm > 60 || g.calm2 > 120 || g.calm3 > 180){
+          M.Body.setVelocity(b, {x:0, y:0});      // no stored momentum on rewake
+          M.Body.setAngularVelocity(b, 0);
+          M.Sleeping.set(b, true); g.calm = 0; g.calm2 = 0; g.calm3 = 0;
+        }
+      }
+      sync(g);
+    });
+  });
+
+  var mouse = M.Mouse.create(pit);
+  var mc = M.MouseConstraint.create(engine, {
+    mouse: mouse,
+    constraint: {stiffness: 0.12, angularStiffness: 0, damping: 0.08}
+  });
+  mouse.element.removeEventListener('wheel', mouse.mousewheel);
+  mouse.element.removeEventListener('mousewheel', mouse.mousewheel);
+  mouse.element.removeEventListener('DOMMouseScroll', mouse.mousewheel);
+  if (window.matchMedia('(max-width:760px)').matches){
+    mouse.element.removeEventListener('touchstart', mouse.mousedown);
+    mouse.element.removeEventListener('touchmove', mouse.mousemove);
+    mouse.element.removeEventListener('touchend', mouse.mouseup);
+  }
+  // flings release outside the pit — catch move/up at window level
+  window.addEventListener('mousemove', mouse.mousemove);
+  window.addEventListener('mouseup', mouse.mouseup);
+  M.Composite.add(world, mc);
+  M.Events.on(mc, 'startdrag', function(e){
+    guitars.forEach(function(g){ if (g.body === e.body){ g.el.style.zIndex = 40; g.calm = 0; } });
+    pit.style.cursor = 'grabbing';
+  });
+  M.Events.on(mc, 'enddrag', function(){ pit.style.cursor = ''; });
+
+  var lastPitW = pit.clientWidth, lastPitH = pit.clientHeight;
+  function rebuildStatics(){
+    if (Math.abs(pit.clientWidth - lastPitW) < 4 && Math.abs(pit.clientHeight - lastPitH) < 4) return;
+    lastPitW = pit.clientWidth; lastPitH = pit.clientHeight;
+    M.Composite.remove(world, [st.ground, st.left, st.right]);
+    st = statics();
+    M.Composite.add(world, [st.ground, st.left, st.right]);
+    guitars.forEach(function(g){ if (g.added) M.Sleeping.set(g.body, false); });
+  }
+  window.addEventListener('resize', rebuildStatics);
+  if (window.ResizeObserver) new ResizeObserver(rebuildStatics).observe(pit);
+
+  Promise.all(SPECS.map(function(_, i){ return loadPhoto(i); })).then(function(photos){
+    SPECS.forEach(function(spec, i){ makeGuitar(spec, i, photos[i]); });
+    // fixed 60Hz timestep via accumulator: Matter's Runner does one step
+    // per rAF frame, so 120Hz displays run physics at DOUBLE speed —
+    // this loop advances by wall-clock time in fixed slices instead
+    var acc = 0, lastT = null;
+    (function loop(t){
+      requestAnimationFrame(loop);
+      if (document.hidden){ lastT = null; return; }
+      if (lastT === null){ lastT = t; return; }
+      acc += Math.min(t - lastT, 100);
+      lastT = t;
+      while (acc >= 1000/60){
+        M.Engine.update(engine, 1000/60);
+        acc -= 1000/60;
+      }
+    })(performance.now());
+    window.__hog = {engine: engine, guitars: guitars, M: M};
+  });
+})();
+</script>
+
+<script>
+(function(){
+  function fitSign(){
+    var el = document.querySelector('.signtext');
+    if (!el) return;
+    var face = el.parentElement.querySelector('img');
+    if (!face || !face.clientWidth) return;
+    el.style.fontSize = '40px';
+    var r = document.createRange(); r.selectNodeContents(el);
+    var rect = r.getBoundingClientRect();
+    var scale = Math.min(face.clientWidth*0.76/rect.width, face.clientHeight*0.30/rect.height);
+    el.style.fontSize = (40*scale) + 'px';
+  }
+  document.fonts.ready.then(fitSign);
+  window.addEventListener('resize', fitSign);
+  window.addEventListener('load', fitSign);
+})();
+</script>
+</body>
+</html>
