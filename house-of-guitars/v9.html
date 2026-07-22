@@ -16,6 +16,7 @@
     --glow:rgba(255,214,110,.22);
   }
   *{margin:0;padding:0;box-sizing:border-box}
+  html,body{overflow-x:hidden}
   body{
     font-family:'Oswald',sans-serif;color:var(--ink);
     background:
@@ -189,6 +190,51 @@
     .polesign .panel{animation:none;transform:rotateY(18deg)}
   }
 
+  /* ═══ "largest in the world" hero line ═══ */
+  .worldsbest{
+    text-align:center;padding:24px 20px 78px;max-width:1100px;margin:0 auto;
+  }
+  .wb-kick{
+    font-family:'Permanent Marker';color:var(--cyan);
+    font-size:clamp(15px,1.8vw,20px);letter-spacing:.04em;
+    transform:rotate(-1.5deg);display:inline-block;margin-bottom:16px;
+  }
+  .wb-line{
+    font-family:'Anton';text-transform:uppercase;
+    font-size:clamp(40px,8.4vw,116px);line-height:.9;letter-spacing:.01em;
+    color:var(--paper);text-shadow:0 0 34px rgba(242,192,24,.22);
+  }
+  .wb-line em{font-style:normal;color:#f2c018;text-shadow:0 0 40px rgba(242,192,24,.55)}
+  .wb-sub{
+    font-family:'Young Serif',serif;font-size:clamp(17px,2.2vw,26px);
+    color:#c9a8bb;margin-top:20px;
+  }
+  /* ═══ local artist spotlight ═══ */
+  .spotlight{
+    max-width:900px;margin:0 auto 90px;text-align:center;
+    border-top:3px solid var(--cyan);border-bottom:3px solid var(--cyan);
+    padding:36px 20px 40px;
+  }
+  .spotlight .eyebrow{color:var(--cyan)}
+  .spotlight h2{font-family:'Young Serif',serif;font-size:clamp(24px,3vw,38px);margin:2px 0 6px}
+  .spotlight blockquote{
+    font-family:'Young Serif',serif;font-size:clamp(21px,2.8vw,32px);line-height:1.32;
+    color:var(--paper);margin:20px auto 14px;max-width:760px;
+  }
+  .spotlight cite{
+    font-style:normal;font-family:'Oswald';font-weight:600;letter-spacing:.08em;
+    text-transform:uppercase;font-size:13px;color:#a89aa4;
+  }
+  .spotlight .go{margin-top:22px}
+  /* ═══ merch band ═══ */
+  .merch{
+    max-width:1000px;margin:0 auto 90px;text-align:center;
+    background:linear-gradient(#2a1420,#1c0e16);border:2px dashed #6a4258;
+    padding:40px 24px;
+  }
+  .merch h2{font-family:'Anton';text-transform:uppercase;font-size:clamp(26px,3.6vw,46px);color:#f2c018;line-height:1}
+  .merch p{font-family:'Oswald';font-weight:400;font-size:17px;color:#d9cfc2;margin:12px auto 20px;max-width:560px}
+
   /* ═══ sections below the street ═══ */
   .below{
     background:linear-gradient(#241318, #180c10);color:var(--paper);
@@ -289,6 +335,30 @@
   }
   .hint{font-size:15px}
   }
+
+  /* ═══ mobile ═══ */
+  @media (max-width:760px){
+    .street{width:100vw;padding-top:0}
+    .bldg{width:94vw;margin:0 auto}
+    /* nav: in-flow wrapped yellow signs, no strings */
+    .hangnav{
+      position:static;flex-wrap:wrap;gap:8px;
+      padding:16px 10px 10px;align-items:center;
+    }
+    .hangnav a{
+      margin-top:0!important;rotate:0deg!important;animation:none;
+      font-size:13px;padding:8px 13px 7px;
+      box-shadow:0 3px 7px rgba(0,0,0,.5);
+    }
+    .hangnav a::before{display:none}   /* strings off */
+    .polesign{display:none}            /* decorative sign retires on phones */
+    .underhint{font-size:15px;padding:12px 14px 2px}
+    .worldsbest{padding:14px 16px 48px}
+    .below{padding:48px 16px 70px}
+    .sec{margin-bottom:60px}
+    .merch{padding:30px 18px}
+  }
+
 </style>
 </head>
 <body>
@@ -328,6 +398,12 @@
 
   <div class="below">
 
+    <div class="worldsbest">
+      <span class="wb-kick">Did you know?</span>
+      <h1 class="wb-line">The Largest Guitar Store<br>in the <em>World</em></h1>
+      <div class="wb-sub">is right here in Rochester, NY. Est. 1964.</div>
+    </div>
+
     <div class="sec" id="history">
       <div class="txt">
         <span class="eyebrow">Est. 1964 · the Grange Hall, Irondequoit</span>
@@ -336,7 +412,7 @@
         <p>In 1964, Beatle-mania came to America and brothers Armand and Bruce opened their first store in their mom&rsquo;s basement. By day they were average Joes delivering newspapers and working at the local meat market. By night, they were plotting how they could take part in the rock revolution. As they started selling guitars out of their basement, they quickly became a destination for riff-raff to hang out. It wasn&rsquo;t long before Mom had enough of the lingering smoke and loud riffing and had to kick them to the curb!</p>
         <div class="pull">&ldquo;People hear from major bands that we&rsquo;re the place to go, all the national acts know about us. They trust us because of our reputation.&rdquo;
           <small>&mdash; Armand Schaubroeck, Owner</small></div>
-        <a class="go" href="#">The whole saga &rarr;</a>
+        <a class="go" href="https://houseofguitars.com/history/">The whole saga &rarr;</a>
       </div>
       <div class="printpair">
         <figure class="print"><img src="assets/the-store-that-ate-my-brain.jpg" alt="The Store That Ate My Brain — vintage HOG poster"><figcaption>this poster is older than you. still true.</figcaption></figure>
@@ -350,9 +426,15 @@
         <h2>Rock &rsquo;n&rsquo; Roll Wonderland</h2>
         <p>Imagine multiple levels packed with new, vintage, and used guitars, along with drums, keyboards, and an in-house repair shop. Dive into the back rooms for a treasure trove of musical goodies and walls adorned with rock &rsquo;n&rsquo; roll history.</p>
         <p>From new guitars to vintage ones, plus drums, keyboards, and accessories &mdash; we believe that music is a lifestyle and the best way to embrace your wild side.</p>
-        <a class="go pinkgo" href="#">Find your instrument &rarr;</a>
+        <a class="go pinkgo" href="https://reverb.com/shop/house-of-guitars">Shop Guitars &amp; Stuff on Reverb &rarr;</a>
       </div>
       <figure class="print"><img src="assets/wof.jpg" alt="The guitar tower inside House of Guitars"><figcaption>the tower. yes it&rsquo;s real. no you can&rsquo;t climb it.</figcaption></figure>
+    </div>
+
+    <div class="merch" id="merch">
+      <h2>Wear the House</h2>
+      <p>Tees, hoodies, and HOG gear straight from the largest guitar store in the world. Check out our merch!</p>
+      <a class="go" href="#">Grab some HOG merch &rarr;</a>
     </div>
 
     <div class="sec" id="beginners">
@@ -374,7 +456,7 @@
         <div class="kick">Because streaming services lack the finesse of physical media.</div>
         <p>Stage dive headfirst into the music oasis at House of Guitars. We&rsquo;ve put together a killer collection of vintage vinyls and the latest CDs that&rsquo;s sure to get every music lover&rsquo;s heart racing. With genres ranging from rock to jazz to blues, there&rsquo;s something here for every sonic soul.</p>
         <div class="pull">Ask if your album is in stock! If we don&rsquo;t have what you&rsquo;re looking for, no one does.</div>
-        <a class="go" href="#">Explore the record shop &rarr;</a>
+        <a class="go" href="https://houseofguitars.com/cds-vinyls/">Explore the record shop &rarr;</a>
       </div>
       <figure class="print"><img src="assets/cds-and-vinyls.jpg" alt="CD bins with hand-written dividers"><figcaption>filed by hand. every single one.</figcaption></figure>
     </div>
@@ -388,7 +470,16 @@
         <b>Aerosmith</b><b>&#9733;</b><b>Metallica</b><b>&#9733;</b><b>Ozzy Osbourne</b><b>&#9733;</b><b>Run DMC</b><b>&#9733;</b><b>Lemmy</b><b>&#9733;</b><b>ZZ Top</b><b>&#9733;</b><b>Green Day</b><b>&#9733;</b><b>Sheryl Crow</b><b>&#9733;</b><b>M&ouml;tley Cr&uuml;e</b><b>&#9733;</b><b>Kid Rock</b><b>&#9733;</b><b>Cheap Trick</b><b>&#9733;</b><b>Goo Goo Dolls</b><b>&#9733;</b><b>Twenty One Pilots</b><b>&#9733;</b><b>Tyler, the Creator</b><b>&#9733;</b><b>Kevin Bacon</b><b>&#9733;</b><b>Pantera</b><b>&#9733;</b><b>Korn</b><b>&#9733;</b><b>Bon Jovi</b><b>&#9733;</b><b>Steve Vai</b><b>&#9733;</b><b>Zakk Wylde</b><b>&#9733;</b>
       </span></div>
       <p>You name &rsquo;em, they&rsquo;ve shopped at the House of Guitars. These music gods know that when they walk through those doors, they&rsquo;re stepping into a rock &rsquo;n&rsquo; roll heaven built on trust and pure awesomeness.</p>
-      <a class="go pinkgo" href="#">Explore the Wall of Fame &rarr;</a>
+      <a class="go pinkgo" href="https://houseofguitars.com/hog-wall-of-fame/">Explore the Wall of Fame &rarr;</a>
+    </div>
+
+    <div class="spotlight" id="davey">
+      <span class="eyebrow">Local Artist Spotlight</span>
+      <h2>The &ldquo;Allen Hummingbird&rdquo;</h2>
+      <blockquote>&ldquo;When I picked up the guitar and played it for the first time at House of Guitars in Rochester, I felt it was the best guitar I had ever played. I knew I had to get it.&rdquo;</blockquote>
+      <cite>&mdash; Davey Allen, Rochester rock/grunge artist</cite>
+      <p style="font-family:'Oswald';font-weight:400;color:#c9c0b6;max-width:660px;margin:18px auto 0;font-size:16px;line-height:1.6">A Gibson Hummingbird Standard Rosewood, personalized with a Custom Shop truss rod cover engraved &ldquo;Allen&rdquo; &mdash; the guitar he plays at every show.</p>
+      <a class="go cyango" href="https://houseofguitars.com/hog-wall-of-fame/#allen-story">Read Davey&rsquo;s story &rarr;</a>
     </div>
 
     <div class="sec flip" id="happening">
@@ -396,7 +487,7 @@
         <span class="eyebrow">Gigs, events, jam sessions &amp; so much more</span>
         <h2>Where the Music is Loud and the Good Times Are Even Louder</h2>
         <p>Seriously, we have everything from low-key guitar clinics to cool concerts that&rsquo;ll make you tap your feet. So take a second to browse, chill out, and maybe mark a few dates in your calendar.</p>
-        <a class="go cyango" href="#">See what&rsquo;s happening &rarr;</a>
+        <a class="go cyango" href="https://houseofguitars.com/whats-happening/">See what&rsquo;s happening &rarr;</a>
       </div>
       <figure class="print"><img src="assets/special-events.jpg" alt="60 years of House of Guitars"><figcaption>always something happening at HOG</figcaption></figure>
     </div>
