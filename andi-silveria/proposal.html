@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposal — Silveria Coaching &amp; Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bone:#F6F3EC; --paper:#FCFAF5; --ink:#26221C; --muted:#6E655A;
+    --line:#E2DBCD; --clay:#B4623F; --clay-d:#8F4B30; --sage:#7C8471;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{font-size:13.5px}
+  body{font-family:'Mulish',system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:3.2rem 7vw 3.5rem}
+  h1,h2,h3{font-family:'Newsreader',Georgia,serif;font-weight:500;line-height:1.14;letter-spacing:-.01em}
+  h1{font-size:clamp(1.8rem,4.4vw,2.5rem)}
+  h2{font-size:clamp(1.25rem,3vw,1.6rem);margin:2rem 0 .6rem}
+  h3{font-size:1.05rem;font-weight:600;margin:0 0 .2rem}
+  p{margin:0 0 .78rem;color:#3A342C}
+  .eyebrow{font-family:'Mulish',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.18em;font-size:.7rem;color:var(--clay)}
+  .lede{font-family:'Newsreader',serif;font-size:1.1rem;color:var(--muted);margin-top:.6rem}
+  .rule{height:1px;background:var(--line);border:0;margin:1.9rem 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1.25rem 1.5rem;margin:.8rem 0}
+  .card h3{display:flex;align-items:baseline;justify-content:space-between;gap:1rem}
+  .card .price{font-family:'Newsreader',serif;font-size:1.15rem;color:var(--clay-d);white-space:nowrap}
+  ul{margin:.3rem 0 0;padding-left:0;list-style:none}
+  ul li{position:relative;padding-left:1.4rem;margin:.28rem 0;color:#3A342C}
+  ul li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--sage)}
+  .total{display:flex;align-items:center;justify-content:space-between;gap:1rem;background:#fff;color:var(--ink);border:1px solid var(--ink);border-radius:12px;padding:1.1rem 1.5rem;margin:1rem 0}
+  .total .n{font-family:'Newsreader',serif;font-size:1.9rem}
+  .total small{display:block;font-size:.78rem;color:var(--muted);font-weight:600;letter-spacing:.02em;margin-top:.15rem}
+  .addon{border-left:2px solid var(--line);padding-left:1.1rem;margin:.7rem 0}
+  .addon h3{font-size:1rem}
+  .addon p{font-size:.94rem;color:var(--muted);margin:.15rem 0 0}
+  .muted{color:var(--muted)}
+  .foot{margin-top:2rem;font-size:.9rem;color:var(--muted)}
+  .mark{display:block;margin:0 auto 1.4rem;width:56px;height:56px}
+  .top{text-align:center}
+  .top .meta{font-size:.85rem;color:var(--muted);margin-top:1.1rem;letter-spacing:.02em}
+  .steps{counter-reset:s;list-style:none;padding:0;margin:.6rem 0 0}
+  .steps li{position:relative;padding:0 0 .9rem 2.3rem;margin:0}
+  .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:-.05em;width:1.55rem;height:1.55rem;border-radius:50%;background:#fff;border:1.5px solid var(--clay);color:var(--clay);font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center}
+
+  @media print{
+    @page{margin:12mm 16mm}
+    html,body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .wrap{padding:0;max-width:none}
+    .card,.total,.addon,.quote,.steps li{break-inside:avoid}
+    h2,h3{break-after:avoid}
+    h2{margin-top:2rem}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <span class="eyebrow">Website &amp; Brand Proposal</span>
+    <h1>Silveria Coaching &amp; Consulting</h1>
+    <div class="meta">Prepared for Andrea Silveria &middot; by Eli Harrigan<br>August 21, 2026</div>
+  </div>
+
+  <hr class="rule">
+
+  <span class="eyebrow">What I heard</span>
+  <p class="lede">One home for both sides of your work, that feels like you and makes it easy for the right person to reach out.</p>
+  <p>You've built something real, and you want the site to reflect it. You want it clean, natural, and calm, with your own words and photography, so the right person feels something when they land and knows how to start a conversation.</p>
+  <p>You also want it to hold both sides of your work without feeling split in two. The coaching side (midlife, purpose, the next chapter) and the consulting side (fractional leadership, program management, people-first change) are one you, and the site should feel that way while making it clear which door is theirs.</p>
+
+  <h2>The direction</h2>
+  <p>A calm, unhurried site led by your own photography of the lake, with room to breathe. It carries the quiet, reflective voice of <em>Living in the Middle</em>.</p>
+  <p>A welcoming home page, then a focused page each for coaching and consulting, so each side of your work speaks in its own voice, one warm, one grounded. Everything points to one thing: starting a conversation. Your testimonials sit where trust belongs, and your writing gets a proper invitation. It reads like a calm, confident version of you.</p>
+
+  <h2>What's included</h2>
+
+  <div class="card">
+    <h3><span>Website</span><span class="price">$3,500</span></h3>
+    <p class="muted" style="margin:.2rem 0 .6rem">A custom site, built to look and move exactly how it should.</p>
+    <ul>
+      <li>A home page, plus a focused page each for coaching and consulting, so each side speaks in its own voice</li>
+      <li>Every page pointing to one thing: booking a call, wired to your Calendly</li>
+      <li>Your testimonials up top, and your Substack given a real invitation</li>
+      <li>A clean move off Squarespace that keeps your email working, at the same web address</li>
+      <li>Your first year of hosting, included</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3><span>Brand identity</span><span class="price">$1,000</span></h3>
+    <p class="muted" style="margin:.2rem 0 .6rem">One cohesive identity, so your look and your voice feel like one. Kept simple, on purpose.</p>
+    <ul>
+      <li>Logo and wordmark, drawn from your own imagery</li>
+      <li>A natural, warm color palette and type system</li>
+      <li>Email signature, carried through to the site so everything feels cohesive</li>
+    </ul>
+  </div>
+
+  <div class="total">
+    <div><strong>Website + Brand</strong></div>
+    <div class="n">$4,500</div>
+  </div>
+
+  <p class="muted" style="font-size:.94rem">Payment in two stages: half to begin, half at launch when you're happy and it's live. Your first year of hosting is included; after that it's $500/year. Down the road, quick edits are billed at $100/hour, in quarter-hour blocks, so small tweaks stay small.</p>
+
+  <h2>Available as add-ons</h2>
+  <div class="addon">
+    <h3>Search visibility</h3>
+    <p>Because you work nationally rather than in one city, getting found is its own separate project: choosing the specific phrases worth ranking for and setting up a Google Business Profile. Worth doing later, once the site is live.</p>
+  </div>
+  <div class="addon">
+    <h3>Photography</h3>
+    <p>New headshots or nature work whenever you're ready. We launch beautifully with what you have now and swap it in later.</p>
+  </div>
+  <div class="addon">
+    <h3>More, when you need it</h3>
+    <p>Extra pages or features can always be added as your business grows.</p>
+  </div>
+
+  <h2>From here</h2>
+  <p>You're already looking at the first concept, so the direction is no mystery. If it feels right, here's how we get to launch:</p>
+  <ol class="steps">
+    <li><strong>We lock the direction.</strong> Once you like where it's headed, I build out the full site and your brand.</li>
+    <li><strong>Revisions.</strong> We refine together until it feels right.</li>
+    <li><strong>Launch.</strong> I point your domain at the new site and keep your email intact, so it goes live at the same address.</li>
+  </ol>
+
+  <hr class="rule">
+  <p class="foot">No rush on your end. Sit with it, and whenever the timing feels right, we start.<br><br>Eli Harrigan</p>
+
+</div>
+</body>
+</html>

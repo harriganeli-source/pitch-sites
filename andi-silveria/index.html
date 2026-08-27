@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Andrea Silveria — Coaching &amp; Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Mulish:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF9F4; --ink:#32352E; --muted:#6E7266; --line:#E7E1D5;
+    --slate:#5F7484; --sage:#74806F; --sand:#C7AE87;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  /* Lenis smooth-scroll base */
+  html.lenis,html.lenis body{height:auto}
+  .lenis.lenis-smooth{scroll-behavior:auto!important}
+  .lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+  .lenis.lenis-stopped{overflow:hidden}
+  body{font-family:'Mulish',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{font-family:'Newsreader',Georgia,serif;font-weight:300;letter-spacing:-.015em;line-height:1.05}
+  .kicker{font-family:'Mulish',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.28em;font-size:.72rem}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 clamp(1.6rem,6vw,5rem)}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:100svh;overflow:hidden;display:flex;flex-direction:column;color:#fff}
+  .hero::before{content:"";position:absolute;left:0;right:0;top:-17%;height:134%;background:url('assets/cloudy-hero.jpg') center 50%/cover no-repeat;transform:translate3d(0,var(--py,0),0);will-change:transform}
+  .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(180deg, rgba(28,40,58,.14) 0%, rgba(28,40,58,0) 26%, rgba(28,40,58,0) 54%, rgba(22,32,48,.52) 100%)}
+  .hero > *{position:relative;z-index:2}
+  .hnav{display:flex;align-items:center;justify-content:space-between;padding:2.2rem clamp(1.6rem,6vw,5rem)}
+  .brand{font-family:'Newsreader',serif;font-size:1.35rem;text-shadow:0 1px 16px rgba(10,20,35,.4)}
+  .brandwrap{display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap}
+  .brandtag{font-family:'Mulish',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.18em;font-size:.64rem;opacity:.82;border-left:1px solid rgba(255,255,255,.4);padding-left:.7rem;text-shadow:0 1px 12px rgba(10,20,35,.5)}
+  .brandtag a{border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:1px;transition:opacity .2s}
+  .brandtag a:hover{opacity:1;border-color:#fff}
+  @media(max-width:540px){.brandtag{display:none}}
+  .navright{display:flex;align-items:center;gap:1.7rem}
+  .pauselink{font-family:'Newsreader',serif;font-style:italic;font-size:1.02rem;opacity:.85;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:1px;transition:opacity .2s;cursor:pointer;background:none;border-top:0;border-left:0;border-right:0;color:#fff;text-shadow:0 1px 12px rgba(10,20,35,.5)}
+  .pauselink:hover{opacity:1}
+  #pause{position:fixed;inset:0;z-index:60;background:rgba(251,249,244,0);backdrop-filter:blur(0px);display:flex;align-items:center;justify-content:center;text-align:center;opacity:0;pointer-events:none;transition:opacity 1.1s ease,background 1.1s ease,backdrop-filter 1.1s ease}
+  #pause.on{opacity:1;pointer-events:auto;background:rgba(251,249,244,.94);backdrop-filter:blur(6px)}
+  #pause .pin{max-width:34ch;padding:0 1.6rem;transform:translateY(8px);transition:transform 1.1s ease}
+  #pause.on .pin{transform:translateY(0)}
+  #pause p{font-family:'Newsreader',serif;font-weight:300;font-style:italic;font-size:clamp(1.5rem,3.4vw,2.4rem);line-height:1.5;color:var(--ink)}
+  #pause .hint{font-size:.78rem;color:var(--muted);margin-top:2.4rem;opacity:.7}
+  .navcta{font-weight:600;font-size:.86rem;padding:.55rem 1.2rem;border:1px solid rgba(255,255,255,.55);border-radius:100px;transition:.2s}
+  .navcta:hover{background:#fff;color:#233246;border-color:#fff}
+  .stage{flex:1;display:flex;align-items:center;padding:0 clamp(1.6rem,6vw,5rem) clamp(2rem,6vh,4rem)}
+  .stage .copy{max-width:min(720px,92%)}
+  .hero .kicker{opacity:.92;text-shadow:0 1px 14px rgba(10,20,35,.5)}
+  .hero h1{font-size:clamp(2.9rem,8vw,6rem);margin:1.4rem 0 0;text-shadow:0 2px 40px rgba(10,20,35,.35)}
+  .hero .sub{font-family:'Newsreader',serif;font-weight:300;font-size:clamp(1.1rem,2.1vw,1.42rem);opacity:.95;max-width:34ch;margin:1.5rem 0 2.3rem;text-shadow:0 1px 22px rgba(10,20,35,.4)}
+  .cta{display:inline-flex;align-items:center;gap:.6rem;font-weight:600;font-size:.96rem;padding:.92em 1.85em;border-radius:100px;background:#fff;color:#233246;transition:transform .18s ease,background .18s ease}
+  .cta:hover{transform:translateY(-2px);background:#F3EFE7}
+  .cta svg{width:15px;height:15px}
+
+  .credbadges{display:flex;align-items:center;flex-wrap:wrap;gap:1.4rem;margin-top:1.6rem}
+  .credbadges img{height:54px;width:auto;filter:grayscale(1) opacity(.68);transition:filter .25s ease}
+  .credbadges img:hover{filter:grayscale(0) opacity(1)}
+  .credbadges .inlink{font-weight:600;font-size:.9rem;color:var(--slate);border-bottom:1px solid var(--sand);padding-bottom:2px;margin-left:.4rem}
+  .credbadges .inlink:hover{color:var(--ink)}
+  /* ---------- ABOUT ---------- */
+  .about{padding:clamp(5rem,11vh,9rem) 0}
+  .about .wrap{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(2.5rem,6vw,5.5rem);align-items:center}
+  .about .photo{position:relative;aspect-ratio:4/5;border-radius:6px;overflow:hidden;box-shadow:0 30px 60px -34px rgba(60,50,35,.45)}
+  .about .photo img{position:absolute;left:0;right:0;top:-9%;width:100%;height:118%;object-fit:cover;transform:translate3d(0,var(--apy,0),0);will-change:transform}
+  .about .kicker{color:var(--sage)}
+  .about h2{font-size:clamp(2rem,4.4vw,3rem);margin:.9rem 0 1.3rem}
+  .about p{color:#484c40;margin-bottom:1.1rem;max-width:52ch;font-size:1.05rem}
+  .creed{font-family:'Newsreader',serif;font-style:italic;font-size:1.35rem;line-height:1.5;color:var(--slate);border-left:2px solid var(--sand);padding-left:1.3rem;margin:1.8rem 0 1.6rem;max-width:46ch}
+  .creed cite{display:block;font-style:normal;font-family:'Mulish',sans-serif;font-size:.78rem;letter-spacing:.03em;color:var(--muted);margin-top:.7rem}
+  .creds{font-weight:600;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;flex-wrap:wrap;gap:.5rem 1.4rem}
+  .creds span{display:inline-flex;align-items:center;gap:.6rem}
+  .creds i{width:5px;height:5px;border-radius:50%;background:var(--sand);display:inline-block}
+  .about .slink{display:inline-flex;align-items:center;gap:.45rem;margin-top:1.5rem;font-weight:600;font-size:.92rem;color:var(--slate);border-bottom:1px solid var(--sand);padding-bottom:2px;transition:color .18s ease,border-color .18s ease}
+  .about .slink em{font-family:'Newsreader',serif;font-style:italic;font-weight:400}
+  .about .slink svg{width:14px;height:14px}
+  .about .slink:hover{color:var(--ink);border-color:var(--slate)}
+  @media(max-width:800px){.about .wrap{grid-template-columns:1fr;gap:2.2rem}.about .photo{max-width:360px}}
+
+  /* ---------- TESTIMONIALS ---------- */
+  .quotes{padding:clamp(3.8rem,8vh,6.5rem) 0;background:#FBF9F4;border-top:1px solid var(--line)}
+  .quotes .kicker{display:block;text-align:center;color:var(--sage);margin-bottom:clamp(2rem,4vw,3rem)}
+  .qgrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,6vw,5.5rem);max-width:940px;margin:0 auto}
+  @media(max-width:720px){.qgrid{grid-template-columns:1fr;gap:2.8rem;max-width:520px}}
+  .qgrid blockquote{text-align:center}
+  .qgrid .qm{font-family:'Newsreader',serif;font-size:2.6rem;line-height:.7;color:var(--sand);display:block;margin-bottom:.5rem}
+  .qgrid p{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(1.15rem,1.7vw,1.32rem);line-height:1.55;color:var(--slate);margin-bottom:1.1rem}
+  .qgrid cite{font-family:'Mulish',sans-serif;font-style:normal;font-weight:700;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+  /* ---------- PASSAGE (dark night band; moon rises on scroll) ---------- */
+  .passage{position:relative;overflow:hidden;padding:clamp(7rem,17vh,12rem) 0 clamp(4.5rem,11vh,8rem);background:#1A2430;color:#E7E2D6}
+  .pmoon{position:absolute;left:50%;top:8%;width:78px;height:78px;border-radius:50%;z-index:1;pointer-events:none;
+       transform:translate(-50%,var(--moonrise,0));will-change:transform;
+       background:radial-gradient(circle at 50% 46%, #F4F2E7 0%, #ECE9DB 55%, rgba(228,226,210,.5) 78%, rgba(228,226,210,0) 100%);
+       box-shadow:0 0 44px 9px rgba(228,226,204,.13)}
+  .pwater{position:absolute;left:-2%;width:104%;bottom:14%;height:28px;z-index:1;pointer-events:none;filter:blur(1.4px);
+       -webkit-mask:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);mask:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent)}
+  .pwater path{stroke:rgba(232,230,216,.14);stroke-width:1.4;fill:none;vector-effect:non-scaling-stroke}
+  .pref{position:absolute;left:50%;bottom:2%;width:60px;height:12%;transform:translateX(-50%);z-index:1;pointer-events:none;filter:blur(3px);
+       background:linear-gradient(to bottom, rgba(238,236,222,.16), rgba(238,236,222,.03) 55%, rgba(238,236,222,0) 95%)}
+  .passage .wrap{position:relative;z-index:2;max-width:820px}
+  .passage p{font-family:'Newsreader',serif;font-weight:300;font-size:clamp(1.5rem,3vw,2.15rem);line-height:1.5;color:#D8D3C6;text-align:center;letter-spacing:-.01em}
+
+  /* ---------- TWO WAYS (light, sunlit) ---------- */
+  .paths{padding:clamp(4rem,9vh,7rem) 0 0;border-top:1px solid var(--line);background:#F7F3EA}
+  .paths .head{text-align:center;max-width:620px;margin:0 auto clamp(2.4rem,5vw,3.4rem)}
+  .paths .kicker{color:var(--slate)}
+  .paths h2{font-size:clamp(1.9rem,4.4vw,2.6rem);margin-top:.8rem}
+  .paths .subline{font-family:'Newsreader',serif;font-style:italic;color:var(--muted);font-size:1.12rem;margin-top:.5rem}
+
+  .split{position:relative;min-height:clamp(360px,52vh,480px);border-top:1px solid var(--line);overflow:hidden}
+  /* an accent wash that sweeps in from the outer edge: a real slide, but soft-edged (no hard line) and it never moves the content */
+  .wash{position:absolute;top:0;bottom:0;width:76%;z-index:0;pointer-events:none;transform:scaleX(0);opacity:0;transition:transform 1s cubic-bezier(.65,0,.35,1),opacity .7s ease}
+  .wash.left{left:0;transform-origin:left center;background:linear-gradient(to right, rgba(95,116,132,.20), rgba(95,116,132,0) 86%)}
+  .wash.right{right:0;transform-origin:right center;background:linear-gradient(to left, rgba(180,98,63,.19), rgba(180,98,63,0) 86%)}
+  .cols{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:clamp(1.4rem,5vw,4rem);min-height:inherit;max-width:820px;margin:0 auto;padding:clamp(2.5rem,5vw,3.5rem) clamp(1.4rem,4vw,2rem)}
+  .hc{position:relative;flex:1 1 0;max-width:330px;text-align:center;transition:opacity .6s ease}
+  .hc > *{position:relative;z-index:1}
+  .hc .lab{font-weight:700;text-transform:uppercase;letter-spacing:.15em;font-size:.75rem;display:block;margin-bottom:.85rem}
+  .hc.left .lab{color:var(--slate)}
+  .hc.right .lab{color:#B4623F}
+  .hc h3{font-size:clamp(1.7rem,2.6vw,2.2rem);margin-bottom:.7rem}
+  .hc p{color:#33362E;font-size:1.04rem;line-height:1.58;margin:0 auto 1.5rem;max-width:32ch}
+  .hc .go{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:.95rem;padding:.8em 1.7em;border-radius:100px;color:#fff;transition:transform .18s ease,filter .18s ease}
+  .hc .go svg{width:14px;height:14px}
+  .hc.left .go{background:var(--slate)}
+  .hc.right .go{background:#B4623F}
+  .hc:hover .go{transform:translateY(-2px);filter:brightness(1.05)}
+  .hc .acts{display:flex;align-items:center;justify-content:center;gap:1.1rem;flex-wrap:wrap;margin-top:.2rem}
+  .hc .more{font-weight:600;font-size:.95rem;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px;transition:opacity .18s ease}
+  .hc.left .more{color:var(--slate)}
+  .hc.right .more{color:#B4623F}
+  .hc .more:hover{opacity:.7}
+  .hc .book{font-weight:600;font-size:.9rem;color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:1px;transition:color .18s ease,border-color .18s ease}
+  .hc .book:hover{color:var(--ink);border-color:var(--slate)}
+
+  /* the active side's wash sweeps in; the other side dims. Buttons never move. */
+  .split:has(.hc.left:hover) .wash.left,.split:has(.hc.left:focus-within) .wash.left{transform:scaleX(1);opacity:1}
+  .split:has(.hc.right:hover) .wash.right,.split:has(.hc.right:focus-within) .wash.right{transform:scaleX(1);opacity:1}
+  .split:has(.hc.left:hover) .hc.right,.split:has(.hc.left:focus-within) .hc.right,
+  .split:has(.hc.right:hover) .hc.left,.split:has(.hc.right:focus-within) .hc.left{opacity:.45}
+
+  @media(max-width:720px){
+    .cols{flex-direction:column;gap:2.6rem;padding:2.8rem 1.6rem;max-width:400px}
+    .split{background:#F6F2E9}
+    .hc{opacity:1!important;max-width:100%;border-bottom:1px solid var(--line);padding-bottom:2.4rem}
+    .hc:last-child{border-bottom:none;padding-bottom:0}
+    .wash{display:none}
+  }
+  @media(prefers-reduced-motion:reduce){.hc,.wash{transition:none}}
+
+  /* ---------- WRITING (feature her Substack) ---------- */
+  .writing{padding:clamp(5rem,11vh,9rem) 0}
+  .writing .head{text-align:center;max-width:620px;margin:0 auto}
+  .writing .kicker{color:var(--sage)}
+  .writing h2{font-size:clamp(2rem,4.4vw,2.8rem);margin:.7rem 0 .6rem}
+  .writing .intro{color:var(--muted);font-size:1.05rem;max-width:54ch;margin:0 auto}
+  .wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.3rem,2.4vw,1.8rem);margin-top:clamp(2rem,5vw,3rem)}
+  @media(max-width:760px){.wgrid{grid-template-columns:1fr;max-width:440px;margin-left:auto;margin-right:auto}}
+  .wcard{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:12px;padding:1.7rem 1.6rem 1.4rem;transition:transform .2s ease,box-shadow .2s ease}
+  .wcard:hover{transform:translateY(-3px);box-shadow:0 22px 42px -26px rgba(60,50,35,.4)}
+  .wcard .q{font-family:'Newsreader',serif;font-style:italic;font-size:1.28rem;line-height:1.42;color:var(--ink);margin-bottom:1.2rem}
+  .wcard .t{font-weight:600;font-size:.82rem;color:var(--slate);margin-top:auto}
+  .wcard .arrow{margin-top:.85rem;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:.45rem}
+  .wcard .arrow svg{width:13px;height:13px}
+  .writing .more{text-align:center;margin-top:clamp(2.2rem,5vw,3rem)}
+  .writing .more a{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;border-bottom:1px solid var(--sand);padding-bottom:2px}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:#22251F;color:#B9B4A6;padding:clamp(3.2rem,6vw,4.2rem) 0 2.6rem}
+  .footmoon{display:block;width:46px;height:46px;border-radius:50%;margin:0 auto clamp(1.8rem,3.5vw,2.6rem);
+       background:radial-gradient(circle at 50% 46%, #F4F2E7 0%, #ECE9DB 55%, rgba(228,226,210,.5) 78%, rgba(228,226,210,0) 100%);
+       box-shadow:0 0 30px 6px rgba(228,226,204,.14)}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:center;justify-content:space-between;font-size:.86rem}
+  footer .brand{font-size:1.1rem;color:#F3EFE7}
+  footer a{color:#E3DBCC}
+  footer .fl{display:flex;gap:1.5rem;flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hnav">
+    <div class="brandwrap">
+      <span class="brand">Andrea Silveria</span>
+      <span class="brandtag"><a href="/coaching.html">Coaching</a> &amp; <a href="/consulting.html">Consulting</a></span>
+    </div>
+    <div class="navright">
+      <button class="pauselink" id="pauseBtn" type="button">pause</button>
+      <a class="navcta" href="https://calendly.com/admin-andreasilveria/30min" target="_blank" rel="noopener">Book a call</a>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="copy">
+      <h1>Finding purpose<br>in the pause.</h1>
+      <p class="sub">For people ready for what's next, and the organizations ready to grow.</p>
+      <a class="cta" href="https://calendly.com/admin-andreasilveria/30min" target="_blank" rel="noopener">
+        Book a discovery call
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="wrap">
+    <div class="photo"><img src="assets/headshot.jpg" alt="Andrea Silveria"></div>
+    <div>
+      <span class="kicker">Meet Andrea</span>
+      <h2>From burnout to clarity.</h2>
+      <p>After more than thirty years in tech, leading engineering, business analysis, and transformation teams, I reached a moment I couldn't push through. When I was laid off from a VP role, it shook something loose.</p>
+      <p>What followed was a reckoning. I trained as a coach, returned to writing, and picked up my camera again. Now I coach and consult with people ready to do the same: not just survive their careers, but live with purpose.</p>
+      <blockquote class="creed">You don't have to break to begin again.</blockquote>
+      <div class="credbadges" aria-label="Credentials">
+        <img src="assets/creds/icf.png" alt="ICF Member, International Coaching Federation">
+        <img src="assets/creds/coactive.png" alt="Certified Co-Active Practitioner">
+        <img src="assets/creds/linc.png" alt="LINC Certified Personality Profiler Coach">
+        <img src="assets/creds/year1.png" alt="Coaching.com Commitment to Excellence">
+        <a class="inlink" href="https://www.linkedin.com/in/andreasilveria/" target="_blank" rel="noopener">Connect on LinkedIn &rarr;</a>
+      </div>
+      <a class="slink" href="https://livinginthemiddle.substack.com/" target="_blank" rel="noopener">Read her newsletter, <em>Living in the Middle</em>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- PASSAGE -->
+<section class="passage">
+  <span class="pmoon" aria-hidden="true"></span>
+  <svg class="pwater" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q 120 15 240 21 T 480 20 T 720 22 T 960 20 T 1200 21"/></svg>
+  <span class="pref" aria-hidden="true"></span>
+  <div class="wrap">
+    <p>You've built a solid career. You've led teams, delivered results, and kept going, often at your own expense. But lately, something feels off. Not broken, exactly... just misaligned. You're tired of the quicksand pace. You're craving something deeper, more purposeful, but you're not sure how to find it.</p>
+  </div>
+</section>
+
+<!-- TWO WAYS -->
+<section class="paths">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker">Work with Andrea</span>
+      <h2>Two ways forward.</h2>
+      <p class="subline">No tidy endings. Just honest beginnings.</p>
+    </div>
+  </div>
+  <div class="split">
+    <span class="wash left" aria-hidden="true"></span>
+    <span class="wash right" aria-hidden="true"></span>
+    <div class="cols">
+      <div class="hc left">
+        <span class="lab">For you</span>
+        <h3>Coaching</h3>
+        <p>One-to-one coaching for professionals asking what's next, through transition, reinvention, or burnout.</p>
+        <div class="acts">
+          <a class="go" href="coaching.html">Explore coaching
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="more" href="https://calendly.com/admin-andreasilveria/30min" target="_blank" rel="noopener">Book a coaching discovery call</a>
+        </div>
+      </div>
+      <div class="hc right">
+        <span class="lab">For your organization</span>
+        <h3>Consulting</h3>
+        <p>Seasoned, people-first leadership for organizations ready to grow, from a former corporate executive: strategic advisory, program management, and values-aligned change.</p>
+        <div class="acts">
+          <a class="go" href="consulting.html">Explore consulting
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="more" href="https://calendly.com/admin-andreasilveria/30min" target="_blank" rel="noopener">Talk with Andrea about consulting</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="quotes">
+  <div class="wrap">
+    <span class="kicker">In their words</span>
+    <div class="qgrid">
+      <blockquote>
+        <span class="qm">&ldquo;</span>
+        <p>Working with Andi was a powerful experience. From the start, she made me feel seen, heard, and supported, which was exactly what I needed at that point in my career.</p>
+        <cite>Nichole</cite>
+      </blockquote>
+      <blockquote>
+        <span class="qm">&ldquo;</span>
+        <p>Andi was exactly the coach I needed at this stage of my life. She helped me take a business idea that had lived in my heart for years and begin turning it into something real and actionable.</p>
+        <cite>Ruth</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- WRITING -->
+<section class="writing">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker">From the journal</span>
+      <h2>Living in the Middle.</h2>
+      <p class="intro">Andrea writes on midlife, purpose, and the messy middle. Nature soothes her, coaching centers her, and photography teaches her to pay attention.</p>
+    </div>
+    <div class="wgrid">
+      <a class="wcard" href="https://livinginthemiddle.substack.com/p/the-cliff-or-the-wings" target="_blank" rel="noopener">
+        <p class="q">&ldquo;You don't need to earn your worth. You were born with it.&rdquo;</p>
+        <span class="t">The Cliff or the Wings</span>
+        <span class="arrow">Read
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="wcard" href="https://livinginthemiddle.substack.com/p/when-titles-fade-values-stay-a-guide" target="_blank" rel="noopener">
+        <p class="q">&ldquo;Values are the compass when the map disappears.&rdquo;</p>
+        <span class="t">When Titles Fade, Values Stay</span>
+        <span class="arrow">Read
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="wcard" href="https://livinginthemiddle.substack.com/p/celebrating-one-month-of-living-in" target="_blank" rel="noopener">
+        <p class="q">&ldquo;No tidy endings. Just honest beginnings.&rdquo;</p>
+        <span class="t">Celebrating One Month</span>
+        <span class="arrow">Read
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+    <div class="more"><a href="https://livinginthemiddle.substack.com/" target="_blank" rel="noopener">Read more on Substack
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+</section>
+
+<footer>
+  <span class="footmoon" aria-hidden="true"></span>
+  <div class="wrap">
+    <span class="brand">Silveria Coaching &amp; Consulting</span>
+    <div class="fl">
+      <a href="https://calendly.com/admin-andreasilveria/30min" target="_blank" rel="noopener">Book a call</a>
+      <a href="https://livinginthemiddle.substack.com/" target="_blank" rel="noopener">Substack</a>
+      <a href="https://www.linkedin.com/in/andreasilveria/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<div id="pause" role="dialog" aria-label="A pause">
+  <div class="pin">
+    <p>The faster you're going, the less you can actually see.</p>
+    <div class="hint">click anywhere to return</div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hero = document.querySelector('.hero');
+  var photo = document.querySelector('.about .photo img');
+  var pmoon = document.querySelector('.pmoon');
+  var passage = document.querySelector('.passage');
+  function parallax(){
+    var y = window.scrollY || window.pageYOffset || 0;
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    hero.style.setProperty('--py', (y * 0.15) + 'px');
+    if(photo){
+      var r = photo.getBoundingClientRect();
+      var prog = ((r.top + r.height/2) - vh/2) / vh; // ~ +1 (below) .. -1 (above) center
+      prog = Math.max(-1, Math.min(1, prog));
+      photo.style.setProperty('--apy', (prog * -16) + 'px'); // drifts up ~16px as it passes
+    }
+    if(pmoon && passage){
+      var pr = passage.getBoundingClientRect();
+      var pp = ((pr.top + pr.height/2) - vh/2) / vh; // + below centre, - above
+      pp = Math.max(-1, Math.min(1, pp));
+      pmoon.style.setProperty('--moonrise', (pp * 60) + 'px'); // moon rises as you scroll down through it
+    }
+  }
+  if(!reduce && window.Lenis){
+    var lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+    function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+    lenis.on('scroll', parallax);
+  } else if(!reduce){
+    window.addEventListener('scroll', parallax, { passive: true });
+  }
+  window.addEventListener('resize', parallax, { passive: true });
+  parallax();
+
+  var pauseEl = document.getElementById('pause');
+  document.getElementById('pauseBtn').addEventListener('click', function(e){
+    e.stopPropagation();
+    pauseEl.classList.add('on');
+    if(typeof lenis !== 'undefined' && lenis) lenis.stop();
+  });
+  pauseEl.addEventListener('click', function(){
+    pauseEl.classList.remove('on');
+    if(typeof lenis !== 'undefined' && lenis) lenis.start();
+  });
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Coaching — Andrea Silveria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#FBF9F4;--ink:#32352E;--muted:#6E7266;--line:#E7E1D5;--slate:#5F7484;--sage:#74806F;--sand:#C7AE87;}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html.lenis,html.lenis body{height:auto}
+  .lenis.lenis-smooth{scroll-behavior:auto!important}
+  .lenis.lenis-stopped{overflow:hidden}
+  body{font-family:'Mulish',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{font-family:'Newsreader',Georgia,serif;font-weight:300;letter-spacing:-.015em;line-height:1.08}
+  .kicker{font-family:'Mulish',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.24em;font-size:.72rem}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 clamp(1.6rem,6vw,5rem)}
+
+  /* hero — same grammar as home */
+  .hero{position:relative;min-height:82svh;overflow:hidden;display:flex;flex-direction:column;color:#fff}
+  .hero::before{content:"";position:absolute;left:0;right:0;top:-15%;height:130%;background:url('assets/img4637-level.jpg') center 62%/cover no-repeat;transform:translate3d(0,var(--py,0),0);will-change:transform}
+  .hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg, rgba(28,40,58,.18) 0%, rgba(28,40,58,0) 30%, rgba(28,40,58,0) 55%, rgba(22,32,48,.55) 100%)}
+  .hero > *{position:relative;z-index:2}
+  .hnav{display:flex;align-items:center;justify-content:space-between;padding:2.2rem clamp(1.6rem,6vw,5rem)}
+  .brandwrap{display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap}
+  .brand{font-family:'Newsreader',serif;font-size:1.35rem;text-shadow:0 1px 16px rgba(10,20,35,.4)}
+  .brandtag{font-family:'Mulish',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.18em;font-size:.64rem;opacity:.82;border-left:1px solid rgba(255,255,255,.4);padding-left:.7rem;text-shadow:0 1px 12px rgba(10,20,35,.5)}
+  @media(max-width:540px){.brandtag{display:none}}
+  .navside{display:flex;align-items:center;gap:1.4rem}
+  .pauselink{font-family:'Newsreader',serif;font-style:italic;font-size:1.02rem;opacity:.85;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:1px;transition:opacity .2s;cursor:pointer;background:none;border-top:0;border-left:0;border-right:0;color:#fff;text-shadow:0 1px 12px rgba(10,20,35,.5)}
+  .pauselink:hover{opacity:1}
+  .navcta{font-weight:600;font-size:.86rem;padding:.55rem 1.2rem;border:1px solid rgba(255,255,255,.55);border-radius:100px;transition:.2s}
+  .navcta:hover{background:#fff;color:#233246;border-color:#fff}
+  .stage{flex:1;display:flex;align-items:flex-end;padding:0 clamp(1.6rem,6vw,5rem) clamp(2.6rem,7vh,4.6rem)}
+  .stage .copy{max-width:min(680px,94%)}
+  .hero .kicker{opacity:.92;text-shadow:0 1px 14px rgba(10,20,35,.5)}
+  .hero h1{font-size:clamp(2.9rem,7.5vw,5.4rem);margin:1.1rem 0 0;text-shadow:0 2px 40px rgba(10,20,35,.35)}
+  .hero .sub{font-family:'Newsreader',serif;font-weight:300;font-size:clamp(1.1rem,2.1vw,1.42rem);opacity:.96;max-width:36ch;margin:1.3rem 0 0;text-shadow:0 1px 22px rgba(10,20,35,.4)}
+
+  .block{padding:clamp(4rem,9vh,7rem) 0}
+  .block .kicker{color:var(--sage);display:block;margin-bottom:.9rem}
+  .block h2{font-size:clamp(1.9rem,4vw,2.7rem);margin-bottom:1.2rem}
+  .block p{color:#484c40;max-width:58ch;margin-bottom:1rem;font-size:1.06rem}
+  .grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(2.5rem,6vw,5.5rem);align-items:center}
+  @media(max-width:800px){.grid{grid-template-columns:1fr;gap:2.2rem}.grid .photo{max-width:360px}}
+  .photo{position:relative;aspect-ratio:4/5;border-radius:6px;overflow:hidden;box-shadow:0 30px 60px -34px rgba(60,50,35,.45)}
+  .photo img{position:absolute;left:0;right:0;top:-9%;width:100%;height:118%;object-fit:cover;transform:translate3d(0,var(--apy,0),0);will-change:transform}
+
+  .fors{list-style:none;display:grid;gap:.75rem;margin-top:1.1rem}
+  .fors li{position:relative;padding-left:1.6rem;color:#484c40;font-size:1.05rem;max-width:56ch}
+  .fors li::before{content:"";position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:50%;background:var(--slate)}
+
+  /* full-width creed passage over the sundial photo */
+  .passage{position:relative;overflow:hidden;color:#fff;padding:clamp(5.5rem,14vh,9rem) 0;text-align:center}
+  .passage::before{content:"";position:absolute;left:0;right:0;top:-15%;height:130%;background:url('assets/img0417.jpg') center 55%/cover no-repeat;transform:translate3d(0,var(--spy,0),0);will-change:transform}
+  .passage::after{content:"";position:absolute;inset:0;background:rgba(28,32,26,.55)}
+  .passage .wrap{position:relative;z-index:2}
+  .passage p{font-family:'Newsreader',serif;font-style:italic;font-weight:300;font-size:clamp(1.5rem,3.2vw,2.3rem);line-height:1.45;max-width:30ch;margin:0 auto;text-shadow:0 2px 30px rgba(10,15,10,.5)}
+  .passage cite{display:block;font-style:normal;font-family:'Mulish',sans-serif;font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;opacity:.85;margin-top:1.4rem}
+
+  .creed{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(1.3rem,2.4vw,1.7rem);line-height:1.45;color:var(--slate);border-left:2px solid var(--sand);padding-left:1.4rem;margin:1.6rem 0;max-width:44ch}
+  .creed cite{display:block;font-style:normal;font-family:'Mulish',sans-serif;font-size:.78rem;letter-spacing:.03em;color:var(--muted);margin-top:.7rem}
+
+  .credbadges{display:flex;align-items:center;flex-wrap:wrap;gap:1.4rem;margin-top:1.6rem}
+  .credbadges img{height:54px;width:auto;filter:grayscale(1) opacity(.68);transition:filter .25s ease}
+  .credbadges img:hover{filter:grayscale(0) opacity(1)}
+  .credbadges .inlink{font-weight:600;font-size:.9rem;color:var(--slate);border-bottom:1px solid var(--sand);padding-bottom:2px;margin-left:.4rem}
+  .credbadges .inlink:hover{color:var(--ink)}
+  .quotesblock{background:#F4F0E6;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .quotes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem)}
+  @media(max-width:700px){.quotes{grid-template-columns:1fr;gap:2.2rem}}
+  .quotes blockquote{text-align:left}
+  .quotes .qm{font-family:'Newsreader',serif;font-size:2.6rem;line-height:.6;color:var(--sand)}
+  .quotes p{font-family:'Newsreader',serif;font-style:italic;font-size:1.22rem;line-height:1.5;color:var(--slate);margin:.5rem 0 .9rem;max-width:none}
+  .quotes cite{font-family:'Mulish',sans-serif;font-style:normal;font-weight:700;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+  .ctaband{text-align:center;padding:clamp(4.5rem,10vh,7.5rem) 0}
+  .ctaband h2{font-size:clamp(2rem,4.4vw,3rem);margin-bottom:1.5rem}
+  .cta{display:inline-flex;align-items:center;gap:.6rem;font-weight:600;font-size:1rem;padding:.95em 2em;border-radius:100px;background:var(--slate);color:#fff;transition:transform .18s ease,filter .18s ease}
+  .cta:hover{transform:translateY(-2px);filter:brightness(1.06)}
+  .cta svg{width:15px;height:15px}
+  .backlink{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.8rem;font-weight:600;font-size:.9rem;color:var(--muted)}
+
+  footer{background:#22251F;color:#B9B4A6;padding:clamp(3.2rem,6vw,4.2rem) 0 2.6rem}
+  .footmoon{display:block;width:46px;height:46px;border-radius:50%;margin:0 auto clamp(1.8rem,3.5vw,2.6rem);
+       background:radial-gradient(circle at 50% 46%, #F4F2E7 0%, #ECE9DB 55%, rgba(228,226,210,.5) 78%, rgba(228,226,210,0) 100%);
+       box-shadow:0 0 30px 6px rgba(228,226,204,.14)}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:center;justify-content:space-between;font-size:.86rem}
+  footer .brand{font-family:'Newsreader',serif;font-size:1.1rem;color:#F3EFE7;text-shadow:none}
+  footer a{color:#E3DBCC}
+  footer .fl{display:flex;gap:1.5rem;flex-wrap:wrap}
+
+  /* the pause */
+  #pause{position:fixed;inset:0;z-index:60;background:rgba(251,249,244,0);backdrop-filter:blur(0px);display:flex;align-items:center;justify-content:center;text-align:center;opacity:0;pointer-events:none;transition:opacity 1.1s ease,background 1.1s ease,backdrop-filter 1.1s ease}
+  #pause.on{opacity:1;pointer-events:auto;background:rgba(251,249,244,.94);backdrop-filter:blur(6px)}
+  #pause .pin{max-width:34ch;padding:0 1.6rem;transform:translateY(8px);transition:transform 1.1s ease}
+  #pause.on .pin{transform:translateY(0)}
+  #pause p{font-family:'Newsreader',serif;font-weight:300;font-style:italic;font-size:clamp(1.5rem,3.4vw,2.4rem);line-height:1.5;color:var(--ink)}
+  #pause cite{display:block;font-style:normal;font-family:'Mulish',sans-serif;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:1.6rem}
+  #pause .hint{font-size:.78rem;color:var(--muted);margin-top:2.4rem;opacity:.7}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hnav">
+    <div class="brandwrap">
+      <a class="brand" href="/">Andrea Silveria</a>
+      <span class="brandtag">Coaching &amp; Consulting</span>
+    </div>
+    <div class="navside">
+      <button class="pauselink" id="pauseBtn" type="button">pause</button>
+      <a class="navcta" href="https://calendly.com/admin-andreasilveria/30min" target="_blank" rel="noopener">Book a call</a>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="copy">
+      <span class="kicker">For you</span>
+      <h1>Coaching</h1>
+      <p class="sub">One-to-one coaching for people in the middle, questioning what's next and ready to live with more purpose.</p>
+    </div>
+  </div>
+</header>
+
+<section class="block">
+  <div class="wrap grid">
+    <div class="photo"><img src="assets/feb2022.jpg" alt="A sundial in the grass"></div>
+    <div>
+      <span class="kicker">We're a good fit if you're</span>
+      <h2>When something's not right, and you can't quite name it.</h2>
+      <p>You've built a career and you're good at it, but a quiet question keeps surfacing: is this it? Maybe you're facing a transition, a reinvention, or a retirement you can't picture. Maybe you're just tired in a way rest doesn't fix.</p>
+      <ul class="fors">
+        <li>In the middle of a career change, a reinvention, or a burnout you can finally admit to</li>
+        <li>High-functioning, successful on paper, and sensing something's off</li>
+        <li>Done borrowing your stance, and ready to claim your own</li>
+        <li>Willing to slow down long enough to hear yourself</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="passage" aria-label="From Andrea's writing">
+  <div class="wrap">
+    <p>Our lives make more sense when we stop sprinting through them.</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <span class="kicker">How we work</span>
+    <h2>We pause the noise, and find your own voice again.</h2>
+    <p>I'm a guide. My work is helping you uncover what's most important to you, then move toward it with clarity and a little courage. It isn't about fixing you. It's about coming home to yourself and building the next chapter on purpose.</p>
+    <blockquote class="creed">You don't need to earn your worth. You were born with it.</blockquote>
+    <p>I'm an ICF member, a Co-Active practitioner, and a LINC-certified coach, and I came to this work the same way you might: by living the messy middle myself.</p>
+    <div class="credbadges" aria-label="Credentials">
+        <img src="assets/creds/icf.png" alt="ICF Member, International Coaching Federation">
+        <img src="assets/creds/coactive.png" alt="Certified Co-Active Practitioner">
+        <img src="assets/creds/linc.png" alt="LINC Certified Personality Profiler Coach">
+        <img src="assets/creds/year1.png" alt="Coaching.com Commitment to Excellence">
+        <a class="inlink" href="https://www.linkedin.com/in/andreasilveria/" target="_blank" rel="noopener">Connect on LinkedIn &rarr;</a>
+      </div>
+  </div>
+</section>
+
+<section class="quotesblock block">
+  <div class="wrap">
+    <span class="kicker">In their words</span>
+    <div class="quotes">
+      <blockquote>
+        <span class="qm">&ldquo;</span>
+        <p>Working with Andi was a powerful experience. From the start, she made me feel seen, heard, and supported, which was exactly what I needed at that point in my career.</p>
+        <cite>Nichole</cite>
+      </blockquote>
+      <blockquote>
+        <span class="qm">&ldquo;</span>
+        <p>Andi was exactly the coach I needed at this stage of my life. She helped me take a business idea that had lived in my heart for years and begin turning it into something real and actionable.</p>
+        <cite>Ruth</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="ctaband">
+  <div class="wrap">
+    <h2>Ready to hear yourself think?</h2>
+    <a class="cta" href="https://calendly.com/admin-andreasilveria/30min" target="_blank" rel="noopener">
+      Book a discovery call
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <div><a class="backlink" href="/">&larr; Back to home</a></div>
+  </div>
+</section>
+
+<footer>
+  <span class="footmoon" aria-hidden="true"></span>
+  <div class="wrap">
+    <span class="brand">Silveria Coaching &amp; Consulting</span>
+    <div class="fl">
+      <a href="https://calendly.com/admin-andreasilveria/30min" target="_blank" rel="noopener">Book a call</a>
+      <a href="https://livinginthemiddle.substack.com/" target="_blank" rel="noopener">Substack</a>
+      <a href="https://www.linkedin.com/in/andreasilveria/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<div id="pause" role="dialog" aria-label="A pause">
+  <div class="pin">
+    <p>The faster you're going, the less you can actually see.</p>
+    <div class="hint">click anywhere to return</div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hero = document.querySelector('.hero');
+  var photo = document.querySelector('.grid .photo img');
+  var passage = document.querySelector('.passage');
+  var lenis = null;
+  function parallax(){
+    var y = window.scrollY || 0, vh = window.innerHeight || 800;
+    hero.style.setProperty('--py', (y * 0.15) + 'px');
+    if(photo){
+      var r = photo.parentElement.getBoundingClientRect();
+      var prog = Math.max(-1, Math.min(1, ((r.top + r.height/2) - vh/2) / vh));
+      photo.style.setProperty('--apy', (prog * -16) + 'px');
+    }
+    if(passage){
+      var pr = passage.getBoundingClientRect();
+      var pp = Math.max(-1, Math.min(1, ((pr.top + pr.height/2) - vh/2) / vh));
+      passage.style.setProperty('--spy', (pp * 26) + 'px');
+    }
+  }
+  if(!reduce && window.Lenis){
+    lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+    (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })();
+    lenis.on('scroll', parallax);
+  } else {
+    window.addEventListener('scroll', parallax, { passive: true });
+  }
+  window.addEventListener('resize', parallax, { passive: true });
+  parallax();
+
+  var pauseEl = document.getElementById('pause');
+  document.getElementById('pauseBtn').addEventListener('click', function(e){
+    e.stopPropagation();
+    pauseEl.classList.add('on');
+    if(lenis) lenis.stop();
+  });
+  pauseEl.addEventListener('click', function(){
+    pauseEl.classList.remove('on');
+    if(lenis) lenis.start();
+  });
+})();
+</script>
+</body>
+</html>

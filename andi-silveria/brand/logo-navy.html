@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400&family=Mulish:wght@600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{width:2000px;height:1400px;background:#1A2430;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .lock{text-align:center}
+  canvas{display:block;margin:0 auto 8px;width:640px;height:auto}
+  h1{font-family:'Newsreader',serif;font-weight:400;font-size:104px;color:#FBF9F4;letter-spacing:.01em}
+  .sub{font-family:'Mulish',sans-serif;font-weight:600;font-size:26px;letter-spacing:.34em;color:rgba(251,249,244,.62);margin-top:26px;text-indent:.34em}
+</style></head>
+<body>
+<div class="lock">
+  <canvas id="c"></canvas>
+  <h1>Andrea Silveria</h1>
+  <div class="sub">COACHING &amp; CONSULTING</div>
+</div>
+<script>
+const img = new Image();
+img.onload = function(){
+  // crop to the mark region (fractions of source), then threshold to white-on-transparent
+  const sx = img.width*0.24, sy = img.height*0.29, sw = img.width*0.52, sh = img.height*0.28;
+  const c = document.getElementById('c');
+  c.width = sw; c.height = sh;
+  const x = c.getContext('2d');
+  x.drawImage(img, sx, sy, sw, sh, 0, 0, sw, sh);
+  const d = x.getImageData(0,0,sw,sh), p = d.data;
+  for(let i=0;i<p.length;i+=4){
+    const lum = 0.299*p[i]+0.587*p[i+1]+0.114*p[i+2];
+    // cream bg ~242; strokes darker. alpha from darkness, color forced to warm white
+    const a = Math.max(0, Math.min(255, (238 - lum) * 2.4));
+    p[i]=251; p[i+1]=249; p[i+2]=244; p[i+3]=a;
+  }
+  x.putImageData(d,0,0);
+  document.title = 'ready';
+};
+img.src = 'file:///Users/eliharrigan/Downloads/andrea logo test.png';
+</script>
+</body></html>
