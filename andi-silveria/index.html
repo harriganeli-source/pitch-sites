@@ -181,8 +181,14 @@
   /* ---------- FOOTER ---------- */
   footer{background:#22251F;color:#B9B4A6;padding:clamp(3.2rem,6vw,4.2rem) 0 2.6rem}
   .footmoon{display:block;width:46px;height:46px;border-radius:50%;margin:0 auto clamp(1.8rem,3.5vw,2.6rem);
-       background:radial-gradient(circle at 50% 46%, #F4F2E7 0%, #ECE9DB 55%, rgba(228,226,210,.5) 78%, rgba(228,226,210,0) 100%);
-       box-shadow:0 0 30px 6px rgba(228,226,204,.14)}
+       background:
+       radial-gradient(ellipse 42% 30% at 40% 30%, rgba(146,148,132,.20) 0 45%, rgba(146,148,132,0) 75%),
+       radial-gradient(ellipse 30% 38% at 58% 26%, rgba(146,148,132,.16) 0 40%, rgba(146,148,132,0) 72%),
+       radial-gradient(ellipse 34% 26% at 28% 54%, rgba(146,148,132,.18) 0 42%, rgba(146,148,132,0) 74%),
+       radial-gradient(ellipse 24% 20% at 62% 58%, rgba(146,148,132,.12) 0 40%, rgba(146,148,132,0) 75%),
+       radial-gradient(ellipse 14% 12% at 47% 72%, rgba(146,148,132,.12) 0 40%, rgba(146,148,132,0) 78%),
+       radial-gradient(circle at 47% 44%, #E2DECE 0%, #D8D4C4 65%, #C7C3B2 100%);
+       box-shadow:0 0 22px 4px rgba(222,220,198,.13), inset -3px -4px 10px rgba(85,92,90,.18);filter:brightness(1.05)}
   footer .wrap{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:center;justify-content:space-between;font-size:.86rem}
   footer .brand{font-size:1.1rem;color:#F3EFE7}
   footer a{color:#E3DBCC}
