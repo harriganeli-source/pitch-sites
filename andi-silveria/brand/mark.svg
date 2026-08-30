@@ -1,20 +1,4 @@
-<!DOCTYPE html>
-<html><head><meta charset="utf-8">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400&family=Mulish:wght@600&display=swap" rel="stylesheet">
-<style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{width:2000px;height:1400px;background:#1A2430;display:flex;align-items:center;justify-content:center;overflow:hidden}
-  .lock{text-align:center}
-  .mark{width:640px;margin:0 auto 8px}
-  .mark svg{display:block;width:100%;height:auto}
-  h1{font-family:'Newsreader',serif;font-weight:400;font-size:104px;color:#FBF9F4;letter-spacing:.01em}
-  .sub{font-family:'Mulish',sans-serif;font-weight:600;font-size:26px;letter-spacing:.34em;color:rgba(251,249,244,.62);margin-top:26px;text-indent:.34em}
-</style></head>
-<body>
-<div class="lock">
-  <div class="mark"><svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="1860.000000pt" height="1244.000000pt" viewBox="0 0 1860.000000 1244.000000"
  preserveAspectRatio="xMidYMid meet">
 
@@ -69,8 +53,3 @@ fill="#FBF9F4" stroke="none">
 -23 17 -146 5z"/>
 </g>
 </svg>
-</div>
-  <h1>Andrea Silveria</h1>
-  <div class="sub">COACHING &amp; CONSULTING</div>
-</div>
-</body></html>
