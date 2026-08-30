@@ -2,70 +2,72 @@
 <html><head><meta charset="utf-8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400&family=Mulish:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=Mulish:wght@400;600&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
-  body{width:2000px;background:#1A2430;padding:90px 60px 120px;font-family:'Mulish',sans-serif}
-  .sheet{display:grid;grid-template-columns:1fr 1fr;gap:110px 60px}
+  body{width:2000px;background:#1A2430;padding:80px 50px 100px;font-family:'Mulish',sans-serif}
+  .sheet{display:grid;grid-template-columns:1fr 1fr 1fr;gap:100px 40px}
   .cell{text-align:center}
-  .markbox{height:250px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:10px}
-  .markbox img{display:block;max-height:235px;max-width:430px;width:auto;height:auto}
-  h1{font-family:'Newsreader',serif;font-weight:400;font-size:64px;color:#FBF9F4;letter-spacing:.01em}
-  .sub{font-weight:600;font-size:16px;letter-spacing:.34em;color:rgba(251,249,244,.62);margin-top:16px;text-indent:.34em}
-  .tag{font-weight:600;font-size:15px;letter-spacing:.22em;color:rgba(251,249,244,.38);margin-top:34px;text-transform:uppercase}
-  .head{grid-column:1/-1;text-align:center;margin-bottom:10px}
+  .markbox{height:185px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:14px}
+  .markbox img{display:block;max-height:170px;max-width:330px;width:auto;height:auto}
+  h1{color:#FBF9F4;font-family:'Newsreader',serif;line-height:1.1}
+  .n1{font-weight:400;font-size:50px;letter-spacing:.01em}
+  .s1{font-weight:600;font-size:13px;letter-spacing:.34em;color:rgba(251,249,244,.62);margin-top:13px;text-indent:.34em}
+  .n2{font-weight:400;font-size:40px;letter-spacing:.14em;text-indent:.14em}
+  .s2{font-family:'Newsreader',serif;font-style:italic;font-weight:300;font-size:20px;color:rgba(251,249,244,.66);margin-top:11px}
+  .n3{font-style:italic;font-weight:300;font-size:52px;letter-spacing:.005em}
+  .s3{font-weight:600;font-size:12px;letter-spacing:.3em;color:rgba(251,249,244,.62);margin-top:13px;text-indent:.3em}
+  .tag{font-weight:600;font-size:13px;letter-spacing:.2em;color:rgba(251,249,244,.35);margin-top:26px;text-transform:uppercase}
+  .head{grid-column:1/-1;text-align:center;margin-bottom:4px}
   .head .t{font-family:'Newsreader',serif;font-weight:400;font-size:44px;color:rgba(251,249,244,.85)}
 </style></head>
 <body>
 <div class="sheet">
-  <div class="head"><div class="t">Andrea Silveria — Ideogram round, on the navy lockup</div></div>
+  <div class="head"><div class="t">Andrea Silveria — mark and wordmark directions</div></div>
   <div class="cell">
-    <div class="markbox"><img src="ideogram/i_recraft-w.svg"></div>
-    <h1>Andrea Silveria</h1>
-    <div class="sub">COACHING &amp; CONSULTING</div>
-    <div class="tag">1 — Mountain range (vector SVG file)</div>
+    <div class="markbox"><img src="mark-mountain.svg"></div>
+    <h1 class="n1">Andrea Silveria</h1><div class="s1">COACHING &amp; CONSULTING</div>
+    <div class="tag">Mountain range &middot; Serif</div>
   </div>
   <div class="cell">
-    <div class="markbox"><img src="ideogram/i_range-w.svg"></div>
-    <h1>Andrea Silveria</h1>
-    <div class="sub">COACHING &amp; CONSULTING</div>
-    <div class="tag">2 — Mountain range over water</div>
+    <div class="markbox"><img src="mark-mountain.svg"></div>
+    <h1 class="n2">ANDREA SILVERIA</h1><div class="s2">Coaching &amp; Consulting</div>
+    <div class="tag">Mountain range &middot; Caps</div>
   </div>
   <div class="cell">
-    <div class="markbox"><img src="ideogram/i_mtnsun-w.svg"></div>
-    <h1>Andrea Silveria</h1>
-    <div class="sub">COACHING &amp; CONSULTING</div>
-    <div class="tag">3 — Mountain with sun</div>
+    <div class="markbox"><img src="mark-mountain.svg"></div>
+    <h1 class="n3">Andrea Silveria</h1><div class="s3">COACHING &amp; CONSULTING</div>
+    <div class="tag">Mountain range &middot; Italic</div>
   </div>
   <div class="cell">
-    <div class="markbox"><img src="ideogram/i_rivers-w.svg"></div>
-    <h1>Andrea Silveria</h1>
-    <div class="sub">COACHING &amp; CONSULTING</div>
-    <div class="tag">4 — Rivers and valleys</div>
+    <div class="markbox"><img src="mark-mountain-water.svg"></div>
+    <h1 class="n1">Andrea Silveria</h1><div class="s1">COACHING &amp; CONSULTING</div>
+    <div class="tag">Mountain over water &middot; Serif</div>
   </div>
   <div class="cell">
-    <div class="markbox"><img src="ideogram/i_sprout-w.svg"></div>
-    <h1>Andrea Silveria</h1>
-    <div class="sub">COACHING &amp; CONSULTING</div>
-    <div class="tag">5 — Sprout on the horizon</div>
+    <div class="markbox"><img src="mark-mountain-water.svg"></div>
+    <h1 class="n2">ANDREA SILVERIA</h1><div class="s2">Coaching &amp; Consulting</div>
+    <div class="tag">Mountain over water &middot; Caps</div>
   </div>
   <div class="cell">
-    <div class="markbox"><img src="ideogram/i_branch-w.svg"></div>
-    <h1>Andrea Silveria</h1>
-    <div class="sub">COACHING &amp; CONSULTING</div>
-    <div class="tag">6 — Branch</div>
-  </div>
-  <div class="cell">
-    <div class="markbox"><img src="ideogram/i_compass-w.svg"></div>
-    <h1>Andrea Silveria</h1>
-    <div class="sub">COACHING &amp; CONSULTING</div>
-    <div class="tag">7 — Compass spiral</div>
+    <div class="markbox"><img src="mark-mountain-water.svg"></div>
+    <h1 class="n3">Andrea Silveria</h1><div class="s3">COACHING &amp; CONSULTING</div>
+    <div class="tag">Mountain over water &middot; Italic</div>
   </div>
   <div class="cell">
     <div class="markbox"><img src="mark.svg"></div>
-    <h1>Andrea Silveria</h1>
-    <div class="sub">COACHING &amp; CONSULTING</div>
-    <div class="tag">Current horizon, for comparison</div>
+    <h1 class="n1">Andrea Silveria</h1><div class="s1">COACHING &amp; CONSULTING</div>
+    <div class="tag">Horizon (current) &middot; Serif</div>
+  </div>
+  <div class="cell">
+    <div class="markbox"><img src="mark.svg"></div>
+    <h1 class="n2">ANDREA SILVERIA</h1><div class="s2">Coaching &amp; Consulting</div>
+    <div class="tag">Horizon (current) &middot; Caps</div>
+  </div>
+  <div class="cell">
+    <div class="markbox"><img src="mark.svg"></div>
+    <h1 class="n3">Andrea Silveria</h1><div class="s3">COACHING &amp; CONSULTING</div>
+    <div class="tag">Horizon (current) &middot; Italic</div>
   </div>
 </div>
 </body></html>
