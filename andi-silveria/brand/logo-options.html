@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400&family=Mulish:wght@600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{width:2000px;background:#1A2430;padding:90px 60px 120px;font-family:'Mulish',sans-serif}
+  .sheet{display:grid;grid-template-columns:1fr 1fr;gap:110px 60px}
+  .cell{text-align:center}
+  .markbox{height:250px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:6px}
+  .markbox svg,.markbox img{display:block}
+  h1{font-family:'Newsreader',serif;font-weight:400;font-size:64px;color:#FBF9F4;letter-spacing:.01em}
+  .sub{font-weight:600;font-size:16px;letter-spacing:.34em;color:rgba(251,249,244,.62);margin-top:16px;text-indent:.34em}
+  .tag{font-weight:600;font-size:15px;letter-spacing:.22em;color:rgba(251,249,244,.38);margin-top:34px;text-transform:uppercase}
+  .head{grid-column:1/-1;text-align:center;margin-bottom:10px}
+  .head .t{font-family:'Newsreader',serif;font-weight:400;font-size:44px;color:rgba(251,249,244,.85)}
+</style></head>
+<body>
+<div class="sheet">
+  <div class="head"><div class="t">Andrea Silveria — mark options</div></div>
+
+  <!-- A: current traced horizon -->
+  <div class="cell">
+    <div class="markbox"><img src="mark.svg" width="400"></div>
+    <h1>Andrea Silveria</h1>
+    <div class="sub">COACHING &amp; CONSULTING</div>
+    <div class="tag">A — Horizon (current direction)</div>
+  </div>
+
+  <!-- B: simple mountain from her current badge -->
+  <div class="cell">
+    <div class="markbox">
+      <svg width="400" viewBox="0 0 640 380" fill="none" stroke="#FBF9F4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M70 300 L250 110 L318 186 L390 122 L570 300"/>
+        <path d="M222 140 l20 22 l16 -16 l18 20" stroke-width="6"/>
+        <path d="M60 322 Q320 356 580 314" stroke-width="6"/>
+      </svg>
+    </div>
+    <h1>Andrea Silveria</h1>
+    <div class="sub">COACHING &amp; CONSULTING</div>
+    <div class="tag">B — Mountain, from her current logo</div>
+  </div>
+
+  <!-- C: mountain in the lake -->
+  <div class="cell">
+    <div class="markbox">
+      <svg width="400" viewBox="0 0 640 380" fill="none" stroke="#FBF9F4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M120 236 L280 92 L346 160 L410 104 L540 236"/>
+        <path d="M70 236 H570"/>
+        <g stroke-width="6" opacity=".65" stroke-dasharray="34 24">
+          <path d="M180 262 L280 336 L346 268 L410 322 L490 262"/>
+        </g>
+      </svg>
+    </div>
+    <h1>Andrea Silveria</h1>
+    <div class="sub">COACHING &amp; CONSULTING</div>
+    <div class="tag">C — Mountain in the lake</div>
+  </div>
+
+  <!-- D: moonset -->
+  <div class="cell">
+    <div class="markbox">
+      <svg width="400" viewBox="0 0 640 380" fill="none" stroke="#FBF9F4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="320" cy="118" r="58"/>
+        <path d="M80 240 H560"/>
+        <g stroke-width="6" opacity=".8">
+          <path d="M282 274 H358"/>
+          <path d="M296 302 H344"/>
+          <path d="M308 328 H332"/>
+        </g>
+      </svg>
+    </div>
+    <h1>Andrea Silveria</h1>
+    <div class="sub">COACHING &amp; CONSULTING</div>
+    <div class="tag">D — Moonset on the water</div>
+  </div>
+
+  <!-- E: the pause -->
+  <div class="cell">
+    <div class="markbox">
+      <svg width="400" viewBox="0 0 640 380" fill="none" stroke="#FBF9F4" stroke-width="7" stroke-linecap="round">
+        <path d="M60 210 H262"/>
+        <path d="M378 210 H580"/>
+        <circle cx="320" cy="210" r="30"/>
+      </svg>
+    </div>
+    <h1>Andrea Silveria</h1>
+    <div class="sub">COACHING &amp; CONSULTING</div>
+    <div class="tag">E — The pause (in the middle)</div>
+  </div>
+</div>
+</body></html>
