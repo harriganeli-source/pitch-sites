@@ -17,8 +17,6 @@
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{font-size:13.5px}
-  html.lenis,html.lenis body{height:auto}
-  .lenis.lenis-smooth{scroll-behavior:auto!important}
   body{font-family:'Mulish',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased}
   .wrap{max-width:760px;margin:0 auto;padding:3.2rem 7vw 3.5rem}
   h1,h2,h3{font-family:'Frank Ruhl Libre',Georgia,serif;font-weight:500;line-height:1.14;letter-spacing:-.005em}
@@ -56,46 +54,11 @@
   .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:-.05em;width:1.5rem;height:1.5rem;border-radius:50%;background:#fff;border:1.5px solid var(--gold);color:var(--gold-d);font-weight:700;font-size:.8rem;display:flex;align-items:center;justify-content:center}
   .foot{margin-top:1.8rem;font-size:.9rem;color:var(--muted)}
 
-  /* ---- A steady investment: the tree grows on scroll ---- */
-  .steady{position:relative;height:230vh;background:var(--charcoal);color:var(--bone);margin:2.4rem 0 0}
-  .steady-inner{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:center;max-width:1100px;margin:0 auto;padding:0 5vw;gap:2vw}
-  .steady-copy{position:relative;z-index:2}
-  .steady h2{margin:0 0 .6rem;font-size:clamp(2.2rem,5.2vw,4rem);font-weight:400;line-height:1.02;color:var(--bone)}
-  .steady h2 .w{display:inline-block;opacity:0;transform:translateY(.35em);transition:opacity .5s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
-  .steady h2 .w.on{opacity:1;transform:none}
-  .steady .sub{color:#B8B3A6;font-size:1.05rem;max-width:30ch;opacity:0;transform:translateY(.4em);transition:opacity .6s ease .1s,transform .7s ease .1s}
-  .steady .sub.on{opacity:1;transform:none}
-  .tree{position:relative;height:88vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-end}
-  .tree svg{width:100%;height:100%;display:block;overflow:visible}
-  .tree .br{fill:none;stroke:var(--bone);stroke-linecap:round}
-  .tree .ground{fill:var(--bone);opacity:.9}
-  .tree .lf{transform-box:fill-box;transform-origin:center}
-  .wordmark{position:absolute;left:0;right:0;bottom:2vh;text-align:center;font-weight:800;font-size:clamp(1.5rem,3.2vw,2.4rem);letter-spacing:-.02em;opacity:0;transform:translateY(.3em);transition:opacity .7s ease,transform .8s ease}
-  .wordmark.on{opacity:1;transform:none}
-  .wordmark .g{color:var(--gold)}.wordmark .t{color:var(--teal-l)}
-  @media (max-width:760px){
-    .steady{height:200vh}
-    .steady-inner{grid-template-columns:minmax(0,1fr);grid-template-rows:auto 1fr;align-content:start;padding-top:8vh;gap:0}
-    .steady-copy{min-width:0}
-    .steady h2{font-size:clamp(2rem,9.5vw,2.9rem)}
-    .tree{height:62vh}
-    .wordmark{bottom:0}
-  }
-  @media (prefers-reduced-motion:reduce){
-    .steady{height:auto;padding:4rem 0}
-    .steady-inner{position:static;height:auto}
-    .steady h2 .w,.steady .sub,.wordmark{opacity:1;transform:none;transition:none}
-    .tree{height:70vh}
-  }
   @media print{
     @page{margin:12mm 16mm}
     .wrap{padding:0;max-width:none}
     .tier,.recur,.steps li{break-inside:avoid}
     h2{break-after:avoid;margin-top:1.6rem}
-    .steady{height:auto;padding:2rem 0;break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-    .steady-inner{position:static;height:auto}
-    .steady h2 .w,.steady .sub,.wordmark{opacity:1;transform:none}
-    .tree{height:420px}
   }
 </style>
 </head>
@@ -175,22 +138,7 @@
 
   <p style="font-size:.94rem;margin-top:1rem;color:var(--muted)">Payment in two stages: half to begin, half at launch, once you're happy and it's live. Down the road, quick edits are billed at $100/hour in quarter-hour blocks.</p>
 
-</div>
 
-<section class="steady" id="steady">
-  <div class="steady-inner">
-    <div class="steady-copy">
-      <h2><span class="w">A</span> <span class="w">steady</span> <span class="w">investment.</span></h2>
-      <p class="sub">Three options. Each one builds on the last, and every one of them is yours outright.</p>
-    </div>
-    <div class="tree">
-      <svg id="treeSvg" viewBox="0 0 600 640" preserveAspectRatio="xMidYMax meet" aria-hidden="true"></svg>
-      <div class="wordmark" id="wordmark"><span class="g">TheSteady</span><span class="t">Investor</span></div>
-    </div>
-  </div>
-</section>
-
-<div class="wrap" style="padding-top:2.6rem">
 
   <h2>How it goes</h2>
   <p>Each option carries its own timeline, shown on its card, and the clock starts once you've picked one and I have your materials. From there, every option runs the same way:</p>
@@ -204,124 +152,5 @@
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>
-<script>
-(function(){
-  var NS = 'http://www.w3.org/2000/svg';
-  var svg = document.getElementById('treeSvg');
-  var sec = document.getElementById('steady');
-  var words = sec.querySelectorAll('.w');
-  var sub = sec.querySelector('.sub');
-  var wordmark = document.getElementById('wordmark');
-  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // Seeded random so the tree is the same tree every visit
-  var seed = 20260901;
-  function rnd(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }
-  function between(a, b){ return a + (b - a) * rnd(); }
-
-  var segs = [], leaves = [];
-  var cx = 300, groundY = 560;
-  var canopy = { x: 300, y: 252, rx: 236, ry: 222 };
-  function inCanopy(x, y){ var dx = (x - canopy.x) / canopy.rx, dy = (y - canopy.y) / canopy.ry; return dx*dx + dy*dy <= 1; }
-
-  // A simple tree: trunk, three limbs, then branches that each start a beat after the one they grow from,
-  // so limbs visibly reach instead of the whole tree appearing as one front
-  var GREENS = ['#346058', '#3F7268', '#4E8A7F', '#2C5148'];
-  function grow(x, y, ang, len, width, depth, start){
-    var ex = x + Math.cos(ang) * len, ey = y + Math.sin(ang) * len;
-    if (depth > 1 && !inCanopy(ex, ey)) { len *= 0.6; ex = x + Math.cos(ang) * len; ey = y + Math.sin(ang) * len; if (!inCanopy(ex, ey)) return; }
-    var bend = between(-0.18, 0.18) * len;
-    var mx = (x + ex) / 2 + Math.cos(ang + Math.PI/2) * bend, my = (y + ey) / 2 + Math.sin(ang + Math.PI/2) * bend;
-    segs.push({ d: 'M' + x.toFixed(1) + ' ' + y.toFixed(1) + ' Q' + mx.toFixed(1) + ' ' + my.toFixed(1) + ' ' + ex.toFixed(1) + ' ' + ey.toFixed(1), w: width, t0: start, t1: start + len, depth: depth });
-    var end = start + len;
-    if (depth >= 6 || len < 16) { addLeaves(ex, ey, end, depth); return; }
-    var kids = depth === 0 ? 3 : (rnd() < 0.78 ? 2 : 3);
-    var spread = depth === 0 ? 0.62 : between(0.42, 0.62);
-    for (var i = 0; i < kids; i++){
-      var a = ang + (i - (kids - 1) / 2) * spread * (kids === 2 ? 2 : 1.5) + between(-0.12, 0.12);
-      a = a * 0.9 + (-Math.PI/2) * 0.1;
-      var nl = len * between(0.68, 0.8), nw = Math.max(1.8, width * 0.66);
-      if (depth === 0) { nl = len * between(0.85, 1.0); nw = width * 0.6; }
-      grow(ex, ey, a, nl, nw, depth + 1, end + between(0.05, 0.3) * len);
-    }
-    if (depth >= 4) addLeaves(ex, ey, end, depth);
-  }
-  function addLeaves(x, y, t, depth){
-    var n = depth >= 6 ? 4 : 3, big = depth >= 5;
-    for (var i = 0; i < n; i++){
-      leaves.push({ x: x + between(-14, 14), y: y + between(-12, 12), r: big ? between(9, 15) : between(7, 11), t: t + between(0, 30), c: GREENS[Math.floor(rnd() * GREENS.length)] });
-    }
-  }
-  grow(cx, groundY, -Math.PI/2, 118, 17, 0, 0);
-
-  var maxT = 0; segs.forEach(function(s){ if (s.t1 > maxT) maxT = s.t1; }); leaves.forEach(function(l){ if (l.t > maxT) maxT = l.t; });
-
-  // Ground: the logo's little shadow line
-  var ground = document.createElementNS(NS, 'ellipse');
-  ground.setAttribute('class', 'ground'); ground.setAttribute('cx', cx); ground.setAttribute('cy', groundY + 6);
-  ground.setAttribute('rx', 118); ground.setAttribute('ry', 3.2); svg.appendChild(ground);
-
-  var gB = document.createElementNS(NS, 'g'), gL = document.createElementNS(NS, 'g');
-  svg.appendChild(gB); svg.appendChild(gL);
-  segs.sort(function(a, b){ return a.depth - b.depth; });
-  segs.forEach(function(s){
-    var p = document.createElementNS(NS, 'path');
-    p.setAttribute('class', 'br'); p.setAttribute('d', s.d); p.setAttribute('stroke-width', s.w.toFixed(2));
-    gB.appendChild(p); s.el = p; s.len = p.getTotalLength();
-    p.style.strokeDasharray = s.len; p.style.strokeDashoffset = s.len; s.last = -1;
-  });
-  leaves.sort(function(a, b){ return a.r - b.r; });
-  leaves.forEach(function(l){
-    var e = document.createElementNS(NS, 'circle');
-    e.setAttribute('class', 'lf'); e.setAttribute('cx', l.x.toFixed(1)); e.setAttribute('cy', l.y.toFixed(1));
-    e.setAttribute('r', l.r.toFixed(1)); e.setAttribute('fill', l.c); e.setAttribute('opacity', '0.92');
-    e.style.transform = 'scale(0)'; e.style.visibility = 'hidden';
-    gL.appendChild(e); l.el = e; l.last = -1;
-  });
-
-  function smooth(x){ x = Math.min(1, Math.max(0, x)); return x * x * (3 - 2 * x); }
-
-  function render(p){
-    // the trunk and limbs grow across the first ~65% of the scroll (a steady pace, no easing), leaves from ~45% on
-    var G = Math.min(1, Math.max(0, p / 0.65)) * maxT;
-    var L = smooth((p - 0.45) / 0.5) * maxT;
-    segs.forEach(function(s){
-      var k = Math.min(1, Math.max(0, (G - s.t0) / (s.t1 - s.t0)));
-      if (k === s.last) return; s.last = k;
-      s.el.style.strokeDashoffset = s.len * (1 - k);
-    });
-    leaves.forEach(function(l){
-      var k = smooth((L - l.t) / 40);
-      if (k === l.last) return; l.last = k;
-      l.el.style.transform = 'scale(' + k.toFixed(3) + ')';
-      l.el.style.visibility = k > 0 ? 'visible' : 'hidden';
-    });
-    words.forEach(function(w, i){ w.classList.toggle('on', p >= 0.1 + i * 0.13); });
-    sub.classList.toggle('on', p >= 0.5);
-    wordmark.classList.toggle('on', p >= 0.86);
-  }
-
-  if (reduce) { render(1); return; }
-  var fixed = /[?&]p=([\d.]+)/.exec(location.search); // ?p=0.5 freezes the tree at that point, for review
-  if (fixed) { render(parseFloat(fixed[1])); sec.style.height = '100vh'; document.querySelectorAll('.wrap').forEach(function(w){ w.style.display = 'none'; }); return; }
-
-  function frame(){
-    var r = sec.getBoundingClientRect();
-    var travel = sec.offsetHeight - window.innerHeight;
-    render(Math.min(1, Math.max(0, -r.top / travel)));
-  }
-  if (window.Lenis) {
-    var lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
-    lenis.on('scroll', frame);
-    (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })(0);
-  } else {
-    window.addEventListener('scroll', frame, { passive: true });
-  }
-  window.addEventListener('resize', frame);
-  frame();
-  window.addEventListener('beforeprint', function(){ render(1); });
-})();
-</script>
 </body>
 </html>
