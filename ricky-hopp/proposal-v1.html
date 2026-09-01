@@ -114,12 +114,13 @@
   <p class="lede">"Just a nice simple site. Credibility and brand bookings."</p>
   <p>You hired a company a year or two ago and it was a disappointing experience: a WordPress site you find unintuitive, a domain they've been holding over you, and a newsletter box on the homepage that, as of this week, delivers to nobody. Meanwhile your social media is starting to take off again. Instagram has found its groove, TikTok is moving fast, and you repost to all three, so more people than ever are going to look you up.</p>
   <p>What you want is super simple: an about me, a newsletter completely set up with email, a contact for bookings and brand deals, and a place that points to your social posts, your products, and your blog. Ecommerce eventually, but not now.</p>
+  <p>One thing first, and it isn't part of this proposal: getting rickythesteadyinvestor.com out of their account and into your own comes before anything below. That part is on me.</p>
 
   <h2>Three ways to do this</h2>
-  <p>Three fully custom options, from $1,800 up to $9,500 for the fully produced, fully kept version with the store built in, depending on how far we take it. Each is built around you, none is off the shelf, and each runs on its own timeline. Here's how I'd think about it for you:</p>
+  <p>Three fully custom options, from $3,000 up to $9,500 for the fully produced, fully kept version with the store built in, depending on how far we take it. Each is built around you, none is off the shelf, and each runs on its own timeline. Here's how I'd think about it for you:</p>
 
   <div class="tier pick">
-    <div class="head"><h3>Core <span class="tag">Recommended for Ricky</span></h3><span class="price">$1,800</span></div>
+    <div class="head"><h3>Core <span class="tag">Recommended for Ricky</span></h3><span class="price">$3,000</span></div>
     <div class="for">For the site you described: about, bookings, a newsletter that works, and links to everything else you make.</div>
     <p class="why">"I'm not trying to do a ton on my website, just credibility and brand bookings."</p>
     <ul>
@@ -137,7 +138,7 @@
   </div>
 
   <div class="tier">
-    <div class="head"><h3>Plus</h3><span class="price">$3,800</span></div>
+    <div class="head"><h3>Plus</h3><span class="price">$5,000</span></div>
     <div class="for">For being found by people who have never heard of you, with everything they touch matching.</div>
     <p class="plus">Everything in Core, plus:</p>
     <ul>
@@ -222,38 +223,37 @@
 
   var segs = [], leaves = [];
   var cx = 300, groundY = 560;
-  var canopy = { x: 300, y: 252, rx: 236, ry: 222 };
+  var canopy = { x: 300, y: 248, rx: 258, ry: 252 };
   function inCanopy(x, y){ var dx = (x - canopy.x) / canopy.rx, dy = (y - canopy.y) / canopy.ry; return dx*dx + dy*dy <= 1; }
 
-  // A simple tree: trunk, three limbs, then branches that each start a beat after the one they grow from,
-  // so limbs visibly reach instead of the whole tree appearing as one front
-  var GREENS = ['#346058', '#3F7268', '#4E8A7F', '#2C5148'];
-  function grow(x, y, ang, len, width, depth, start){
+  // Branches grow outward: each segment knows how far from the root it starts (dist) so growth is one continuous wave
+  function grow(x, y, ang, len, width, depth, dist){
     var ex = x + Math.cos(ang) * len, ey = y + Math.sin(ang) * len;
-    if (depth > 1 && !inCanopy(ex, ey)) { len *= 0.6; ex = x + Math.cos(ang) * len; ey = y + Math.sin(ang) * len; if (!inCanopy(ex, ey)) return; }
-    var bend = between(-0.18, 0.18) * len;
+    if (depth > 1 && !inCanopy(ex, ey)) { len *= 0.55; ex = x + Math.cos(ang) * len; ey = y + Math.sin(ang) * len; if (!inCanopy(ex, ey)) return; }
+    var bend = between(-0.22, 0.22) * len;
     var mx = (x + ex) / 2 + Math.cos(ang + Math.PI/2) * bend, my = (y + ey) / 2 + Math.sin(ang + Math.PI/2) * bend;
-    segs.push({ d: 'M' + x.toFixed(1) + ' ' + y.toFixed(1) + ' Q' + mx.toFixed(1) + ' ' + my.toFixed(1) + ' ' + ex.toFixed(1) + ' ' + ey.toFixed(1), w: width, t0: start, t1: start + len, depth: depth });
-    var end = start + len;
-    if (depth >= 6 || len < 16) { addLeaves(ex, ey, end, depth); return; }
-    var kids = depth === 0 ? 3 : (rnd() < 0.78 ? 2 : 3);
-    var spread = depth === 0 ? 0.62 : between(0.42, 0.62);
+    segs.push({ d: 'M' + x.toFixed(1) + ' ' + y.toFixed(1) + ' Q' + mx.toFixed(1) + ' ' + my.toFixed(1) + ' ' + ex.toFixed(1) + ' ' + ey.toFixed(1), w: width, t0: dist, t1: dist + len, depth: depth });
+    var end = dist + len;
+    if (depth >= 9 || len < 7) { addLeaves(ex, ey, end); return; }
+    var kids = depth === 0 ? 4 : (depth === 1 ? 3 : (rnd() < 0.72 ? 2 : 3));
+    var spread = depth === 0 ? 0.95 : between(0.55, 0.85);
     for (var i = 0; i < kids; i++){
-      var a = ang + (i - (kids - 1) / 2) * spread * (kids === 2 ? 2 : 1.5) + between(-0.12, 0.12);
-      a = a * 0.9 + (-Math.PI/2) * 0.1;
-      var nl = len * between(0.68, 0.8), nw = Math.max(1.8, width * 0.66);
-      if (depth === 0) { nl = len * between(0.85, 1.0); nw = width * 0.6; }
-      grow(ex, ey, a, nl, nw, depth + 1, end + between(0.05, 0.3) * len);
+      var a = ang + (i - (kids - 1) / 2) * spread / Math.max(1, kids - 1) * 1.6 + between(-0.18, 0.18);
+      // lean the whole tree gently upward so limbs don't droop below the canopy
+      a = a * 0.92 + (-Math.PI/2) * 0.08;
+      var nl = len * between(0.66, 0.8), nw = Math.max(1.1, width * 0.64);
+      if (depth === 0) { nl = len * between(0.8, 1.05); nw = width * 0.62; }
+      grow(ex, ey, a, nl, nw, depth + 1, end);
     }
-    if (depth >= 4) addLeaves(ex, ey, end, depth);
+    if (depth >= 4 && rnd() < 0.6) addLeaves(ex, ey, end);
   }
-  function addLeaves(x, y, t, depth){
-    var n = depth >= 6 ? 4 : 3, big = depth >= 5;
+  function addLeaves(x, y, t){
+    var n = 3 + Math.floor(rnd() * 3);
     for (var i = 0; i < n; i++){
-      leaves.push({ x: x + between(-14, 14), y: y + between(-12, 12), r: big ? between(9, 15) : between(7, 11), t: t + between(0, 30), c: GREENS[Math.floor(rnd() * GREENS.length)] });
+      leaves.push({ x: x + between(-11, 11), y: y + between(-11, 11), rx: between(5, 9), ry: between(3, 5.4), rot: between(0, 180), t: t + between(0, 40), gold: rnd() < 0.42 });
     }
   }
-  grow(cx, groundY, -Math.PI/2, 118, 17, 0, 0);
+  grow(cx, groundY, -Math.PI/2, 96, 17, 0, 0);
 
   var maxT = 0; segs.forEach(function(s){ if (s.t1 > maxT) maxT = s.t1; }); leaves.forEach(function(l){ if (l.t > maxT) maxT = l.t; });
 
@@ -271,30 +271,30 @@
     gB.appendChild(p); s.el = p; s.len = p.getTotalLength();
     p.style.strokeDasharray = s.len; p.style.strokeDashoffset = s.len; s.last = -1;
   });
-  leaves.sort(function(a, b){ return a.r - b.r; });
   leaves.forEach(function(l){
-    var e = document.createElementNS(NS, 'circle');
+    var e = document.createElementNS(NS, 'ellipse');
     e.setAttribute('class', 'lf'); e.setAttribute('cx', l.x.toFixed(1)); e.setAttribute('cy', l.y.toFixed(1));
-    e.setAttribute('r', l.r.toFixed(1)); e.setAttribute('fill', l.c); e.setAttribute('opacity', '0.92');
-    e.style.transform = 'scale(0)'; e.style.visibility = 'hidden';
+    e.setAttribute('rx', l.rx.toFixed(1)); e.setAttribute('ry', l.ry.toFixed(1));
+    e.setAttribute('fill', l.gold ? '#D3960F' : '#4E8A7F'); e.setAttribute('opacity', l.gold ? '0.95' : '0.9');
+    e.style.transform = 'rotate(' + l.rot.toFixed(0) + 'deg) scale(0)'; e.style.visibility = 'hidden';
     gL.appendChild(e); l.el = e; l.last = -1;
   });
 
   function smooth(x){ x = Math.min(1, Math.max(0, x)); return x * x * (3 - 2 * x); }
 
   function render(p){
-    // the trunk and limbs grow across the first ~65% of the scroll (a steady pace, no easing), leaves from ~45% on
-    var G = Math.min(1, Math.max(0, p / 0.65)) * maxT;
-    var L = smooth((p - 0.45) / 0.5) * maxT;
+    // the trunk and limbs draw across the first ~72% of the scroll, leaves bloom from ~40% on
+    var G = smooth(p / 0.72) * maxT;
+    var L = smooth((p - 0.38) / 0.55) * maxT;
     segs.forEach(function(s){
       var k = Math.min(1, Math.max(0, (G - s.t0) / (s.t1 - s.t0)));
       if (k === s.last) return; s.last = k;
       s.el.style.strokeDashoffset = s.len * (1 - k);
     });
     leaves.forEach(function(l){
-      var k = smooth((L - l.t) / 40);
+      var k = smooth((L - l.t) / 34);
       if (k === l.last) return; l.last = k;
-      l.el.style.transform = 'scale(' + k.toFixed(3) + ')';
+      l.el.style.transform = 'rotate(' + l.rot.toFixed(0) + 'deg) scale(' + k.toFixed(3) + ')';
       l.el.style.visibility = k > 0 ? 'visible' : 'hidden';
     });
     words.forEach(function(w, i){ w.classList.toggle('on', p >= 0.1 + i * 0.13); });
