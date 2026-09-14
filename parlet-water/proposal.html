@@ -206,8 +206,8 @@
       H = wrap.offsetHeight;
       svg.setAttribute('viewBox','0 0 40 '+H);
       var g=svg.querySelector('#clean'); g.setAttribute('y1',startY); g.setAttribute('y2',H);
-      var d='M20,'+startY, y=startY, per=170;
-      while (y < H-10) { var t=(y-startY)/(H-startY); var amp=16-14*t; var p=per+120*t;
+      var d='M20,'+startY, y=startY, per=340;
+      while (y < H-10) { var t=(y-startY)/(H-startY); var amp=10-8*t; var p=per+220*t;
         d+=' q'+amp.toFixed(1)+','+(p/4).toFixed(0)+' 0,'+(p/2).toFixed(0)+' q-'+amp.toFixed(1)+','+(p/4).toFixed(0)+' 0,'+(p/2).toFixed(0); y+=p; }
       base.setAttribute('d',d); draw.setAttribute('d',d); len=draw.getTotalLength(); update();
     }
