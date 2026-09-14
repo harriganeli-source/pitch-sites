@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1402 1122" width="1402" height="1122">
+  <rect width="1402" height="1122" fill="#0B3D91"/>
+  <g fill="#fff">
+    <!-- roof -->
+    <polyline points="290,462 700,192 1110,462" fill="none" stroke="#fff" stroke-width="54" stroke-linejoin="miter" stroke-miterlimit="10"/>
+    <!-- chimney -->
+    <rect x="447" y="262" width="40" height="110"/>
+    <rect x="437" y="246" width="60" height="22"/>
+    <!-- window: two stacked blocks, taller than wide -->
+    <rect x="651" y="330" width="98" height="58"/>
+    <rect x="651" y="398" width="98" height="58"/>
+    <!-- single wave, tapered -->
+    <path d="M150,590 C400,455 640,680 900,575 C1060,510 1180,475 1265,455 C1190,520 1080,590 900,635 C640,705 400,535 150,590 Z"/>
+  </g>
+</svg>
