@@ -1,5 +1,5 @@
 {
   "cleanUrls": true,
-  "rewrites": [{ "source": "/", "destination": "/proposal.html" }],
+  "rewrites": [{ "source": "/", "destination": "/proposal" }],
   "headers": [{ "source": "/(.*)", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }] }]
 }
