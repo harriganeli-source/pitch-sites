@@ -78,6 +78,33 @@
   .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
   @media print{.reveal{opacity:1;transform:none}}
+
+  /* blue canvas, white paper */
+  html,body{background:var(--blue)}
+  .masthead{border-bottom-color:rgba(255,255,255,.35)}
+  .masthead .who{color:#fff}.masthead .what{color:rgba(255,255,255,.7)}
+  .band{border:1px solid rgba(255,255,255,.18)}
+  .paper{background:#fff;border-radius:14px;padding:1.7rem 1.9rem;margin:1.3rem 0}
+  .paper .eyebrow{color:var(--blue)}
+  .wrap > h2{color:#fff;margin-top:2.6rem}
+  .wrap > p{color:rgba(255,255,255,.88)}
+  .wrap > .rule{background:rgba(255,255,255,.2)}
+  .summary{border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.25)}
+  .summary > a{background:#fff}
+  .summary > a:hover{background:var(--wash)}
+  .summary > a.mid{background:#fff;box-shadow:inset 0 0 0 3px var(--blue)}
+  .summary > a.mid:hover{background:var(--wash)}
+  .summary > a.mid .n,.summary > a.mid .p{color:var(--blue)}
+  .summary > a.mid .d{color:var(--muted)}
+  .tier{border-color:#fff;background:#fff}
+  .tier.mid{border-color:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.28),0 18px 40px -28px rgba(0,0,0,.5)}
+  .recur{border-left-color:var(--blue)}
+  .paper .recur{margin:1.2rem 0 .2rem}
+  .foot{color:rgba(255,255,255,.8);border-top-color:rgba(255,255,255,.25)}
+  .colophon{color:rgba(255,255,255,.55)}
+  .steps li{color:var(--body)}
+  .stream .tubebody{fill:rgba(255,255,255,.22)}
+  .stream .fbody{fill:#22262E}.stream .fbody2{fill:#8A94A6}.stream .fbody3{fill:#fff}
   @media print{
     @page{margin:12mm 16mm}
     .wrap{padding:0;max-width:none}
@@ -91,7 +118,7 @@
   <svg class="stream" aria-hidden="true">
     <defs>
       <linearGradient id="tube" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#D5DCE6"/><stop offset=".35" stop-color="#F7F9FC"/><stop offset=".7" stop-color="#EEF2F7"/><stop offset="1" stop-color="#C9D2DF"/></linearGradient>
-      <linearGradient id="water" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8A7A5E"/><stop offset=".33" stop-color="#7F8B96"/><stop offset=".33" stop-color="#1E4FA8"/><stop offset=".55" stop-color="#1E4FA8"/><stop offset=".55" stop-color="#3FA0FF"/><stop offset=".78" stop-color="#3FA0FF"/><stop offset=".78" stop-color="#A9DCFF"/><stop offset="1" stop-color="#A9DCFF"/></linearGradient>
+      <linearGradient id="water" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8A7A5E"/><stop offset=".33" stop-color="#8E98A6"/><stop offset=".33" stop-color="#4A90F5"/><stop offset=".55" stop-color="#4A90F5"/><stop offset=".55" stop-color="#8FD0FF"/><stop offset=".78" stop-color="#8FD0FF"/><stop offset=".78" stop-color="#E4F4FF"/><stop offset="1" stop-color="#E4F4FF"/></linearGradient>
       <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".18"/><stop offset=".3" stop-color="#fff" stop-opacity=".45"/><stop offset=".55" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#000" stop-opacity=".22"/></linearGradient>
       <clipPath id="tubeclip"><rect class="tubeclip" x="19" y="0" width="22" height="10" rx="0"/></clipPath>
     </defs>
@@ -123,18 +150,20 @@
 
   <hr class="rule">
 
+  <div class="paper">
   <span class="eyebrow">What I heard</span>
   <p class="lede">"The last thing I want this website to look like is sketchy."</p>
   <p>Every sale in this business starts online. Your ads on Instagram, Facebook, and YouTube send people to one page, and that page has to do the job a salesman does for Culligan, without the salesman: turn a stranger into a quote request you can price and close. That is the whole pitch as you told it to me: you can beat their number by half because nobody drives out to the house to sell it, and you want the site to say so plainly.</p>
   <p>The people clicking those ads are in their twenties and thirties and skeptical of everything that arrives through a feed. They need to land on something that is free of red flags, see real photos of you installing real systems, and find the quote button without scrolling, because in your words, if they have to hunt for it, half of them are gone. From there, four quick questions about their water and their household, and the lead is in your inbox. The current site was a favor that turned into a headache, and it looks like a lot of other websites. You want one that looks like nothing else.</p>
   <p>You also said to keep the logo for now. I did. What you see at the top of this page is your logo, redrawn so it holds up on a page like this one, and your stickers still match it.</p>
+  </div>
 
   <h2>Three ways to do this</h2>
   <p>Three fully custom options, from $5,500 for the funnel itself to $14,500 for the version that is run as a system through your first year. Each is built around Clean Flow and none is off the shelf. Here's how I'd think about it for you:</p>
 
   <div class="summary">
     <a href="#core"><div class="n">Core</div><div class="p">$5,500</div><div class="d">The working funnel: page, quiz, leads confirmed both ways, your logo redrawn.</div></a>
-    <a class="mid" href="#plus"><div class="n">Plus &middot; Recommended</div><div class="p">$10,500</div><div class="d">The scroll animation, a page per system, the full identity.</div></a>
+    <a class="mid" href="#plus"><div class="n">Plus &middot; Recommended</div><div class="p">$9,500</div><div class="d">The scroll animation, well and city water pages, the full identity.</div></a>
     <a href="#signature"><div class="n">Signature</div><div class="p">$14,500</div><div class="d">Plus, with the ad templates and the funnel run as a system through year one: the water series, reviews, new offers, care.</div></a>
   </div>
 
@@ -156,13 +185,13 @@
   </div>
 
   <div class="tier mid" id="plus">
-    <div class="head"><h3>Plus <span class="tag">Recommended for Nick and Reese</span></h3><span class="price">$10,500</span></div>
+    <div class="head"><h3>Plus <span class="tag">Recommended for Nick and Reese</span></h3><span class="price">$9,500</span></div>
     <div class="for">For an ad-fed business where the page is the salesperson and the ads have to look like they came from the same company.</div>
-    <p class="muted" style="font-size:.9rem;margin:.1rem 0 .3rem;font-style:italic">Core gets the funnel live and working. Plus is the opening Reese described on the call, the ads and the page made one company, and a full page for each system.</p>
+    <p class="muted" style="font-size:.9rem;margin:.1rem 0 .3rem;font-style:italic">Core gets the funnel live and working. Plus is the opening Reese described on the call, the ads and the page made one company, and a page each for well water and city water.</p>
     <p class="plus">Everything in Core, plus:</p>
     <ul>
       <li>The scroll animation opening: the site opens on your actual system, full screen, in a product-film sequence you scroll through, either coming apart piece by piece or with water running through it and coming out clean, with your reasons to buy passing by on the way down and a second Get a Quote waiting at the bottom, <em>so the page hooks people the way a good ad does and walks them past your reasons to buy on the way to the quote.</em></li>
-      <li>A full page for each of your four systems instead of a section, with its own photos, its own argument, and its own quote button, <em>so each ad lands on a page built for exactly what it promised.</em> The quiz is the same everywhere: it asks the same questions and gives the same answer no matter which page they came in on.</li>
+      <li>Two full pages beyond the main one, well water and city water, each with its own photos, its own argument, and its own quote button, <em>so an ad aimed at well owners lands on a page built for well owners.</em> The quiz is the same everywhere: it asks the same questions and gives the same answer no matter which page they came in on.</li>
       <li>Your redrawn logo grown into a full identity: final files in every format and a written guide of your colors and type, <em>so the page, the stickers, and everything you make next look like one company.</em></li>
       <li>A month of white-glove support after launch, replies within 12 hours on weekdays, <em>so you're never stuck with nobody to call while the ads are running.</em></li>
     </ul>
@@ -185,7 +214,8 @@
     <p class="time">Timeline: about three weeks from our session and your materials to launch, with priority scheduling. The year-one pieces come online in the weeks after.</p>
   </div>
 
-    <div class="recur">
+    <div class="paper">
+  <div class="recur">
     <h3>After year one</h3>
     <p><strong>Hosting and funnel watch, every option:</strong> $80/month, or $900 for the year. The site, the domain's settings, the quiz, and the sheet and email connections, tested every month, with small fixes to those connections included and replies within one business day. Rebuilding a connection or moving to a new tool is quoted first.</p>
     <p><strong>Care, if you want it to continue:</strong> $250/month, or $2,100 for the year. The weekly pass of small updates from Signature, up to four a month, with hosting and funnel watch included.</p>
@@ -197,16 +227,21 @@
   </div>
 
   <p class="muted" style="font-size:.94rem;margin-top:1rem">Payment in two stages: half to begin, half when you approve the site to go live. Third-party tools, your email platform and your domain renewal, stay on your accounts and at your cost. On Core and Plus, changes after launch are quoted flat, per change, before any work starts.</p>
+  </div>
 
-  <h2>How it goes</h2>
+  <div class="paper">
+  <h2 style="margin-top:0;color:var(--blue)">How it goes</h2>
   <ol class="steps">
     <li><strong>The strategy and copy session.</strong> Deeper than our first conversation, and built around your schedule: we work through the systems, the price argument, and what your customers are actually worried about, and I take your exact words away with me to become the page. We also decide two practical things: which of you gets each lead, and how quickly you'll call back, so the note the customer gets says something true. After this, I start building. The clock on your timeline starts when your photos and product images are in.</li>
     <li><strong>The build.</strong> The real page, your words, on your screen. You react in rounds, all your notes at once, and I turn each round around together. Two rounds usually gets it there, and we keep going until it feels right, within the scope of the option you've chosen.</li>
     <li><strong>Launch.</strong> I point your domain at the new site, connect the quiz to your inbox and your lead sheet, and test it end to end from an ad click to a confirmed lead. Then your launch support begins.</li>
   </ol>
+  </div>
 
-  <h2>To start</h2>
+  <div class="paper">
+  <h2 style="margin-top:0;color:var(--blue)">To start</h2>
   <p>Reply with the option you want. I send over a short agreement and the first invoice, we pick a day for the session, and I get going.</p>
+  </div>
 
   <p class="foot">One calendar note: I'm out of town October 7 through 15, so the sooner we start, the more of the build lands before I go. Based on my calendar as it stands, I can hold both this price and a spot to start for you through October 20. Whenever you're ready, we begin.<br><br>Eli Harrigan</p>
 
