@@ -60,9 +60,9 @@
   .foot{margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.9rem;color:var(--muted)}
   .colophon{margin-top:2.2rem;font-size:.75rem;color:var(--muted);display:flex;justify-content:space-between;letter-spacing:.04em}
   .wrap{position:relative}
-  .stream{position:absolute;left:-46px;top:0;width:40px;height:100%;pointer-events:none;overflow:visible}
-  .stream .base{fill:none;stroke:url(#clean);stroke-width:1.5;opacity:.14}
-  .stream .draw{fill:none;stroke:url(#clean);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
+  .stream{position:absolute;left:-58px;top:0;width:60px;height:100%;pointer-events:none;overflow:visible}
+  .stream .base{fill:none;stroke:url(#clean);stroke-width:1.5;opacity:0;transition:opacity .4s}
+  .stream .draw{fill:none;stroke:url(#clean);stroke-width:3.2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
   @media (max-width:900px){.stream{display:none}}
   @media print{.stream{display:none}}
   html.lenis,html.lenis body{height:auto}
@@ -199,17 +199,17 @@
       var band=document.querySelector('.rule');
       startY = band ? (band.getBoundingClientRect().bottom + window.scrollY - wrap.getBoundingClientRect().top - window.scrollY) : 0;
       H = wrap.offsetHeight;
-      svg.setAttribute('viewBox','0 0 40 '+H);
+      svg.setAttribute('viewBox','0 0 60 '+H);
       var g=svg.querySelector('#clean'); g.setAttribute('y1',startY); g.setAttribute('y2',H);
-      var d='M20,'+startY, y=startY, per=340;
-      while (y < H-10) { var t=(y-startY)/(H-startY); var amp=10-8*t; var p=per+220*t;
+      var d='M30,'+startY, y=startY, per=340;
+      while (y < H-10) { var t=(y-startY)/(H-startY); var amp=18-14*t; var p=per+220*t;
         d+=' q'+amp.toFixed(1)+','+(p/4).toFixed(0)+' 0,'+(p/2).toFixed(0)+' q-'+amp.toFixed(1)+','+(p/4).toFixed(0)+' 0,'+(p/2).toFixed(0); y+=p; }
       base.setAttribute('d',d); draw.setAttribute('d',d); len=draw.getTotalLength(); update();
     }
     function update(){
-      var top=wrap.getBoundingClientRect().top;
-      var tipDoc = (window.innerHeight*0.62) - top;   // tip sits ~62% down the viewport, in wrap coords
-      var pr = Math.max(0, Math.min(1, (tipDoc - startY) / (H - startY)));
+      var maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      var pr = Math.max(0, Math.min(1, window.scrollY / maxScroll));   // nothing drawn until the page scrolls
+      base.style.opacity = Math.min(1, window.scrollY / 160) * 0.14;
       draw.style.strokeDashoffset = String(1 - pr);
     }
     window.addEventListener('scroll', update, {passive:true});
