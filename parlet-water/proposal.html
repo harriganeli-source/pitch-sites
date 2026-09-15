@@ -22,12 +22,13 @@
   .rule{height:1px;background:var(--line);border:0;margin:1.8rem 0}
 
   .masthead{display:flex;justify-content:space-between;align-items:center;padding-bottom:1.1rem;border-bottom:2px solid var(--blue);margin-bottom:2.2rem;font-size:.78rem}
-  .mast-right{display:flex;align-items:center;gap:1rem}
-  .theme{display:inline-flex;border:1px solid rgba(255,255,255,.4);border-radius:100px;padding:2px;gap:2px}
-  .theme button{appearance:none;border:0;background:transparent;color:rgba(255,255,255,.75);font:600 .68rem/1 'Manrope',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:.35rem .7rem;border-radius:100px;cursor:pointer}
-  .theme button.on{background:#fff;color:var(--blue)}
-  @media (max-width:560px){.masthead .what{display:none}}
-  @media print{.theme{display:none}}
+  .theme-dock{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:.8rem;background:#fff;color:var(--ink);border-radius:100px;padding:.45rem .5rem .45rem 1rem;box-shadow:0 12px 30px -10px rgba(0,0,0,.45)}
+  .theme-label{font:600 .8rem/1 'Manrope',sans-serif;color:var(--ink);white-space:nowrap}
+  .theme{display:inline-flex;background:var(--wash);border-radius:100px;padding:3px;gap:2px}
+  .theme button{appearance:none;border:0;background:transparent;color:var(--muted);font:700 .72rem/1 'Manrope',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:.45rem .85rem;border-radius:100px;cursor:pointer}
+  .theme button.on{background:var(--blue);color:#fff}
+  @media (max-width:560px){.theme-label{display:none}.theme-dock{padding:.4rem}}
+  @media print{.theme-dock{display:none}}
   .masthead .who{font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
   .masthead .what{color:var(--muted);font-weight:600;letter-spacing:.1em;text-transform:uppercase}
   .band{background:var(--blue);color:#fff;border-radius:14px;padding:2.6rem 2rem 2.2rem;text-align:center;margin:0 0 .4rem}
@@ -120,6 +121,7 @@
 </style>
 </head>
 <body>
+<div class="theme-dock"><span class="theme-label">Which colour feels like you?</span><span class="theme" role="group" aria-label="Colour"><button type="button" data-theme="teal" class="on">Teal</button><button type="button" data-theme="blue">Blue</button></span></div>
 <div class="wrap">
   <svg class="stream" aria-hidden="true">
     <defs>
@@ -138,7 +140,7 @@
     </g>
   </svg>
 
-  <div class="masthead"><span class="who">Eli Harrigan</span><span class="mast-right"><span class="theme" role="group" aria-label="Colour"><button type="button" data-theme="teal" class="on">Teal</button><button type="button" data-theme="blue">Blue</button></span><span class="what">Proposal &middot; September 15, 2026</span></span></div>
+  <div class="masthead"><span class="who">Eli Harrigan</span><span class="what">Proposal &middot; September 15, 2026</span></div>
 
   <div class="band">
     <div class="lockup">
