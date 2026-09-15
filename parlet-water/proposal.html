@@ -22,6 +22,12 @@
   .rule{height:1px;background:var(--line);border:0;margin:1.8rem 0}
 
   .masthead{display:flex;justify-content:space-between;align-items:center;padding-bottom:1.1rem;border-bottom:2px solid var(--blue);margin-bottom:2.2rem;font-size:.78rem}
+  .mast-right{display:flex;align-items:center;gap:1rem}
+  .theme{display:inline-flex;border:1px solid rgba(255,255,255,.4);border-radius:100px;padding:2px;gap:2px}
+  .theme button{appearance:none;border:0;background:transparent;color:rgba(255,255,255,.75);font:600 .68rem/1 'Manrope',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:.35rem .7rem;border-radius:100px;cursor:pointer}
+  .theme button.on{background:#fff;color:var(--blue)}
+  @media (max-width:560px){.masthead .what{display:none}}
+  @media print{.theme{display:none}}
   .masthead .who{font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
   .masthead .what{color:var(--muted);font-weight:600;letter-spacing:.1em;text-transform:uppercase}
   .band{background:var(--blue);color:#fff;border-radius:14px;padding:2.6rem 2rem 2.2rem;text-align:center;margin:0 0 .4rem}
@@ -132,7 +138,7 @@
     </g>
   </svg>
 
-  <div class="masthead"><span class="who">Eli Harrigan</span><span class="what">Proposal &middot; September 15, 2026</span></div>
+  <div class="masthead"><span class="who">Eli Harrigan</span><span class="mast-right"><span class="theme" role="group" aria-label="Colour"><button type="button" data-theme="teal" class="on">Teal</button><button type="button" data-theme="blue">Blue</button></span><span class="what">Proposal &middot; September 15, 2026</span></span></div>
 
   <div class="band">
     <div class="lockup">
@@ -301,6 +307,23 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(build); else build();
     setTimeout(build, 1200);
   }
+  // colour switch: canvas, lockup tint, pipe water
+  var THEMES={
+    teal:{blue:'#123E4A',tint:'#88D8E8',water:['#8A7A5E','#9AA3AF','#5FC6D6','#9FE3EC','#E6F9FB'],f3:'#E6F9FB'},
+    blue:{blue:'#1D4ED8',tint:'#FFFFFF',water:['#8A7A5E','#9AA3AF','#7CC4FF','#BFE6FF','#F2FAFF'],f3:'#F2FAFF'}
+  };
+  function applyTheme(name){
+    var t=THEMES[name]||THEMES.teal, r=document.documentElement.style;
+    r.setProperty('--blue',t.blue); r.setProperty('--tint',t.tint);
+    var fl=document.querySelector('#tint feFlood'); if(fl) fl.setAttribute('flood-color',t.tint);
+    document.querySelectorAll('.lockup svg rect').forEach(function(x){ x.setAttribute('fill',t.tint); });
+    var st=document.querySelectorAll('#water stop'); if(st.length>=7){ var c=t.water; [c[0],c[1],c[2],c[2],c[3],c[3],c[4],c[4]].forEach(function(col,i){ if(st[i]) st[i].setAttribute('stop-color',col); }); }
+    var f3=document.querySelector('.stream .fbody3'); if(f3) f3.style.fill=t.f3;
+    document.querySelectorAll('.theme button').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-theme')===name); });
+    try{ localStorage.setItem('cf-theme',name); }catch(e){}
+  }
+  document.querySelectorAll('.theme button').forEach(function(b){ b.addEventListener('click',function(){ applyTheme(b.getAttribute('data-theme')); }); });
+  (function(){ var q=new URLSearchParams(location.search).get('theme'); var saved=null; try{ saved=localStorage.getItem('cf-theme'); }catch(e){} applyTheme(q||saved||'teal'); })();
 })();
 </script>
 </body>
