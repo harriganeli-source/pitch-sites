@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Proposal: Clean Flow Water Solutions</title>
+<meta property="og:title" content="Clean Flow Water Solutions: website and sales funnel proposal">
+<meta property="og:description" content="Prepared for Nick and Reese by Eli Harrigan.">
+<meta property="og:image" content="https://clean-flow-proposal.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://clean-flow-proposal.vercel.app/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://clean-flow-proposal.vercel.app/og.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -22,12 +32,14 @@
   .rule{height:1px;background:var(--line);border:0;margin:1.8rem 0}
 
   .masthead{display:flex;justify-content:space-between;align-items:center;padding-bottom:1.1rem;border-bottom:2px solid var(--blue);margin-bottom:2.2rem;font-size:.78rem}
-  .theme-dock{position:fixed;left:18px;bottom:18px;z-index:50;display:flex;align-items:center;gap:.8rem;background:#fff;color:var(--ink);border-radius:100px;padding:.45rem .5rem .45rem 1rem;box-shadow:0 12px 30px -10px rgba(0,0,0,.45)}
-  .theme-label{font:600 .8rem/1 'Manrope',sans-serif;color:var(--ink);white-space:nowrap}
+  .band{position:relative}
+  .theme-dock{position:absolute;right:-190px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.28);border-radius:14px;padding:.75rem .8rem}
+  .theme-label{font:600 .72rem/1.3 'Manrope',sans-serif;color:#fff;text-align:center;max-width:9rem}
+  @media (max-width:1180px){.theme-dock{position:static;transform:none;flex-direction:row;gap:.8rem;margin:1.4rem auto 0;width:max-content;max-width:100%;padding:.5rem .6rem .5rem .9rem}.theme-label{max-width:none;white-space:nowrap}}
   .theme{display:inline-flex;background:var(--wash);border-radius:100px;padding:3px;gap:2px}
   .theme button{appearance:none;border:0;background:transparent;color:var(--muted);font:700 .72rem/1 'Manrope',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:.45rem .85rem;border-radius:100px;cursor:pointer}
   .theme button.on{background:var(--blue);color:#fff}
-  @media (max-width:560px){.theme-label{display:none}.theme-dock{padding:.4rem}}
+  @media (max-width:400px){.theme-label{display:none}.theme-dock{padding:.4rem}}
   @media print{.theme-dock{display:none}}
   .masthead .who{font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
   .masthead .what{color:var(--muted);font-weight:600;letter-spacing:.1em;text-transform:uppercase}
@@ -123,7 +135,6 @@
 </style>
 </head>
 <body>
-<div class="theme-dock"><span class="theme-label">Which colors feel like you?</span><span class="theme" role="group" aria-label="Color"><button type="button" data-theme="teal" class="on">Teal</button><button type="button" data-theme="blue">Blue</button></span></div>
 <div class="wrap">
   <svg class="stream" aria-hidden="true">
     <defs>
@@ -156,6 +167,7 @@
     </div>
     <span class="eyebrow">Website &amp; Sales Funnel Proposal</span>
     <div class="meta">Prepared for Nick Parlet and Reese Rossi</div>
+    <div class="theme-dock"><span class="theme-label">Which colors feel like you?</span><span class="theme" role="group" aria-label="Color"><button type="button" data-theme="teal" class="on">Teal</button><button type="button" data-theme="blue">Blue</button></span></div>
   </div>
 
   <hr class="rule">

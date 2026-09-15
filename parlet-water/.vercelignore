@@ -3,3 +3,4 @@ docs/
 proposal-v*.html
 proposal-single.html
 *.png
+!og.png
