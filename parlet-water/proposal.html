@@ -88,15 +88,15 @@
   <svg class="stream" aria-hidden="true">
     <defs>
       <linearGradient id="tube" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#D5DCE6"/><stop offset=".35" stop-color="#F7F9FC"/><stop offset=".7" stop-color="#EEF2F7"/><stop offset="1" stop-color="#C9D2DF"/></linearGradient>
-      <linearGradient id="water" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8A7A5E"/><stop offset=".3" stop-color="#7F8B96"/><stop offset=".36" stop-color="#3FA0FF"/><stop offset="1" stop-color="#3FA0FF"/></linearGradient>
+      <linearGradient id="water" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8A7A5E"/><stop offset=".33" stop-color="#7F8B96"/><stop offset=".33" stop-color="#3FA0FF"/><stop offset="1" stop-color="#3FA0FF"/></linearGradient>
       <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".18"/><stop offset=".3" stop-color="#fff" stop-opacity=".45"/><stop offset=".55" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#000" stop-opacity=".22"/></linearGradient>
       <clipPath id="tubeclip"><rect class="tubeclip" x="19" y="0" width="22" height="10" rx="11"/></clipPath>
     </defs>
-    <rect class="tubebody" x="19" y="0" width="22" height="10" rx="11" fill="url(#tube)" stroke="#C3CCD8" stroke-width="1"/>
+    <rect class="tubebody" x="19" y="0" width="22" height="10" rx="11" fill="#EEF2F7"/>
     <rect class="waterfill" x="19" y="0" width="22" height="0" fill="url(#water)" clip-path="url(#tubeclip)"/>
-    <rect class="sheenbar" x="19" y="0" width="22" height="10" rx="11" fill="url(#sheen)" pointer-events="none"/>
+    <rect class="sheenbar" x="19" y="0" width="22" height="10" rx="11" fill="none"/>
     <g class="filter">
-      <rect class="fbody" x="11" y="0" width="38" height="72" rx="7" fill="#fff" stroke="#0B3D91" stroke-width="1.6"/>
+      <rect class="fbody" x="13" y="0" width="34" height="56" rx="5" fill="#0B3D91"/>
       <g class="pleats" stroke="#0B3D91" stroke-width="1.2" opacity=".55"></g>
     </g>
   </svg>
@@ -220,7 +220,7 @@
   // stream: a pipe in the left gutter; water fills as you scroll, murky above the filter, clear below it
   var wrap=document.querySelector('.wrap'), svg=document.querySelector('.stream');
   if (svg && !reduce) {
-    var H=0, startY=0, endY=0, fTop=0, fH=72;
+    var H=0, startY=0, endY=0, fTop=0, fH=56;
     var tube=svg.querySelector('.tubebody'), clip=svg.querySelector('.tubeclip'), water=svg.querySelector('.waterfill'), sheen=svg.querySelector('.sheenbar');
     var fbody=svg.querySelector('.fbody'), pleats=svg.querySelector('.pleats'), grad=svg.querySelector('#water');
     function wrapY(el){ return el.getBoundingClientRect().top - wrap.getBoundingClientRect().top; }
@@ -231,11 +231,9 @@
       [tube,clip,sheen].forEach(function(r){ r.setAttribute('y',startY); r.setAttribute('height',endY-startY); });
       var h2=document.querySelector('h2'); fTop = h2 ? wrapY(h2) - 10 : startY + 400;
       fbody.setAttribute('y',fTop);
-      var ph=''; for (var i=1;i<=4;i++){ var yy=fTop+ fH*i/5; ph+='<line x1="17" y1="'+yy+'" x2="43" y2="'+yy+'"/>'; }
-      pleats.innerHTML=ph;
       grad.setAttribute('y1',startY); grad.setAttribute('y2',endY);
       var span=endY-startY, o1=(fTop-startY)/span, o2=(fTop+fH-startY)/span, st=grad.querySelectorAll('stop');
-      st[1].setAttribute('offset',Math.max(0,o1-0.02).toFixed(4)); st[2].setAttribute('offset',Math.min(1,o2).toFixed(4));
+      var mid=((o1+o2)/2).toFixed(4); st[1].setAttribute('offset',mid); st[2].setAttribute('offset',mid);
       water.setAttribute('y',startY); update();
     }
     function update(){
