@@ -14,7 +14,7 @@ Decision: no CRM, no database. Sheet + inbox is the system. Is that defensible a
 
 ## 2. The quiz
 
-Client-side multi-step form on the landing page (and on each per-system page, pre-filled with that system).
+Client-side multi-step form on the landing page and on each per-system page, identical everywhere.
 
 Steps:
 1. Town (select from a list of Monroe County and surrounding towns, plus zip). Rationale: the client says water quality is known per town and does not vary house to house, so town drives the recommendation.
@@ -84,7 +84,7 @@ Decision: Vercel Analytics events rather than GA4 as the primary. Decision: midd
 
 ## 8. Per-system landing pages
 
-Four pages (hard water, taste and odor, staining, well water) with the same quiz component pre-seeded with the system, so ads deep-link to the matching page and the quiz starts one step in.
+Four pages (hard water, taste and odor, staining, well water) so ads deep-link to a matching page. The quiz component is identical on every page: same questions, same rules, no pre-seeding from the page (owner decision: the page someone is browsing must not tilt the recommendation). The landing page is recorded on the lead for attribution only.
 
 ## 9. Security and privacy
 
@@ -106,7 +106,7 @@ Adopted:
 - Persist the lead first, respond, then run downstream actions (marketing enrollment) independently; nothing is left running untracked after the response.
 - Pre-launch partial-failure tests: sheet down, email provider down, marketing platform down, double submit, saved-but-response-lost, expired token.
 - Town is context and service-area eligibility, not a diagnosis. Water source is the main routing decision, concerns give the treatment category, household size is sizing context, testing and install details make the final selection. "Needs assessment" is a valid result, and the default for well-water safety concerns and "not sure." Rules table approved by the client, versioned, version recorded on each lead.
-- Per-system pages preselect an editable interest; they do not skip questions.
+- Per-system pages do not preselect or skip anything; the quiz is identical everywhere (owner decision, stricter than the reviewer suggested).
 - The contact step says up front that finishing the quiz requests a callback. Product explanations stay readable without submitting. Street address removed from the form. Callback window defined in business hours with the client.
 - Email series: no opt-in checkbox (owner decision). Giving an email for the quiz result enrolls the person; the contact step carries a one-line notice ("You will also get a short series of emails about your water. Unsubscribe any time."). Every email carries sender identity, a physical address, and a working unsubscribe honored promptly. Store timestamp, notice text version, and source with the lead. Repeat submissions do not restart the series; API updates never undo an unsubscribe; one deterministic primary concern; enrollment failure never invalidates a saved lead. Acknowledgement goes now, the series starts later, never two emails at once. One provider for both transactional and marketing (Brevo evaluated first) unless a reason appears for two. Monitored reply address.
 - Reviews: customer-permitted testimonials in site files plus a link to Google reviews. Places API rating/count only if implemented within Google's terms, with graceful fallback, never a critical dependency. Google-sourced review text is not stored in JSON.
