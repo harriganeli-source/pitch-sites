@@ -37,6 +37,8 @@
   .lockup{display:flex;flex-direction:column;align-items:center}
   .lockup svg{width:clamp(200px,30vw,270px);display:block;margin-bottom:.5rem}
   .lockup .name{font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(2.2rem,5vw,3.1rem);line-height:1;letter-spacing:-.005em;color:var(--tint)}
+  html[data-theme="blue"] .lockup .name{background:#fff;color:var(--blue);padding:.28em .5em .22em;border-radius:.22em;margin-top:.35rem;letter-spacing:-.01em}
+  html[data-theme="blue"] .lockup .sub{margin-top:.9rem}
   .lockup .sub{font-family:'Montserrat',sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.42em;padding-left:.42em;color:var(--tint);margin-top:.7rem}
 
   .summary{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:1.2rem 0 1.6rem}
@@ -315,7 +317,7 @@
     blue:{blue:'#2563EB',tint:'#FFFFFF',water:['#8A7A5E','#9AA3AF','#7CC4FF','#BFE6FF','#F2FAFF'],f3:'#F2FAFF'}
   };
   function applyTheme(name){
-    var t=THEMES[name]||THEMES.teal, r=document.documentElement.style;
+    var t=THEMES[name]||THEMES.teal, r=document.documentElement.style; document.documentElement.setAttribute('data-theme', THEMES[name]?name:'teal');
     r.setProperty('--blue',t.blue); r.setProperty('--tint',t.tint);
     var fl=document.querySelector('#tint feFlood'); if(fl) fl.setAttribute('flood-color',t.tint);
     document.querySelectorAll('.lockup svg rect').forEach(function(x){ x.setAttribute('fill',t.tint); });
