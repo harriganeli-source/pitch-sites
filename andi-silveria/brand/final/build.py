@@ -31,11 +31,11 @@ def row(mark):
 
 jobs = [
  # name, html, width, height, transparent
- ("lockup-dark",    page(stacked("mark-moonset-cream.svg"), NAVY,  CREAM, 340, 76, 24, 38, 22), 2000, 1400, False),
- ("lockup-light",   page(stacked("mark-moonset-navy.svg"),  LIGHTBG, NAVY, 340, 76, 24, 38, 22), 2000, 1400, False),
- ("lockup-dark-italic-sub",  page(stacked("mark-moonset-cream.svg", True), NAVY, CREAM, 340, 76, 18, 38, 12), 2000, 1400, False),
- ("lockup-transparent-navy", page(stacked("mark-moonset-navy.svg"), "transparent", NAVY, 340, 76, 24, 38, 22, 1400, 900), 1400, 900, True),
- ("lockup-transparent-cream",page(stacked("mark-moonset-cream.svg"), "transparent", CREAM, 340, 76, 24, 38, 22, 1400, 900), 1400, 900, True),
+ ("lockup-dark",    page(stacked("mark-moonset-cream.svg"), NAVY,  CREAM, 476, 106, 34, 53, 30), 2000, 1400, False),
+ ("lockup-light",   page(stacked("mark-moonset-navy.svg"),  LIGHTBG, NAVY, 476, 106, 34, 53, 30), 2000, 1400, False),
+ ("lockup-dark-italic-sub",  page(stacked("mark-moonset-cream.svg", True), NAVY, CREAM, 476, 106, 25, 53, 17), 2000, 1400, False),
+ ("lockup-transparent-navy", page(stacked("mark-moonset-navy.svg"), "transparent", NAVY, 425, 95, 30, 48, 27, 1400, 900), 1400, 900, True),
+ ("lockup-transparent-cream",page(stacked("mark-moonset-cream.svg"), "transparent", CREAM, 425, 95, 30, 48, 27, 1400, 900), 1400, 900, True),
  ("avatar-dark",    page('<div class="lock"><img src="mark-moonset-cream.svg"></div>', NAVY, CREAM, 520, 0, 0, 0, 0, 1000, 1000), 1000, 1000, False),
  ("avatar-light",   page('<div class="lock"><img src="mark-moonset-navy.svg"></div>', LIGHTBG, NAVY, 520, 0, 0, 0, 0, 1000, 1000), 1000, 1000, False),
  ("email-signature",page(row("mark-moonset-navy.svg"), "transparent", NAVY, 96, 30, 9, 28, 8, 600, 140), 600, 140, True),
