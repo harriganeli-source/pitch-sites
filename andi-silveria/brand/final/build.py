@@ -10,7 +10,7 @@ body{font-family:'Mulish',sans-serif;display:flex;align-items:center;justify-con
 .lock{text-align:center;color:var(--ink)}
 .lock img{display:block;margin:0 auto;height:var(--mh)}
 .name{font-family:'Newsreader',serif;font-weight:400;font-size:var(--ns);letter-spacing:.16em;text-indent:.16em;line-height:1.1;margin-top:var(--gap);white-space:nowrap}
-.sub{font-weight:600;font-size:var(--ss);letter-spacing:.36em;text-indent:.36em;opacity:.66;margin-top:var(--sgap);white-space:nowrap}
+.sub{font-weight:600;font-size:var(--ss);letter-spacing:.36em;text-indent:.36em;opacity:.78;margin-top:var(--sgap);white-space:nowrap}
 .sub.ital{font-family:'Newsreader',serif;font-style:italic;font-weight:300;letter-spacing:.02em;text-indent:0;font-size:calc(var(--ss)*1.7);opacity:.72}
 /* horizontal (email signature) */
 .row{display:flex;align-items:center;gap:var(--gap);color:var(--ink);text-align:left}
@@ -31,11 +31,11 @@ def row(mark):
 
 jobs = [
  # name, html, width, height, transparent
- ("lockup-dark",    page(stacked("mark-moonset-cream.svg"), NAVY,  CREAM, 340, 76, 18, 38, 18), 2000, 1400, False),
- ("lockup-light",   page(stacked("mark-moonset-navy.svg"),  LIGHTBG, NAVY, 340, 76, 18, 38, 18), 2000, 1400, False),
+ ("lockup-dark",    page(stacked("mark-moonset-cream.svg"), NAVY,  CREAM, 340, 76, 24, 38, 22), 2000, 1400, False),
+ ("lockup-light",   page(stacked("mark-moonset-navy.svg"),  LIGHTBG, NAVY, 340, 76, 24, 38, 22), 2000, 1400, False),
  ("lockup-dark-italic-sub",  page(stacked("mark-moonset-cream.svg", True), NAVY, CREAM, 340, 76, 18, 38, 12), 2000, 1400, False),
- ("lockup-transparent-navy", page(stacked("mark-moonset-navy.svg"), "transparent", NAVY, 340, 76, 18, 38, 18, 1400, 900), 1400, 900, True),
- ("lockup-transparent-cream",page(stacked("mark-moonset-cream.svg"), "transparent", CREAM, 340, 76, 18, 38, 18, 1400, 900), 1400, 900, True),
+ ("lockup-transparent-navy", page(stacked("mark-moonset-navy.svg"), "transparent", NAVY, 340, 76, 24, 38, 22, 1400, 900), 1400, 900, True),
+ ("lockup-transparent-cream",page(stacked("mark-moonset-cream.svg"), "transparent", CREAM, 340, 76, 24, 38, 22, 1400, 900), 1400, 900, True),
  ("avatar-dark",    page('<div class="lock"><img src="mark-moonset-cream.svg"></div>', NAVY, CREAM, 520, 0, 0, 0, 0, 1000, 1000), 1000, 1000, False),
  ("avatar-light",   page('<div class="lock"><img src="mark-moonset-navy.svg"></div>', LIGHTBG, NAVY, 520, 0, 0, 0, 0, 1000, 1000), 1000, 1000, False),
  ("email-signature",page(row("mark-moonset-navy.svg"), "transparent", NAVY, 96, 30, 9, 28, 8, 600, 140), 600, 140, True),
