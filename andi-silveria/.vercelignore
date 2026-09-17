@@ -1,0 +1,8 @@
+# internal files: never publish on the client domain
+agreement.html
+proposal.html
+*.pdf
+brand
+logo-direction.png
+pitch-hero-desktop.png
+pitch-hero-mobile.png
