@@ -27,10 +27,12 @@
   .hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg, rgba(28,40,58,.18) 0%, rgba(28,40,58,0) 30%, rgba(28,40,58,0) 55%, rgba(22,32,48,.55) 100%)}
   .hero > *{position:relative;z-index:2}
   .hnav{display:flex;align-items:center;justify-content:space-between;padding:2.2rem clamp(1.6rem,6vw,5rem)}
-  .brandwrap{display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap}
-  .brand{font-family:'Newsreader',serif;font-size:1.35rem;text-shadow:0 1px 16px rgba(10,20,35,.4)}
-  .brandtag{font-family:'Mulish',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.18em;font-size:.64rem;opacity:.82;border-left:1px solid rgba(255,255,255,.4);padding-left:.7rem;text-shadow:0 1px 12px rgba(10,20,35,.5)}
-  @media(max-width:540px){.brandtag{display:none}}
+  .brandwrap{display:flex;align-items:center;gap:.95rem;color:inherit}
+  .brandmark{height:46px;width:auto;display:block;filter:drop-shadow(0 1px 10px rgba(10,20,35,.45))}
+  .brandtext{display:flex;flex-direction:column;gap:.42rem}
+  .brand{font-family:'Newsreader',serif;font-weight:400;font-size:1.08rem;letter-spacing:.16em;text-transform:uppercase;line-height:1.1;white-space:nowrap;text-shadow:0 1px 16px rgba(10,20,35,.4)}
+  .brandtag{font-family:'Mulish',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.36em;font-size:.55rem;line-height:1;opacity:.82;white-space:nowrap;text-shadow:0 1px 12px rgba(10,20,35,.5)}
+  @media(max-width:540px){.hnav{padding-left:1.25rem !important;padding-right:1.25rem !important}.brandmark{height:27px}.brandwrap{gap:.5rem}.brand{font-size:.69rem;letter-spacing:.11em}.brandtag{font-size:.38rem;letter-spacing:.26em}.brandtext{gap:.28rem}.navright,.navside{gap:.75rem !important}.navcta{font-size:.72rem !important;padding:.42rem .75rem !important;white-space:nowrap}.pauselink{font-size:.9rem !important}}
   .navside{display:flex;align-items:center;gap:1.4rem}
   .pauselink{font-family:'Newsreader',serif;font-style:italic;font-size:1.02rem;opacity:.85;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:1px;transition:opacity .2s;cursor:pointer;background:none;border-top:0;border-left:0;border-right:0;color:#fff;text-shadow:0 1px 12px rgba(10,20,35,.5)}
   .pauselink:hover{opacity:1}
@@ -104,6 +106,8 @@
        box-shadow:0 0 22px 4px rgba(222,220,198,.13), inset -3px -4px 10px rgba(85,92,90,.18);filter:brightness(1.05)}
   footer .wrap{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:center;justify-content:space-between;font-size:.86rem}
   footer .brand{font-family:'Newsreader',serif;font-size:1.1rem;color:#F3EFE7;text-shadow:none}
+  footer .brand{font-size:.95rem;text-shadow:none}
+  footer .brand small{display:block;font-family:'Mulish',sans-serif;font-weight:600;font-size:.5rem;letter-spacing:.36em;opacity:.7;margin-top:.45rem}
   footer a{color:#E3DBCC}
   footer .fl{display:flex;gap:1.5rem;flex-wrap:wrap}
 
@@ -121,10 +125,13 @@
 
 <header class="hero">
   <div class="hnav">
-    <div class="brandwrap">
-      <a class="brand" href="/">Andrea Silveria</a>
-      <span class="brandtag">Coaching &amp; Consulting</span>
-    </div>
+    <a class="brandwrap" href="/" aria-label="Andrea Silveria, home">
+      <img class="brandmark" src="assets/logo-mark-cream.svg" alt="" width="84" height="46">
+      <div class="brandtext">
+        <span class="brand">Andrea Silveria</span>
+        <span class="brandtag">Coaching &amp; Consulting</span>
+      </div>
+    </a>
     <div class="navside">
       <button class="pauselink" id="pauseBtn" type="button">pause</button>
       <a class="navcta" href="https://calendly.com/admin-andreasilveria/30min" target="_blank" rel="noopener">Book a call</a>
@@ -211,7 +218,7 @@
 <footer>
   <span class="footmoon" aria-hidden="true"></span>
   <div class="wrap">
-    <span class="brand">Silveria Coaching &amp; Consulting</span>
+    <span class="brand">Andrea Silveria<small>Coaching &amp; Consulting</small></span>
     <div class="fl">
       <a href="https://calendly.com/admin-andreasilveria/30min" target="_blank" rel="noopener">Book a call</a>
       <a href="https://livinginthemiddle.substack.com/" target="_blank" rel="noopener">Substack</a>
