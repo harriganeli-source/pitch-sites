@@ -40,6 +40,10 @@ jobs = [
  ("avatar-light",   page('<div class="lock"><img src="mark-moonset-navy.svg"></div>', LIGHTBG, NAVY, 520, 0, 0, 0, 0, 1000, 1000), 1000, 1000, False),
  ("email-signature",page(row("mark-moonset-navy.svg"), "transparent", NAVY, 96, 30, 9, 28, 8, 600, 140), 600, 140, True),
  ("email-signature-dark",page(row("mark-moonset-cream.svg"), NAVY, CREAM, 96, 30, 9, 28, 8, 600, 140), 600, 140, False),
+ ("logo-horizontal-navy-transparent", page(row("mark-moonset-navy.svg"), "transparent", NAVY, 384, 120, 36, 112, 32, 2400, 560), 2400, 560, True),
+ ("logo-horizontal-cream-transparent",page(row("mark-moonset-cream.svg"), "transparent", CREAM, 384, 120, 36, 112, 32, 2400, 560), 2400, 560, True),
+ ("mark-navy-transparent", page('<div class="lock"><img src="mark-moonset-navy.svg"></div>', "transparent", NAVY, 900, 0, 0, 0, 0, 1700, 1100), 1700, 1100, True),
+ ("mark-cream-transparent",page('<div class="lock"><img src="mark-moonset-cream.svg"></div>', "transparent", CREAM, 900, 0, 0, 0, 0, 1700, 1100), 1700, 1100, True),
 ]
 for name, html, w, h, transparent in jobs:
     src = here / f"_{name}.html"; src.write_text(html)
