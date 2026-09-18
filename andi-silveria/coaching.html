@@ -105,12 +105,10 @@
   /* phones: the clay phrase draws on word by word as the quote scrolls into view (desktop stays static) */
   @media (max-width:720px){
     .quotes p strong{color:inherit}
-    .quotes p strong .hl-w{background:linear-gradient(#B4623F,#B4623F) no-repeat 0 100%/0% 1.5px;padding-bottom:.06em;
-      transition:background-size var(--d,.4s) linear var(--delay,0s), color .25s ease calc(var(--delay,0s) + var(--d,.4s)*.4)}
-    .quotes p strong.on{color:#B4623F}
-    .quotes p strong.on .hl-w{background-size:100% 1.5px}
+    .quotes p strong .hl-w{transition:color var(--d,.4s) ease var(--delay,0s)}
+    .quotes p strong.on .hl-w{color:#B4623F}
   }
-  @media (max-width:720px) and (prefers-reduced-motion:reduce){.quotes p strong{color:#B4623F} .quotes p strong .hl-w{transition:none;background-size:100% 1.5px}}
+  @media (max-width:720px) and (prefers-reduced-motion:reduce){.quotes p strong,.quotes p strong .hl-w{color:#B4623F;transition:none}}
   .quotes cite{font-family:'Mulish',sans-serif;font-style:normal;font-weight:700;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
 
   .ctaband{text-align:center;padding:clamp(4.5rem,10vh,7.5rem) 0}
@@ -317,7 +315,7 @@
 
 <script>
 (function(){
-  // testimonial phrases: on phones the clay underline sweeps across the phrase in reading order (see CSS)
+  // testimonial phrases: on phones the clay color moves across the phrase word by word in reading order (see CSS)
   if(!window.matchMedia('(max-width:720px)').matches) return;
   var els=document.querySelectorAll('.quotes p strong');
   els.forEach(function(s){
