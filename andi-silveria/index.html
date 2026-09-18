@@ -19,7 +19,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Mulish:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400;1,6..72,600&family=Mulish:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#FBF9F4; --ink:#32352E; --muted:#6E7266; --line:#E7E1D5;
@@ -113,10 +113,10 @@
   /* phones: the clay phrase draws on word by word as the quote scrolls into view (desktop stays static) */
   @media (max-width:720px){
     .qgrid p strong{color:inherit}
-    .qgrid p strong .hl-w{transition:color var(--d,.4s) ease var(--delay,0s)}
-    .qgrid p strong.on .hl-w{color:#B4623F}
+    .qgrid p strong .hl-w{transition:color var(--d,.4s) ease var(--delay,0s),font-weight var(--d,.4s) ease var(--delay,0s)}
+    .qgrid p strong.on .hl-w{color:#B4623F;font-weight:600}
   }
-  @media (max-width:720px) and (prefers-reduced-motion:reduce){.qgrid p strong,.qgrid p strong .hl-w{color:#B4623F;transition:none}}
+  @media (max-width:720px) and (prefers-reduced-motion:reduce){.qgrid p strong,.qgrid p strong .hl-w{color:#B4623F;font-weight:600;transition:none}}
   .qgrid cite{font-family:'Mulish',sans-serif;font-style:normal;font-weight:700;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
 
   /* ---------- PASSAGE (dark night band; moon rises on scroll) ---------- */
@@ -184,6 +184,11 @@
     .hc{opacity:1!important;max-width:100%;border-bottom:1px solid var(--line);padding-bottom:2.4rem}
     .hc:last-child{border-bottom:none;padding-bottom:0}
     .wash{display:none}
+    /* phone: the stacked halves get their own soft wash, faded in for whichever is nearer the middle of the screen (see script) */
+    .hc::before{content:"";position:absolute;left:-1.6rem;right:-1.6rem;top:-1.4rem;bottom:-.2rem;z-index:0;opacity:0;transition:opacity .9s ease;pointer-events:none}
+    .hc.left::before{background:linear-gradient(180deg, rgba(95,116,132,0) 0%, rgba(95,116,132,.18) 30%, rgba(95,116,132,.18) 70%, rgba(95,116,132,0) 100%)}
+    .hc.right::before{background:linear-gradient(180deg, rgba(180,98,63,0) 0%, rgba(180,98,63,.17) 30%, rgba(180,98,63,.17) 70%, rgba(180,98,63,0) 100%)}
+    .hc.near::before{opacity:1}
   }
   @media(prefers-reduced-motion:reduce){.hc,.wash{transition:none}}
 
@@ -476,10 +481,29 @@
   var pending=Array.prototype.slice.call(els);
   function check(){
     var vh=window.innerHeight||800;
-    pending=pending.filter(function(s){var r=s.getBoundingClientRect();if(r.top<vh*.85&&r.bottom>vh*.1){light(s);return false}return true});
+    pending=pending.filter(function(s){var r=s.getBoundingClientRect();if(r.top<vh*.55&&r.bottom>vh*.05){light(s);return false}return true});
     if(!pending.length) window.removeEventListener('scroll',check);
   }
   window.addEventListener('scroll',check,{passive:true}); window.addEventListener('load',check); setTimeout(check,400);
+})();
+</script>
+
+<script>
+(function(){
+  // phone: as the two ways scroll past, the half nearer the middle of the screen gets its wash
+  if(!window.matchMedia('(max-width:720px)').matches) return;
+  var halves=document.querySelectorAll('.split .hc'); if(halves.length<2) return;
+  var ticking=false;
+  function pick(){
+    ticking=false;
+    var vh=window.innerHeight||800, mid=vh/2, best=null, bd=1e9;
+    halves.forEach(function(h){var r=h.getBoundingClientRect();
+      if(r.bottom<0||r.top>vh){h.classList.remove('near');return}
+      var d=Math.abs((r.top+r.bottom)/2-mid); if(d<bd){bd=d;best=h}});
+    halves.forEach(function(h){h.classList.toggle('near',h===best)});
+  }
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(pick)}},{passive:true});
+  window.addEventListener('load',pick); setTimeout(pick,400);
 })();
 </script>
 </body>

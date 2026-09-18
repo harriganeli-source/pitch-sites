@@ -19,7 +19,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400;1,6..72,600&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{--paper:#FBF9F4;--ink:#32352E;--muted:#6E7266;--line:#E7E1D5;--slate:#5F7484;--sage:#74806F;--sand:#C7AE87;}
   *{margin:0;padding:0;box-sizing:border-box}
@@ -105,10 +105,10 @@
   /* phones: the clay phrase draws on word by word as the quote scrolls into view (desktop stays static) */
   @media (max-width:720px){
     .quotes p strong{color:inherit}
-    .quotes p strong .hl-w{transition:color var(--d,.4s) ease var(--delay,0s)}
-    .quotes p strong.on .hl-w{color:#B4623F}
+    .quotes p strong .hl-w{transition:color var(--d,.4s) ease var(--delay,0s),font-weight var(--d,.4s) ease var(--delay,0s)}
+    .quotes p strong.on .hl-w{color:#B4623F;font-weight:600}
   }
-  @media (max-width:720px) and (prefers-reduced-motion:reduce){.quotes p strong,.quotes p strong .hl-w{color:#B4623F;transition:none}}
+  @media (max-width:720px) and (prefers-reduced-motion:reduce){.quotes p strong,.quotes p strong .hl-w{color:#B4623F;font-weight:600;transition:none}}
   .quotes cite{font-family:'Mulish',sans-serif;font-style:normal;font-weight:700;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
 
   .ctaband{text-align:center;padding:clamp(4.5rem,10vh,7.5rem) 0}
@@ -334,7 +334,7 @@
   var pending=Array.prototype.slice.call(els);
   function check(){
     var vh=window.innerHeight||800;
-    pending=pending.filter(function(s){var r=s.getBoundingClientRect();if(r.top<vh*.85&&r.bottom>vh*.1){light(s);return false}return true});
+    pending=pending.filter(function(s){var r=s.getBoundingClientRect();if(r.top<vh*.55&&r.bottom>vh*.05){light(s);return false}return true});
     if(!pending.length) window.removeEventListener('scroll',check);
   }
   window.addEventListener('scroll',check,{passive:true}); window.addEventListener('load',check); setTimeout(check,400);
