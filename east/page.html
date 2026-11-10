@@ -418,7 +418,7 @@
   function show(i){
     curI=i;var n=rail[i];
     btns.forEach(function(b,j){b.setAttribute('aria-pressed',j===i?'true':'false')});
-    card.className='card'+(n.slot?' slot':'');
+    card.classList.toggle('slot',!!n.slot);
     var h='<div class="when">'+n.when+(n.slot?' &nbsp;<span class="tag">Placeholder</span>':'')+'</div><h3>'+n.h+'</h3>';
     n.p.forEach(function(t){h+='<p>'+t+'</p>'});
     if(n.q)h+='<blockquote>&ldquo;'+n.q+'&rdquo;</blockquote>';
