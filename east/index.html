@@ -71,9 +71,16 @@
   .hero .lede{font-size:1.15rem;margin-top:22px}
   .hero .meta{font-size:.95rem;color:var(--grey)}
   .facts{display:grid;gap:14px}
-  .fact{background:var(--yellow-3);padding:18px 20px;border-left:5px solid var(--yellow)}
-  .fact h3{margin-bottom:6px}
-  .fact p{margin:0;font-size:1rem}
+  .fact{background:var(--yellow-3);padding:18px 22px;border-left:5px solid var(--yellow)}
+  .fact p{margin:10px 0 0;font-size:1rem;color:#333}
+  .twice .pair{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px}
+  .twice .yr{font-family:var(--serif);font-weight:700;font-size:2.6rem;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+  .twice .link{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px}
+  .twice .link i{display:block;height:3px;background:var(--navy)}
+  .twice .link b{font-weight:700;font-size:.95rem;color:var(--blue-2);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+  .twice .day{font-family:var(--serif);font-weight:700;font-size:1.9rem;line-height:1.1;color:var(--ink);padding-bottom:10px;border-bottom:3px solid var(--navy);margin-bottom:12px}
+  .twice .rows{display:grid;gap:8px;font-size:1rem;color:#333}
+  .twice .rows .yr{font-size:1.5rem;margin-right:8px;vertical-align:-2px}
 
   section{padding-block:44px 0}
   section>p{font-size:1.05rem}
@@ -242,62 +249,55 @@
 
 <div class="hero">
   <div data-stagger data-step=".18">
-    <h1>EAST at 40: a living history</h1>
-    <p class="lede">Forty years of EAST, told by the people who were there. A book that keeps growing, with the interviews Dr. Murali has already recorded at its center, and a short piece cut from them to open the Presidential Address on January 13.</p>
-    <p class="meta">Prepared for Dr. Mayur Patel and Dr. Shyam Murali. Built from EAST's published founding history and the 2027 schedule. Not shown to anyone else.</p>
+    <h1>EAST at 40: an oral history</h1>
+    <p class="lede">Forty years, told by the people who were there. A book that keeps adding chapters, and three minutes of it to open the Presidential Address.</p>
   </div>
   <div class="facts" data-stagger="right" data-step=".2" data-base=".5">
-    <div class="fact">
-      <h3>New Orleans, twice</h3>
-      <p>EAST's kickoff meeting was held on October 19, 1986, at the New Orleans Hilton, where the Articles of Incorporation were approved. Forty years later, the 40th Assembly meets in the same city.</p>
-      <p class="src">Howard R. Champion, "A Brief History of the Founding of EAST," east.org</p>
+    <div class="fact twice">
+      <div class="pair"><span class="yr">1986</span><span class="link"><i></i><b>New Orleans</b><i></i></span><span class="yr">2027</span></div>
+      <p>Incorporated at the New Orleans Hilton. The 40th Assembly meets in the same city.</p>
     </div>
-    <div class="fact">
-      <h3>January 13, twice</h3>
-      <p>The First Annual Scientific Assembly opened on Wednesday, January 13, 1988, at Longboat Key, Florida. The Presidential Address is on Wednesday, January 13, 2027, at 1:30 pm.</p>
-      <p class="src">Champion; EAST 2027 overall schedule</p>
+    <div class="fact twice">
+      <div class="day">Wednesday, January 13</div>
+      <div class="rows"><span><span class="yr">1988</span> the first Assembly opens</span><span><span class="yr">2027</span> the Presidential Address, 1:30 pm</span></div>
     </div>
   </div>
 </div>
 
 <section>
-  <span class="band-wrap" data-rv="wipe"><span class="band">The spine of the book</span></span>
-  <h2 data-rv style="--d:.1s">Forty years on one line</h2>
-  <p data-rv style="--d:.2s">Every solid point is a fact from EAST's own history. Every dashed point is a place where an interview Dr. Murali has recorded, or one filmed in New Orleans, would sit. Click along the line.</p>
+  <span class="band-wrap" data-rv="wipe"><span class="band">The timeline</span></span>
+  <h2 data-rv style="--d:.1s">EAST&rsquo;s history, year by year</h2>
+  <p data-rv style="--d:.2s">Solid points are from the record. Dashed points are where the interviews go. Click along the line.</p>
   <div class="rail-wrap">
     <div class="rail" id="rail" role="tablist" aria-label="Timeline" data-rv="rail"></div>
   </div>
   <div class="card" id="railCard" role="tabpanel" aria-live="polite" data-rv="scale" style="--d:.9s"></div>
-  <p class="hint" data-rv style="--d:1.1s">Arrow keys move along the line.</p>
 </section>
 
 <section>
   <span class="band-wrap" data-rv="wipe"><span class="band">What a chapter looks like</span></span>
-  <h2 data-rv style="--d:.1s">Short text, with the voices beside it</h2>
-  <p data-rv style="--d:.2s">Dr. Patel described a book no one should have to read in one sitting. So each chapter is a page of text and a handful of clips, and the clips do most of the talking. The text here is condensed from Dr. Champion's history. The clips on the right are the shape of what goes there once I've seen the footage.</p>
+  <h2 data-rv style="--d:.1s">Short text, with the interview clips beside it</h2>
+  <p data-rv style="--d:.2s">A page of text and a few clips per chapter. Most of each chapter is the clips.</p>
   <div class="spread">
     <div class="chapter" data-stagger data-step=".12">
       <p class="num">Chapter one &middot; 1985</p>
       <h3>It started with a phone call</h3>
-      <p>Early in 1985, Dr. Howard Champion, then Chief of Trauma and Surgical Critical Care at the Washington Hospital Center, called Dr. Kimball Maull in Knoxville to discuss a surgical organization for young and aspiring trauma surgeons. Dr. Maull emphatically endorsed the concept.</p>
-      <p>Dr. Champion then called Dr. Lenworth Jacobs at Hartford Hospital. Dr. Jacobs was enthusiastic. Burton Harris, then Chief of Pediatric Trauma at New England Medical Center, was also corralled for the initial planning.</p>
-      <p>The founders wanted a forum where papers could be presented, young surgeons mentored, careers fostered, and expectations set. Active members would have to be young: under fifty. Above all, the meetings should be fun, but they must also be good science.</p>
+      <p>Early in 1985, Howard Champion called Kimball Maull about a society for young trauma surgeons. Then Len Jacobs. Then Burton Harris. Members would be under fifty, and the meetings would be fun, but good science.</p>
       <figure class="doc">
         <img src="img/letter.jpg" alt="The letter of November 18, 1986 inviting surgeons to join EAST, signed by the ten founding board members">
-        <figcaption>The invitation, November 18, 1986, signed by all ten founding board members. Charter membership: a form, a CV, and $50. From EAST's published founding history.</figcaption>
+        <figcaption>The invitation, November 18, 1986. Ten signatures, a form, a CV, and $50.</figcaption>
       </figure>
-      <p class="src">Text condensed from Champion's account. His own words would replace mine.</p>
     </div>
     <div>
       <p data-rv style="--d:.3s;font-weight:700;margin-bottom:12px">Clips for this chapter</p>
       <div class="clips" data-stagger="right" data-step=".16" data-base=".45">
         <div class="clip">
           <div class="thumb slot" aria-hidden="true"></div>
-          <div><div class="t">A founder, on the call</div><p class="d">Who made it, who picked up, what was said.</p><span class="tag">From the recorded interviews, if a founder sat for one</span></div>
+          <div><div class="t">A founder, on the call</div><p class="d">Who made it, who picked up, what was said.</p><span class="tag">Recorded interviews</span></div>
         </div>
         <div class="clip">
           <div class="thumb slot" aria-hidden="true"></div>
-          <div><div class="t">"Under fifty"</div><p class="d">A past president on why the age limit mattered.</p><span class="tag">From the recorded interviews</span></div>
+          <div><div class="t">"Under fifty"</div><p class="d">A past president on why the age limit mattered.</p><span class="tag">Recorded interviews</span></div>
         </div>
         <div class="clip">
           <div class="thumb slot" aria-hidden="true"></div>
@@ -306,13 +306,13 @@
       </div>
     </div>
   </div>
-  <div class="open" data-rv style="--d:.3s"><b>Chapter 41 is empty on purpose.</b> The book stays open. Each year's Assembly adds a chapter, so the 50th starts with ten years already written.</div>
+  <div class="open" data-rv style="--d:.3s"><b>Chapter 41 is left empty.</b> Each Assembly adds one. The 50th starts with ten years already written.</div>
 </section>
 
 <section>
   <span class="band-wrap" data-rv="wipe"><span class="band">From the book to the address</span></span>
   <h2 data-rv style="--d:.1s">The first three minutes</h2>
-  <p data-rv style="--d:.2s">A short piece cut from the interviews that already exist, played inside the Presidential Address, and then the opening of the book itself. It introduces the book as a work in progress, which is what it is. Scrub through a sketch of it.</p>
+  <p data-rv style="--d:.2s">Cut from the interviews that already exist, played inside the address. Scrub it.</p>
   <div class="frame" id="frame" data-rv="scale" style="--d:.3s">
     <div class="fbg" id="fbgA" aria-hidden="true"></div><div class="fbg" id="fbgB" aria-hidden="true"></div>
     <span class="fslot"><span class="tag">Sketch</span></span>
@@ -332,15 +332,15 @@
   <span class="band-wrap" data-rv="wipe"><span class="band">How it would go</span></span>
   <h2 data-rv style="--d:.1s">Three steps, in order</h2>
   <ol class="steps" data-stagger data-step=".18" data-base=".2">
-    <li><h3>Watch everything</h3><div><p>I go through every interview Dr. Murali has recorded and pull the moments: the lines that could open a chapter, the ones that could open the talk. Within a week we'd know what the footage can carry.</p></div></li>
-    <li><h3>Cut the opening</h3><div><p>The three-minute piece for January 13, built only from what exists, with a first cut before the holidays. The first chapters of the book take shape around the same clips, so the piece and the book share one look.</p></div></li>
-    <li><h3>Film in New Orleans</h3><div><p>The 40th Assembly is the best room EAST will have for ten years. A camera at the leadership dinner and a quiet corner for sit-down interviews would add a year's worth of chapters in three days.</p><p>The book keeps going after that, at whatever pace EAST wants.</p></div></li>
+    <li><h3>Watch everything</h3><div><p>Every interview Dr. Murali has recorded, with the moments pulled from them within a week.</p></div></li>
+    <li><h3>Cut the opening</h3><div><p>The three minutes for January 13, from what exists, first cut before the holidays. The first chapters take shape around the same clips.</p></div></li>
+    <li><h3>Film in New Orleans</h3><div><p>A camera at the leadership dinner and a quiet corner for sit-downs: a year of chapters in three days. The book keeps going after that.</p></div></li>
   </ol>
 </section>
 
 <footer data-rv>
   <p class="sig">Eli Harrigan</p>
-  <p>This is a sketch of how the material could feel, made before seeing it. Dates, names and quotations come from EAST's published founding history (Howard R. Champion, EAST President 1991) and the 2027 Annual Scientific Assembly schedule on east.org. Membership: 1,363 at the 25-year mark (Champion); past 2,000 by 2016 (EAST News, 2016 issue 1); more than 3,900 today (east.org). The photographs and the EAST mark are EAST's own, from east.org; the photographs were taken at the 39th Assembly in Atlanta in January 2026. The 1986 letter is reproduced from EAST's founding history. Everything marked as a placeholder is footage that doesn't exist yet or that I haven't seen.</p>
+  <p>A sketch, made before seeing the footage. Facts and the 1986 letter are from EAST's published founding history (Howard R. Champion) and the 2027 schedule. Photographs and the EAST mark are EAST's own, from east.org. Placeholders are footage that doesn't exist yet.</p>
   <p>eliharrigan.com &middot; 585.747.0851</p>
 </footer>
 
@@ -395,9 +395,9 @@
     {y:"1987",l:"Fun, and good science",when:"January 8, 1987",h:"First quarterly meeting, Washington National Airport.",p:["Kimball Maull is elected President, Burt Harris President-Elect, Howard Champion Secretary/Treasurer, Len Jacobs Recorder. Membership will be inclusive, and active members must be under fifty."],q:"Above all the meetings should be FUN but must also be good science.",src:"Champion"},
     {y:"1987",l:"95 members",when:"April 24, 1987",h:"The first members.",p:["248 invitations mailed, 141 applications received, 95 accepted. Jacobs is named Program Chairman for the first assembly. That September the AAST board calls EAST a wonderful concept, on one condition: no journal of EAST's own. The Journal of Trauma becomes the official organ instead."],img:{src:"img/letter.jpg",alt:"The November 18, 1986 letter of invitation to join EAST",cap:"The letter that went to 248 surgeons, November 18, 1986."},src:"Champion"},
     {y:"1988",l:"Longboat Key",when:"January 13 to 16, 1988",h:"The First Annual Scientific Assembly.",p:["Colony Beach Resort, Longboat Key, Florida. 99 members and 43 guests. Dues are set at $75. Maull's address asks members to be activists on seatbelt, child restraint and helmet laws, on alcohol and drug abuse, and on firearms violence, and to describe the goal of returning the injured to a productive life."],q:"an Association based on congeniality and concern, concern for our patients, concern for each other, and concern for the future of trauma surgery.",src:"Champion; Maull, J Trauma 1989"},
-    {y:"1988",l:"Voices",when:"Interview",slot:true,h:"Someone who was at Longboat Key.",p:["What the first meeting felt like, and who was in the room. This is the first place the recorded interviews go to work. If nobody from 1988 sat for one, it's the first person to find in New Orleans."],src:"Placeholder"},
+    {y:"1988",l:"Voices",when:"Interview",slot:true,h:"Someone who was at Longboat Key.",p:["What the first meeting felt like, and who was in the room. This is the first place a recorded interview would go. If nobody from 1988 sat for one, it's the first person to find in New Orleans."],src:"Placeholder"},
     {y:"2011",l:"25 years",when:"2011",h:"1,363 members.",p:["At its 25-year mark EAST's membership passes that of the AAST, the organization it was built to be a stepping stone toward. Champion writes that the achievements are beyond the founders' imagination."],src:"Champion"},
-    {y:"Any year",l:"Your year",when:"Interview",slot:true,h:"What EAST gave you.",p:["Every chapter from here is a member's own year: the first abstract, the mentor, the fellowship, the friend made at the reception. The book's middle is built from these, in whatever order they're recorded."],img:{src:"img/tables.jpg",alt:"Members talking at round tables during a session at the 2026 EAST Assembly",cap:"The 39th Assembly, Atlanta, 2026. Photograph from east.org."},src:"Placeholder"},
+    {y:"Any year",l:"Your year",when:"Interview",slot:true,h:"What EAST gave you.",p:["Every chapter from here is a member's own year: the first abstract, the mentor, the fellowship, the friend made at the reception. Most of the book is made of these, in whatever order they're recorded."],img:{src:"img/tables.jpg",alt:"Members talking at round tables during a session at the 2026 EAST Assembly",cap:"The 39th Assembly, Atlanta, 2026. Photograph from east.org."},src:"Placeholder"},
     {y:"2026",l:"3,900 members",when:"2026",h:"More than 3,900 members.",p:["Membership passed 2,000 in 2016 and is past 3,900 today. EAST describes itself in three phrases: advancing science, fostering relationships, building careers. In his president's message Dr. Patel calls EAST a family and a community, and sets the 40th's task as honoring its history and embracing its future."],img:{src:"img/room.jpg",alt:"The room at a scientific session of the 2026 EAST Assembly, seen from the back",cap:"Scientific Session I, the 39th Assembly, Atlanta, 2026. Photograph from east.org."},src:"east.org; EAST News 2016"},
     {y:"2027",l:"New Orleans again",when:"Wednesday, January 13, 2027, 1:30 pm",h:"The Presidential Address.",p:["The 40th Annual Scientific Assembly, Sheraton New Orleans. The address is the opening keynote. The book's first three minutes play inside it, and the book opens that day."],src:"EAST 2027 overall schedule"}
   ];
@@ -447,12 +447,12 @@
   /* Teaser */
   var beats=[
     {t:0,  l:"The call",     f:"Early in 1985, a phone rang in Knoxville.",q:true,note:"Navy. A phone rings. The line comes up as text, then a founder's voice, from the recorded interviews, tells it. If no founder was interviewed, a current member reads Dr. Champion's account.",from:"Archival text + interview audio"},
-    {t:30, l:"The city",     f:"New Orleans. October 19, 1986.",note:"The first thing the room learns is that EAST was incorporated in the city they're sitting in. A clean title over a quiet shot of the river. The room is already in the film.",from:"Title card + one plate (stock, or filmed the day before)"},
-    {t:55, l:"Longboat Key", f:"99 members. 43 guests. Dues: $75.",note:"The first assembly, in numbers that make people smile. Then the rule: fun, but good science. A photograph from 1988, if EAST has one.",from:"Title cards + archival photo"},
-    {t:80, l:"The voices",   f:"“Concern for our patients. Concern for each other.”",q:true,bg:"img/tables.jpg",note:"The middle of the piece is the interviews, cut fast: what EAST gave each person, in a sentence each. The words family, mentorship and community will come up on their own. This is where Dr. Murali's footage carries the film.",from:"Recorded interviews, a dozen cuts"},
+    {t:30, l:"The city",     f:"New Orleans. October 19, 1986.",note:"The first thing the room learns is that EAST was incorporated in the city they're sitting in. A clean title over a quiet shot of the river. The room is sitting in that city.",from:"Title card + one plate (stock, or filmed the day before)"},
+    {t:55, l:"Longboat Key", f:"99 members. 43 guests. Dues: $75.",note:"The first assembly, in numbers. Then the rule: fun, but good science. A photograph from 1988, if EAST has one.",from:"Title cards + archival photo"},
+    {t:80, l:"The voices",   f:"“Concern for our patients. Concern for each other.”",q:true,bg:"img/tables.jpg",note:"The middle of the piece is the interviews, cut fast: what EAST gave each person, in a sentence each. The words family, mentorship and community will come up on their own. Most of this section is Dr. Murali's footage.",from:"Recorded interviews, a dozen cuts"},
     {t:130,l:"Today",        f:"3,900 members. 40 years. One room.",bg:"img/room.jpg",note:"The numbers today, then the room itself: a wide shot of the Assembly, filmed that morning if we can, or last year's if we can't.",from:"Title card + plate"},
-    {t:155,l:"The book",     f:"EAST at 40. A living history.",note:"The reveal: the book exists, it's open, and it's theirs to add to. Where to find it goes on screen here.",from:"Title card + a screen capture of the book"},
-    {t:175,l:"Back to you",  f:"Dr. Patel resumes.",q:true,note:"Lights up. The piece ends on the book's name, and the address picks up from the idea that this is the organization for them.",from:"Hard cut to the room"}
+    {t:155,l:"The book",     f:"EAST at 40. An oral history.",note:"The book is introduced: it's online, and members can add to it. Where to find it goes on screen here.",from:"Title card + a screen capture of the book"},
+    {t:175,l:"Back to you",  f:"Dr. Patel resumes.",q:true,note:"Lights up. The piece ends on the book's name, and Dr. Patel picks up the address from there.",from:"Hard cut to the room"}
   ];
   var sc=document.getElementById('scrubber'),ftxt=document.getElementById('ftxt'),tc=document.getElementById('tc'),bar=document.getElementById('bar'),beatsEl=document.getElementById('beats'),note=document.getElementById('beatNote'),bb=[],curB=-1;
   var fbg=[document.getElementById('fbgA'),document.getElementById('fbgB')],fbgOn=0;
