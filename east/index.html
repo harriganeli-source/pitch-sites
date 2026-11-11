@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>EAST at Forty</title>
+<meta name="description" content="EAST at 40: a sketch for Dr. Patel and Dr. Murali. Forty years of EAST told by the people who were there, and three minutes of it inside the 2027 Presidential Address.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="EAST at 40">
+<meta property="og:description" content="A sketch for Dr. Patel and Dr. Murali, from Eli Harrigan.">
+<meta property="og:image" content="https://east-at-forty.vercel.app/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://east-at-forty.vercel.app/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://east-at-forty.vercel.app/img/og.png">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,7 +55,7 @@
   html.lenis,html.lenis body{height:auto}
   .lenis.lenis-smooth{scroll-behavior:auto!important}
   .sunrise{height:240vh;position:relative;margin:0 -20px;padding:0}
-  .sunrise .stick{position:sticky;top:0;height:100vh;display:grid;place-items:center;overflow:hidden;background:#fff}
+  .sunrise .stick{position:sticky;top:0;height:100vh;height:100svh;display:grid;place-items:center;overflow:hidden;background:#fff}
   .sunrise .mark{width:min(42vh,300px);display:grid;gap:10px}
   .sunrise svg{display:block;width:100%;height:auto;overflow:visible}
   .sunrise .word{display:block;width:100%;height:auto;opacity:0;transform:translateY(18px);will-change:opacity,transform}
@@ -56,9 +66,9 @@
   .sunrise .go{position:absolute;left:0;right:0;bottom:4vh;text-align:center;font-size:.9rem;font-weight:700;color:var(--blue-2);letter-spacing:.1em;text-transform:uppercase;margin:0;max-width:none;transition:opacity .4s}
   .sunrise .go::after{content:"";display:block;width:14px;height:14px;border-right:3px solid var(--blue);border-bottom:3px solid var(--blue);transform:rotate(45deg);margin:12px auto 0;animation:nudge 1.6s ease-in-out infinite}
   @keyframes nudge{0%,100%{transform:translateY(0) rotate(45deg);opacity:1}50%{transform:translateY(9px) rotate(45deg);opacity:.5}}
-  @keyframes breathe{0%,100%{opacity:.72}50%{opacity:1}}
-  .sunrise.rest #glow{animation:breathe 2.8s ease-in-out infinite}
-  @media (prefers-reduced-motion:reduce){.sunrise .go::after,.sunrise.rest #glow{animation:none}}
+  @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+  .sunrise.rest svg{animation:breathe 3.2s ease-in-out infinite;transform-origin:50% 49%}
+  @media (prefers-reduced-motion:reduce){.sunrise .go::after,.sunrise.rest svg{animation:none}}
   @media (prefers-reduced-motion:reduce){
     .sunrise{height:auto}.sunrise .stick{height:auto;padding:56px 0 24px;position:static}
     .sunrise .word{opacity:1!important;transform:none!important}.sunrise .cap{position:static;opacity:1!important;margin-top:20px}.sunrise .go{display:none}.sunrise .intro{position:static;margin-bottom:24px}
@@ -236,12 +246,12 @@
       <svg viewBox="0 0 168 162" aria-hidden="true">
         <defs>
           <clipPath id="horizon"><rect x="-40" y="-40" width="250" height="200"/></clipPath>
-          <clipPath id="glowClip"><circle cx="84" cy="79" r="79"/></clipPath>
+          <clipPath id="glowClip"><circle id="glowC" cx="84" cy="79" r="79" transform="translate(0 -19) translate(84 79) scale(.962) translate(-84 -79)"/></clipPath>
         </defs>
-        <circle id="glow" cx="84" cy="79" r="79" fill="#FFF3B3"/>
+        <circle id="glow" cx="84" cy="79" r="79" fill="#FFF3B3" transform="translate(0 -19) translate(84 79) scale(.962) translate(-84 -79)"/>
         <g clip-path="url(#horizon)">
           <g id="sunT" transform="translate(0 -76)"><circle cx="84" cy="136" r="76" fill="#FFE617"/></g>
-          <g clip-path="url(#glowClip)"><g id="lensT" transform="translate(0 -76)"><circle cx="84" cy="136" r="76" fill="#FFED74"/></g></g>
+          <g clip-path="url(#glowClip)"><g id="lensT" transform="translate(0 -76)" style="opacity:0"><circle cx="84" cy="136" r="76" fill="#FFED74"/></g></g>
         </g>
       </svg>
       <img class="word" id="word" src="img/east-word.svg" alt="east">
@@ -367,8 +377,8 @@
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <script>
 (function(){
-  /* Sunset, driven by scroll position: the sun starts whole above the glow's centre and sinks 76 units to the horizon */
-  var sec=document.getElementById('sunrise'),sunT=document.getElementById('sunT'),lensT=document.getElementById('lensT'),glow=document.getElementById('glow'),word=document.getElementById('word'),cap=document.getElementById('sunCap'),go=document.getElementById('sunGo'),intro=document.getElementById('sunIntro');
+  /* Sunset, driven by scroll position: at rest the sun and the glow are one circle; on scroll the glow rises 19 units and the sun sinks 76 to the horizon; the wordmark comes in as the sun's edge crosses the horizon */
+  var sec=document.getElementById('sunrise'),sunT=document.getElementById('sunT'),lensT=document.getElementById('lensT'),glow=document.getElementById('glow'),glowC=document.getElementById('glowC'),word=document.getElementById('word'),cap=document.getElementById('sunCap'),go=document.getElementById('sunGo'),intro=document.getElementById('sunIntro');
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
   function clamp(v,a,b){return v<a?a:v>b?b:v}
   function ease(t){return t<.5?2*t*t:-1+(4-2*t)*t}
@@ -386,14 +396,16 @@
     render(pShown);
   }
   function render(p){
-    var set=seg(p,0,.55),ty=-76*(1-set);
+    var set=seg(p,0,.55),ty=-76*(1-set),tg=-19*(1-set),sc=.962+.038*set;
+    var gt='translate(0 '+tg.toFixed(2)+') translate(84 79) scale('+sc.toFixed(4)+') translate(-84 -79)';glow.setAttribute('transform',gt);glowC.setAttribute('transform',gt);
+    lensT.style.opacity=seg(p,.02,.22).toFixed(3);
     sec.classList.toggle('rest',p<.02);
     sunT.setAttribute('transform','translate(0 '+ty.toFixed(2)+')');lensT.setAttribute('transform','translate(0 '+ty.toFixed(2)+')');
-    var w=seg(p,.52,.78);word.style.opacity=w.toFixed(3);word.style.transform='translateY('+(18*(1-w)).toFixed(1)+'px)';
-    cap.style.opacity=seg(p,.72,.92).toFixed(3);
+    var w=clamp((136+ty-84)/52,0,1);word.style.opacity=w.toFixed(3);word.style.transform='translateY('+(18*(1-w)).toFixed(1)+'px)';
+    cap.style.opacity=seg(p,.6,.8).toFixed(3);
     go.style.opacity=p>.04?0:1;intro.style.opacity=p>.08?0:1;
   }
-  if(reduce){sunT.setAttribute('transform','');lensT.setAttribute('transform','')}
+  if(reduce){sunT.setAttribute('transform','');lensT.setAttribute('transform','');lensT.style.opacity=1;glow.setAttribute('transform','');glowC.setAttribute('transform','')}
   /* Lenis only when the page is the top window: inside an embed (the claude.ai viewer) it swallows the wheel. */
   var inFrame=(function(){try{return window.self!==window.top}catch(e){return true}})();
   var lenis=null;
