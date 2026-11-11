@@ -170,6 +170,11 @@
   ol.steps h3{font-size:1.25rem}
   ol.steps p{margin:0;font-size:1.05rem}
   ol.steps p+p{margin-top:6px}
+  ol.steps h3 small{display:block;font-family:var(--sans);font-weight:600;font-size:.9rem;color:var(--blue-2);margin-top:4px;letter-spacing:.01em}
+  .needs{margin-top:28px;padding:22px 26px;background:#FFF8C8;border-left:5px solid var(--yellow)}
+  .needs h3{font-size:1.15rem;margin:0 0 10px}
+  .needs ul{margin:0;padding-left:20px}
+  .needs li{font-size:1.05rem;margin:4px 0}
 
   footer{margin-top:56px;padding-top:18px;border-top:4px solid var(--yellow);font-size:.95rem;color:#333}
   footer p{max-width:72ch}
@@ -214,6 +219,11 @@
     .spread .chapter{border-right:0;border-bottom:1px solid var(--line)}
     .beats{grid-template-columns:repeat(4,1fr)}
     ol.steps li{grid-template-columns:1fr;gap:6px}
+    .fact{min-width:0;padding:16px 18px}
+    .twice .yr{font-size:2rem}
+    .twice .pair{gap:10px}
+    .twice .day{font-size:1.55rem}
+    .twice .link b{font-size:.72rem;letter-spacing:.08em}
   }
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -330,12 +340,20 @@
 
 <section>
   <span class="band-wrap" data-rv="wipe"><span class="band">How it would go</span></span>
-  <h2 data-rv style="--d:.1s">Three steps, in order</h2>
+  <h2 data-rv style="--d:.1s">Three steps, with dates</h2>
   <ol class="steps" data-stagger data-step=".18" data-base=".2">
-    <li><h3>Watch everything</h3><div><p>Every interview Dr. Murali has recorded, with the moments pulled from them within a week.</p></div></li>
-    <li><h3>Cut the opening</h3><div><p>The three minutes for January 13, from what exists, first cut before the holidays. The first chapters take shape around the same clips.</p></div></li>
-    <li><h3>Film in New Orleans</h3><div><p>A camera at the leadership dinner and a quiet corner for sit-downs: a year of chapters in three days. The book keeps going after that.</p></div></li>
+    <li><h3>Watch what exists<small>Now to November 25</small></h3><div><p>Every interview Dr. Murali has recorded for the 40th book, with the usable moments logged.</p></div></li>
+    <li><h3>Cut the opening<small>December 1 to January 6</small></h3><div><p>The three minutes for the address, cut from the existing interviews. A first cut to Dr. Patel by December 18. The locked film by January 6. The first chapters of the book use the same clips.</p></div></li>
+    <li><h3>Film in New Orleans<small>January 12 to 15</small></h3><div><p>A camera at the EAST4ALL Opening Reception on the 13th and a quiet room for sit-down interviews: a year of chapters in three days. More interviews on Zoom after the Assembly.</p></div></li>
   </ol>
+  <div class="needs" data-rv style="--d:.3s">
+    <h3>What this needs from EAST</h3>
+    <ul>
+      <li>The interviews Dr. Murali has already recorded, in whatever form they are.</li>
+      <li>Six to eight people to interview, chosen by Dr. Patel.</li>
+      <li>An outline of the address by December 1, so the film fits where it plays.</li>
+    </ul>
+  </div>
 </section>
 
 <footer data-rv>
