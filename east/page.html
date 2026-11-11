@@ -36,7 +36,7 @@
   .src{font-size:.85rem;color:var(--grey);margin:10px 0 0}
   .btn{display:inline-block;background:var(--blue);color:#fff;font-weight:700;font-size:.9rem;text-transform:uppercase;letter-spacing:.02em;padding:10px 18px;text-decoration:none;border:0;font-family:var(--sans);cursor:pointer}
 
-  /* Sunrise: the mark assembles as you scroll. The pale circle is the glow, the deep circle is the sun, the flat bottom is the horizon, then the wordmark. */
+  /* Sunset: both circles start whole, the sun sinks behind the horizon as you scroll, then the wordmark. The pale circle is the glow, the deep circle is the sun, the flat bottom is the horizon. */
   html.lenis,html.lenis body{height:auto}
   .lenis.lenis-smooth{scroll-behavior:auto!important}
   .sunrise{height:240vh;position:relative;margin:0 -20px;padding:0}
@@ -51,7 +51,7 @@
   .sunrise .go{position:absolute;left:0;right:0;bottom:4vh;text-align:center;font-size:.9rem;font-weight:700;color:var(--blue-2);letter-spacing:.1em;text-transform:uppercase;margin:0;max-width:none;transition:opacity .4s}
   .sunrise .go::after{content:"";display:block;width:14px;height:14px;border-right:3px solid var(--blue);border-bottom:3px solid var(--blue);transform:rotate(45deg);margin:12px auto 0;animation:nudge 1.6s ease-in-out infinite}
   @keyframes nudge{0%,100%{transform:translateY(0) rotate(45deg);opacity:1}50%{transform:translateY(9px) rotate(45deg);opacity:.5}}
-  @keyframes breathe{0%,100%{opacity:.18}50%{opacity:.45}}
+  @keyframes breathe{0%,100%{opacity:.72}50%{opacity:1}}
   .sunrise.rest #glow{animation:breathe 2.8s ease-in-out infinite}
   @media (prefers-reduced-motion:reduce){.sunrise .go::after,.sunrise.rest #glow{animation:none}}
   @media (prefers-reduced-motion:reduce){
@@ -223,10 +223,10 @@
           <clipPath id="horizon"><rect x="-40" y="-40" width="250" height="200"/></clipPath>
           <clipPath id="glowClip"><circle cx="84" cy="79" r="79"/></clipPath>
         </defs>
-        <circle id="glow" cx="84" cy="79" r="79" fill="#FFF3B3" transform="translate(84 79) scale(.7) translate(-84 -79)" style="opacity:.15"/>
+        <circle id="glow" cx="84" cy="79" r="79" fill="#FFF3B3"/>
         <g clip-path="url(#horizon)">
-          <g id="sunT" transform="translate(0 78)"><circle cx="84" cy="136" r="76" fill="#FFE617"/></g>
-          <g clip-path="url(#glowClip)"><g id="lensT" transform="translate(0 78)"><circle cx="84" cy="136" r="76" fill="#FFED74"/></g></g>
+          <g id="sunT" transform="translate(0 -76)"><circle cx="84" cy="136" r="76" fill="#FFE617"/></g>
+          <g clip-path="url(#glowClip)"><g id="lensT" transform="translate(0 -76)"><circle cx="84" cy="136" r="76" fill="#FFED74"/></g></g>
         </g>
       </svg>
       <img class="word" id="word" src="img/east-word.svg" alt="east">
@@ -344,7 +344,7 @@
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <script>
 (function(){
-  /* Sunrise, driven by scroll position */
+  /* Sunset, driven by scroll position: the sun starts whole above the glow's centre and sinks 76 units to the horizon */
   var sec=document.getElementById('sunrise'),sunT=document.getElementById('sunT'),lensT=document.getElementById('lensT'),glow=document.getElementById('glow'),word=document.getElementById('word'),cap=document.getElementById('sunCap'),go=document.getElementById('sunGo'),intro=document.getElementById('sunIntro');
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
   function clamp(v,a,b){return v<a?a:v>b?b:v}
@@ -363,15 +363,14 @@
     render(pShown);
   }
   function render(p){
-    var rise=seg(p,0,.5),ty=78*(1-rise);
+    var set=seg(p,0,.55),ty=-76*(1-set);
     sec.classList.toggle('rest',p<.02);
     sunT.setAttribute('transform','translate(0 '+ty.toFixed(2)+')');lensT.setAttribute('transform','translate(0 '+ty.toFixed(2)+')');
-    var g=seg(p,.08,.55);glow.style.opacity=(.15+.85*g).toFixed(3);glow.setAttribute('transform','translate(84 79) scale('+(.7+.3*g).toFixed(3)+') translate(-84 -79)');
     var w=seg(p,.52,.78);word.style.opacity=w.toFixed(3);word.style.transform='translateY('+(18*(1-w)).toFixed(1)+'px)';
     cap.style.opacity=seg(p,.72,.92).toFixed(3);
     go.style.opacity=p>.04?0:1;intro.style.opacity=p>.08?0:1;
   }
-  if(reduce){sunT.setAttribute('transform','');lensT.setAttribute('transform','');glow.setAttribute('transform','');glow.style.opacity=1}
+  if(reduce){sunT.setAttribute('transform','');lensT.setAttribute('transform','')}
   /* Lenis only when the page is the top window: inside an embed (the claude.ai viewer) it swallows the wheel. */
   var inFrame=(function(){try{return window.self!==window.top}catch(e){return true}})();
   var lenis=null;
